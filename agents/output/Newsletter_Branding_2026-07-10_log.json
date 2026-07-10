@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-07-10T16:58:08.972566+00:00",
+  "contenus": [
+    {
+      "titre": "Veille de la semaine du 10 juillet 2026",
+      "corps": "Quelques articles interessants glanes cette semaine :\n\n- Agentic AI, explained - MIT Sloan (mitsloan.mit.edu)\n- What is agentic AI? - IBM (ibm.com)\n- Agentic AI - GeeksforGeeks (geeksforgeeks.org)\n- Qu’est-ce que l’IA agentique ? | IBM (ibm.com)",
+      "accroche": "Veille de la semaine du 10 juillet 2026",
+      "type": "Veille hebdomadaire",
+      "signature": ""
+    },
+    {
+      "titre": "Cas client : Innovation digitale et transformation des points de vente",
+      "corps": "Contexte\nNotre equipe a pilote l'innovation digitale pour un groupe industriel present dans 75 pays, en concevant des solutions disruptives pour les points de vente et les canaux en ligne.\n\nNotre intervention\nMission confiee : Digital Innovation Manager\nSecteur : Industrie / Construction\n\nCe que nous avons fait :\n- Developpement d'applications de Realite Augmentee et de modelisation 3D pour les clients\n- Conception d'outils web 2.0 de devis en ligne personnalise et en temps reel\n- Management d'une equipe de 9 collaborateurs sur des projets digitaux innovants\n- Implementation de solutions ERP pour integrer les nouveaux canaux digitaux\n\nResultats\nSolutions de Realite Augmentee deployees en magasin, outils de devis en ligne adoptes par des milliers de clients, equipe digitalisee et formee.\n\nCe type de mission illustre notre approche : un cabinet de conseil operationnel, capable d'intervenir a la fois sur la strategie et sur la delivery. Nous travaillons avec des groupes internationaux comme avec des PME en forte croissance.",
+      "accroche": "Innovation digitale et transformation des points de vente - Industrie / Construction",
+      "type": "Cas client",
+      "signature": "\n\n---\nASTRA MOMENTUM"
+    },
+    {
+      "titre": "Conseil pratique de la semaine",
+      "corps": "Un point souvent neglige mais qui fait la difference : je suis tombe sur cet article qui resume bien un point que je vois regulierement chez nos clients : Démarrage avec des solutions d’audit | Microsoft Learn (learn.microsoft.com).\n\nCa rejoint ce qu'on constate sur le terrain : les equipes les plus efficaces ne sont pas celles qui ont le plus d'outils, mais celles qui ont une gouvernance claire.",
+      "accroche": "Conseil pratique de la semaine",
+      "type": "Conseil pratique",
+      "signature": "\n\n---\nASTRA MOMENTUM"
+    },
+    {
+      "titre": "Ce qui bouge dans la transformation digitale",
+      "corps": "Deux signaux retenus cette semaine :\n\n- Transformation, tous les synonymes (synonymo.fr)\n- Accueil | transformation.gouv.fr (transformation.gouv.fr)\n\nRien de revolutionnaire, mais des confirmations de tendances qu'on observe deja sur le terrain.",
+      "accroche": "Ce qui bouge dans la transformation digitale",
+      "type": "Analyse de tendance",
+      "signature": "\n\n---\nASTRA MOMENTUM"
+    }
+  ]
+}

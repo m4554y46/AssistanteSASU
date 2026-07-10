@@ -127,5 +127,31 @@
       "site:free-work.com tjm product manager senior freelance",
       "site:free-work.com tjm consultant transformation digitale freelance"
     ]
+  },
+  "sasu": {
+    "company": "ASTRA MOMENTUM",
+    "name": "Michael ASSAYAG",
+    "title": "President",
+    "positioning": "Senior Product & Project Manager | Digital Transformation | Mobile | Omnichannel | IA",
+    "tjm_cible": 750,
+    "tjm_min": 650
+  },
+  "tableau_bord": {
+    "enabled": true,
+    "objectif_mensuel": 10000,
+    "objectif_annuel": 120000,
+    "factures_dir": "C:\\Users\\micas\\OneDrive\\Bureau\\Rapports Assistant SASU\\agents\\agent_tableau_bord\\factures"
+  },
+  "pipeline_crm": {
+    "enabled": true,
+    "csv_path": "C:\\Users\\micas\\OneDrive\\Bureau\\Rapports Assistant SASU\\agents\\agent_pipeline_crm\\pipeline.csv",
+    "stages": [
+      "Premier contact envoyé",
+      "Rendez-vous qualifié",
+      "Proposition envoyée",
+      "Négociation",
+      "Gagné",
+      "Perdu"
+    ]
   }
 }

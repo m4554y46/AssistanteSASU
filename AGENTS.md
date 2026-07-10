@@ -109,16 +109,18 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 - Création du fichier `AGENTS.md` pour la mémoire de session
 - Fine-grained token GitHub utilisé pour l'authentification
 
-### 2026-07-10 — Suite session : renommage ASTRA MOMENTUM + CR réunion auto-généré + launcher mercredi
+### 2026-07-10 — Suite session : renommage ASTRA MOMENTUM + CR réunion auto-généré + launcher mercredi + ghostwriter dynamique + configs manquantes
 
 - Renommage complet ASSISTANT SASU → **ASTRA MOMENTUM** (config, rapports, email, ghostwriter, propositions)
 - Création de `lancer_mercredi.bat` : délai aléatoire 15-45min → rapport → agents → email
 - Création de `installer_tache_mercredi.ps1` : planifie la tâche Windows tous les mercredis 14h30
 - Création de `agent_cr_reunion/generate_notes.py` : génère des notes réalistes (Bing RSS → marché freelance, écosystème, IA/Product) formatées en CR d'assistante
 - Modification de `cr_reunion.py` : si aucune note manuelle → appel automatique à generate_notes
-- Filtrage anti-bruit dans generate_notes (domaines bloqués, mots-clés, dédicacage)
-- `.gitignore` : `.env`, `clé GitHub.txt`, `Clé SMTP Brevo.txt`
-- Tokens sensibles supprimés du disque
+- Filtrage anti-bruit dans generate_notes et ghostwriter (30+ domaines bloqués, mots-clés)
+- Réécriture complète de `ghostwriter.py` : contenu dynamique depuis Bing (plus de texte statique). 3 des 4 articles changent chaque semaine
+- Ajout des sections `sasu`, `tableau_bord`, `pipeline_crm` dans `agents/config.json` (configs qui manquaient)
+- Fichiers sensibles (`clé GitHub.txt`, `Clé SMTP Brevo.txt`) supprimés du disque et du tracking git
+- `.gitignore` enrichi
 
 ### Décisions de conception
 - **Ne pas toucher à l'architecture existante** — la duplication entre `collectors.py` et `core/web.py` est volontaire (découplage = contrôle)
@@ -129,8 +131,6 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 ## Prochaines étapes (optionnelles, non prioritaires)
 
 - [ ] Créer un `lancer_mercredi.bat` unique qui enchaîne rapport → agents → email
-- [ ] Simplifier la config (fusionner les deux config.json en un seul)
-- [ ] Nettoyer les agents non utilisés
 
 ## Références
 

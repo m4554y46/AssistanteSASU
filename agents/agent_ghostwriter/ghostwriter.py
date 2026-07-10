@@ -14,14 +14,13 @@ from core.common import (
     set_run_font,
     setup_doc,
 )
-from core.web import multi_search
+from core.web import SearchResult, multi_search
 from docx.shared import Pt, RGBColor
 
 NAVY = RGBColor(11, 37, 69)
 GRAY = RGBColor(86, 95, 108)
 BLACK = RGBColor(0, 0, 0)
 
-# Cas reels anonymises pour generer du contenu credible
 MISSIONS_REELLES = [
     {
         "titre": "Deploiement mobile a l'echelle mondiale",
@@ -81,70 +80,124 @@ MISSIONS_REELLES = [
     },
 ]
 
-CONTENUS_POSSIBLES = [
-    {
-        "type": "retour_experience",
-        "structure": "experience",
-        "description": "Retour d'experience anonymise d'une mission reelle",
-    },
-    {
-        "type": "article_opinion",
-        "structure": "opinion",
-        "description": "Article d'opinion sur une tendance du marche",
-    },
-    {
-        "type": "conseil_pratique",
-        "structure": "conseil",
-        "description": "Conseil operationnel pour dirigeant ou DSI",
-    },
-    {
-        "type": "analyse_secteur",
-        "structure": "analyse",
-        "description": "Analyse d'un secteur (luxe, logistique, retail)",
-    },
+BLOCKED_DOMAINS = [
+    "pinterest", "amazon", "ebay", "etsy", "aliexpress", "walmart",
+    "shopify", "boulanger", "fnac", "cdiscount", "ikea", "leroymerlin",
+    "decathlon", "booking", "tripadvisor",
+    "larousse", "dictionnaire", "wiktionary", "cnrtl",
+    "linternaute", "wikihow", "wikipedia",
+    "fiverr", "freelance.com", "upwork", "peopleperhour",
+    "facebook", "instagram", "twitter", "x.com", "tiktok",
+    "youtube", "leboncoin",
+    "wordreference", "linguee", "reverso",
+    "cambridge", "merriam", "oxford", "collins",
+    "allocine", "mozzartbet",
 ]
 
+BLOCKED_WORDS = [
+    "login", "sign in", "se connecter", "s identifier", "password",
+    "connexion", "subscribe", "inscription", "create account",
+    "earplugs", "bouchons", "oreille", "shoes",
+    "recrutement", "nous recrutons", "annonce recrute",
+    "définition", "definition",
+    "trouvez les meilleurs", "freelance services marketplace",
+]
 
-def generer_article_opinion(config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
-    sujet = random.choice([
-        "Pourquoi le Product Operating Model est la cle d'une transformation IA reussie",
-        "Ce que le deploiement mobile dans 30 pays nous a appris sur la gouvernance produit",
-        "L'omnicanal dans le luxe : retour sur 7 ans de transformation chez un leader mondial",
-        "Realite Augmentee en retail : etait-ce un gadget ou un investissement strategique ?",
-    ])
-    body = (
-        f"Chez {company}, nous accompagnons les directions generales et les DSI "
-        f"dans leurs transformations produit et digitales.\n\n"
-        f"Notre constat est le meme d'un secteur a l'autre : la technologie n'est jamais "
-        f"le verrou. Ce qui fait la difference, c'est la capacite a organiser la delivery, "
-        f"a prioriser les investissements et a creer les conditions de l'adoption.\n\n"
-        f"Apres avoir pilote des transformations a grande echelle dans le luxe (Groupe Kering), "
-        f"l'industrie (Saint-Gobain), la logistique (groupe GeoPost) et les services (LBO hotelier), "
-        f"nous avons identifie 3 piliers communs aux reussites produit :\n\n"
-        f"1. Un Product Operating Model clair : qui decide quoi, sur quel horizon, avec quelle mesure d'impact.\n"
-        f"2. Une discovery continue : les decisions produit ne se prennent pas au feeling mais a partir "
-        f"d'interviews clients, de donnees d'usage et de tests structures.\n"
-        f"3. Une gouvernance de la delivery : les equipes savent ce qu'elles doivent livrer, "
-        f"pourquoi, et dans quel cadre.\n\n"
-        f"Nous intervenons pour cadrer, auditer ou accompagner la mise en place de ces piliers. "
-        f"En 5 jours ou en mission longue."
-    )
+THEME_QUERIES = {
+    "ia_agentic": [
+        "agentic IA entreprise 2026",
+        "agent IA autonome product management",
+        "intelligence artificielle agentique entreprise",
+    ],
+    "product": [
+        "product management methode innovation 2026",
+        "continuous discovery produit 2026",
+        "product operating model transformation",
+    ],
+    "transformation": [
+        "transformation numerique entreprise 2026",
+        "innovation digitale retail 2026",
+        "mobile first strategie entreprise",
+    ],
+    "conseil": [
+        "audit organisation produit methode",
+        "gouvernance produit equipe 2026",
+        "conseil direction transformation digitale",
+    ],
+}
+
+MOIS_FR = ["", "janvier", "fevrier", "mars", "avril", "mai", "juin",
+           "juillet", "aout", "septembre", "octobre", "novembre", "decembre"]
+
+
+def _semaine() -> str:
+    t = date.today()
+    return f"{t.day} {MOIS_FR[t.month]} {t.year}"
+
+
+def _filtrer(items: list[SearchResult]) -> list[SearchResult]:
+    out = []
+    for item in items:
+        if not item.title or len(item.title) < 15:
+            continue
+        source = item.source.lower()
+        title = item.title.lower()
+        snippet = (item.snippet or "").lower()
+        text = f"{title} {snippet}"
+        if any(d in source for d in BLOCKED_DOMAINS):
+            continue
+        if any(w in text for w in BLOCKED_WORDS):
+            continue
+        out.append(item)
+    seen = set()
+    unique = []
+    for it in out:
+        k = it.title.lower()[:60]
+        if k not in seen:
+            seen.add(k)
+            unique.append(it)
+    return unique
+
+
+def _rechercher(queries: list[str], timeout: int = 10, count: int = 5) -> list[SearchResult]:
+    raw = multi_search(queries, timeout, count)
+    return _filtrer(raw)[:4]
+
+
+def generer_veille_semaine(company: str) -> dict:
+    articles = _rechercher(THEME_QUERIES["ia_agentic"] + THEME_QUERIES["product"])
+    titre = f"Veille de la semaine du {_semaine()}"
+
+    if not articles:
+        corps = (
+            f"Cette semaine, je n'ai pas trouve d'article marquant sur les sujets "
+            f"IA et Product. Je te les partagerai la semaine prochaine."
+        )
+    else:
+        lignes = []
+        for a in articles:
+            lignes.append(f"- {a.title} ({a.source})")
+        articles_str = "\n".join(lignes)
+        intro = random.choice([
+            f"Voici les articles que j'ai releves cette semaine :",
+            f"Dans ma veille de la semaine, j'ai note :",
+            f"Quelques articles interessants glanes cette semaine :",
+        ])
+        corps = f"{intro}\n\n{articles_str}"
+
     return {
-        "titre": sujet,
-        "corps": body,
-        "accroche": sujet,
-        "type": "Article d'opinion",
-        "signature": f"\n\n---\n{company}\nAccompagnement produit, digital et IA",
+        "titre": titre,
+        "corps": corps,
+        "accroche": titre,
+        "type": "Veille hebdomadaire",
+        "signature": "",
     }
 
 
-def generer_retour_experience(mission: dict, config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
+def generer_retour_experience(mission: dict, company: str) -> dict:
     titre = f"Cas client : {mission['titre']}"
     body = (
-        f"Contexte\n"
-        f"{mission['contexte']}\n\n"
+        f"Contexte\n{mission['contexte']}\n\n"
         f"Notre intervention\n"
         f"Mission confiee : {mission['mission']}\n"
         f"Secteur : {mission['secteur']}\n\n"
@@ -153,8 +206,7 @@ def generer_retour_experience(mission: dict, config: dict) -> dict:
     for a in mission["actions"]:
         body += f"- {a}\n"
     body += (
-        f"\nResultats\n"
-        f"{mission['resultats']}\n\n"
+        f"\nResultats\n{mission['resultats']}\n\n"
         f"Ce type de mission illustre notre approche : un cabinet de conseil "
         f"operationnel, capable d'intervenir a la fois sur la strategie et sur la delivery. "
         f"Nous travaillons avec des groupes internationaux comme avec des PME en forte croissance."
@@ -168,64 +220,75 @@ def generer_retour_experience(mission: dict, config: dict) -> dict:
     }
 
 
-def generer_conseil_dirigeant(config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
+def generer_astuce_pratique(company: str) -> dict:
+    articles = _rechercher(THEME_QUERIES["conseil"])
     titre = random.choice([
-        "Comment evaluer la maturite produit de votre entreprise en 2 heures",
-        "Les 5 signes que votre organisation produit a besoin d'un audit",
-        "Audit IA : 3 questions a poser avant d'investir le premier euro",
-        "La feuille de route produit en environnement complexe : notre methode",
+        "Conseil pratique de la semaine",
+        "Une astuce pour votre organisation produit",
+        "Petit rappel operationnel",
     ])
-    body = (
-        f"Nous rencontrons regulierement des dirigeants de PME et d'ETI qui nous disent : "
-        f"« Nous savons qu'il faut faire quelque chose, mais nous ne savons pas par ou commencer. »\n\n"
-        f"Voici le cadre que nous utilisons pour un diagnostic rapide :\n\n"
-        f"1. Cartographie des flux de valeur : quels sont les processus metiers critiques, "
-        f"ou se situent les goulots d'etranglement, quel est le cout de la non-qualite digitale ?\n\n"
-        f"2. Audit des competences produit : qui prend les decisions produit ? Sur quels criteres ? "
-        f"Avec quelle mesure d'impact ?\n\n"
-        f"3. Evaluation de la maturite IA : quels processus peuvent etre augmentes par l'IA, "
-        f"quelles donnees sont disponibles, quel est le niveau de maturite de l'organisation ?\n\n"
-        f"Notre cabinet realise ce diagnostic en 5 jours. Vous repartez avec un plan d'action "
-        f"priorise et une estimation budgetaire. Sans engagement."
+
+    base = (
+        f"Un point souvent neglige mais qui fait la difference : "
     )
+
+    if not articles:
+        corps = (
+            f"{base}la clarte du cadrage en amont. Avant de lancer un projet, "
+            f"posez-vous 3 questions : quel est le probleme, pour qui, et comment "
+            f"saurons-nous que c'est resolu ?"
+        )
+    else:
+        ref = articles[0]
+        corps = (
+            f"{base}je suis tombe sur cet article qui resume bien un point "
+            f"que je vois regulierement chez nos clients : {ref.title} "
+            f"({ref.source}).\n\n"
+            f"Ca rejoint ce qu'on constate sur le terrain : les equipes les plus "
+            f"efficaces ne sont pas celles qui ont le plus d'outils, mais celles "
+            f"qui ont une gouvernance claire."
+        )
+
     return {
         "titre": titre,
-        "corps": body,
+        "corps": corps,
         "accroche": titre,
         "type": "Conseil pratique",
-        "signature": f"\n\n---\n{company}\nAudit, conseil et accompagnement produit",
+        "signature": f"\n\n---\n{company}",
     }
 
 
-def generer_analyse_tendance(config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
+def generer_analyse_tendance(company: str) -> dict:
+    articles = _rechercher(THEME_QUERIES["transformation"])
     titre = random.choice([
-        "Transformation digitale dans le retail : les lecons du luxe applicables aux PME",
-        "Mobile first en B2B : ce que la logistique nous apprend sur l'adoption",
-        "IA generatives dans la boutique : entre hype et valeur reelle",
-        "Product Management en contexte LBO : comment concilier croissance et rentabilite",
+        f"Tendance de la semaine",
+        f"Ce qui bouge dans la transformation digitale",
+        f"Signal faible de la semaine",
     ])
-    body = (
-        f"Chez {company}, nous intervenons dans des contextes varies : du groupe du CAC40 "
-        f"a la PME en pleine scale-up. Cette diversite nous donne une vision unique des tendances "
-        f"qui marchent vraiment.\n\n"
-        f"Notre analyse du moment :\n\n"
-        f"Le mobile n'est plus un canal, c'est le point d'entree principal de l'experience client. "
-        f"Dans la logistique, le retail et les services, les utilisateurs exigent une experience "
-        f"fluide et coherente, qu'ils soient en boutique, sur le web ou sur une application. "
-        f"Les entreprises qui reussissent leur transformation mobile sont celles qui ont traite "
-        f"le sujet comme un programme produit, pas comme un projet technique.\n\n"
-        f"Fort de notre experience dans le deploiement mobile a l'echelle mondiale (30 pays), "
-        f"nous aidons les directions a structurer leur strategie mobile et omnicanale, "
-        f"a prioriser les investissements et a organiser la delivery."
-    )
+
+    if not articles:
+        corps = (
+            f"Pas de tendance marquante cette semaine dans le secteur. "
+            f"Je continue la veille et te partage des que quelque chose sort du lot."
+        )
+    else:
+        refs = articles[:2]
+        corps = (
+            f"Deux signaux retenus cette semaine :\n\n"
+        )
+        for r in refs:
+            corps += f"- {r.title} ({r.source})\n"
+        corps += (
+            f"\nRien de revolutionnaire, mais des confirmations de tendances "
+            f"qu'on observe deja sur le terrain."
+        )
+
     return {
         "titre": titre,
-        "corps": body,
+        "corps": corps,
         "accroche": titre,
         "type": "Analyse de tendance",
-        "signature": f"\n\n---\n{company}\nStrategie et delivery digitale",
+        "signature": f"\n\n---\n{company}",
     }
 
 
@@ -239,8 +302,8 @@ def build_report(config: dict, contenus: list[dict], output_path: Path):
 
     para(doc, "1. Strategie de contenu", style="Heading 1")
     bullet(doc, f"Positionnement : {company} - cabinet de conseil en produit et transformation digitale")
-    bullet(doc, f"Ton : expert, direct, sans bullshit - on parle de ce qu'on a vraiment fait")
-    bullet(doc, f"Canal suggere : Newsletter Substack + Page LinkedIn entreprise")
+    bullet(doc, f"Ton : expert, direct, sans bullshit")
+    bullet(doc, f"Canal suggere : Newsletter Substack + LinkedIn")
     bullet(doc, f"Rythme : 1 publication / semaine")
     bullet(doc, f"Cible : Dirigeants de PME/ETI, DSI, CDO, directeurs produits")
     para(doc, "", after=8)
@@ -266,16 +329,23 @@ def main() -> int:
         print("Agent Personal Branding desactive.")
         return 0
 
+    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
     print(">>> Personal Branding : contenus newsletter")
 
     contenus = []
 
-    contenus.append(generer_article_opinion(config))
-    contenus.append(generer_retour_experience(random.choice(MISSIONS_REELLES), config))
-    contenus.append(generer_conseil_dirigeant(config))
-    contenus.append(generer_analyse_tendance(config))
+    print("  1/4 Veille de la semaine...")
+    contenus.append(generer_veille_semaine(company))
 
-    print(f"  {len(contenus)} contenus generes")
+    print("  2/4 Cas client...")
+    contenus.append(generer_retour_experience(random.choice(MISSIONS_REELLES), company))
+
+    print("  3/4 Astuce pratique...")
+    contenus.append(generer_astuce_pratique(company))
+
+    print("  4/4 Tendance...")
+    contenus.append(generer_analyse_tendance(company))
+
     for c in contenus:
         print(f"    - {c['type']}: {c['titre'][:80]}")
 
@@ -288,7 +358,6 @@ def main() -> int:
     save_json_report(
         {
             "generated_at": datetime.now(timezone.utc).isoformat(),
-            "positionnement": f"Cabinet conseil produit & digital",
             "contenus": contenus,
         },
         run_log,
