@@ -1,0 +1,124 @@
+# AssistanteSASU — Session Memory
+
+Dernière mise à jour : 2026-07-10
+
+## Description
+
+Système d'agents IA autonome pour la prospection freelance et la génération de rapports hebdomadaires. Remplace une assistante virtuelle pour Michael ASSAYAG (Head of Product & Digital Transformation, freelance).
+
+**Principe fondateur** : Simplicité et contrôle total. Chaque fichier est visible, modifiable sans outil, remplaçable manuellement. Pas de framework, pas de dépendances magiques, pas d'industrialisation inutile.
+
+## Architecture
+
+```
+Rapports Assistant SASU/
+├── moteur_rapport/              ← Moteur de veille hebdo
+│   ├── run_weekly_report.py     ← Entry point
+│   ├── config.json              ← Config veille + méthodes
+│   ├── lancer_rapport.bat
+│   └── rapport_engine/
+│       ├── collectors.py        ← Scraping Bing RSS + Free-Work
+│       ├── scoring.py           ← Algorithme de scoring
+│       └── docx_report.py       ← Génération DOCX riche
+│
+├── agents/                      ← 7 agents spécialisés
+│   ├── run_agent.py             ← Orchestrateur
+│   ├── config.json              ← Profil Michael + configs agents
+│   ├── lancer_agents.bat
+│   ├── core/
+│   │   ├── common.py            ← Utilitaires DOCX partagés
+│   │   └── web.py               ← Scraping partagé (Bing + Free-Work)
+│   └── agent_*/                 ← Un package par agent
+│
+├── send_report.py               ← Envoi email via Brevo SMTP
+├── .gitignore
+├── AGENTS.md                    ← CE FICHIER — mémoire de session
+└── *.bat                        ← Scripts de lancement
+```
+
+### Les 7 agents
+
+| Commande | Agent | Description |
+|----------|-------|-------------|
+| `missions` | Chasseur de Missions | Scrape Free-Work + Bing, classe les missions |
+| `pipeline` | Pipeline CRM | Suivi pipeline client |
+| `tableau` | Tableau de bord mensuel | CA, TJM, taux occupation, projection |
+| `cr` | Compte rendu de réunion | Notes .txt → CR structuré .docx |
+| `branding` | Personal Branding | 4 contenus newsletter Substack |
+| `proposition` | Offres consulting | Propositions commerciales .docx depuis un brief |
+| `tarif` | Veille tarifaire | Benchmark TJM du marché |
+
+## Fichiers clés
+
+| Fichier | Rôle |
+|---------|------|
+| `moteur_rapport/config.json` | Mots-clés, URLs de scraping, bibliothèque de méthodes |
+| `agents/config.json` | Profil Michael (TJM cible, compétences, clients clés), configs agents |
+| `moteur_rapport/rapport_engine/collectors.py` | Moteur de scraping (Bing RSS + Free-Work) |
+| `moteur_rapport/rapport_engine/scoring.py` | Algorithme de scoring (pertinence, source, fraîcheur, vérification) |
+| `moteur_rapport/rapport_engine/docx_report.py` | Génération DOCX professionnel (tableaux, couleurs, hyperliens) |
+| `agents/core/web.py` | Scraping partagé pour les agents (quasi-identique à collectors.py) |
+| `agents/core/common.py` | Utilitaires DOCX partagés pour tous les agents |
+| `send_report.py` | Envoi du rapport par email via Brevo SMTP |
+
+## Commandes
+
+```powershell
+# Lancer le rapport hebdo (veille + prospection)
+cd C:\Users\micas\OneDrive\Bureau\Rapports Assistant SASU
+python moteur_rapport\run_weekly_report.py
+
+# Lancer tous les agents
+agents\lancer_agents.bat
+
+# Lancer un agent spécifique
+cd agents
+python run_agent.py missions
+python run_agent.py tableau
+python run_agent.py tarif
+
+# Envoyer le dernier rapport par email
+python send_report.py
+
+# Lancer rapport avec délai aléatoire (pour horaire type 15h)
+lancer_rapport_aleatoire.bat
+```
+
+## Règles de Conduite (gravées dans le marbre le 2026-07-10)
+
+1. **Simplicité avant tout.** Pas de refacto, pas d'industrialisation, pas de framework. Chaque modification doit être comprise en 30 secondes par Michael.
+2. **Contrôle total.** Michael doit pouvoir ouvrir, lire, modifier chaque fichier sans outil spécifique. Pas de magie, pas de dépendances cachées.
+3. **Une chose à la fois.** Pas de listes de 10 chantiers. On fait une chose, on valide, on passe à la suivante.
+4. **Ne jamais réécrire from scratch.** Toute modification est une édition ciblée.
+5. **Ne jamais inventer.** Pas de bluff, pas de "je pense que". Si tu ne sais pas, dis-le.
+6. **Richesse du DOCX = intouchable.** `docx_report.py`, `scoring.py`, `collectors.py` ne sont pas simplifiés — ce sont les fichiers qui produisent la valeur.
+
+## Live Session Log
+
+### 2026-07-10 — Session initiale : analyse + backup GitHub
+
+- Analyse complète du projet (forces, faiblesses, axes de progrès)
+- Discussion sur la philosophie : simplicité et contrôle vs industrialisation
+- Backup créé sur GitHub (repo privé) : `https://github.com/m4554y46/AssistanteSASU`
+- Création du fichier `AGENTS.md` pour la mémoire de session
+- Fine-grained token GitHub utilisé pour l'authentification
+
+### Décisions de conception
+- **Ne pas toucher à l'architecture existante** — la duplication entre `collectors.py` et `core/web.py` est volontaire (découplage = contrôle)
+- **Ne pas ajouter de tests** — pas nécessaire pour un usage personnel
+- **Ne pas ajouter de logging structuré** — `print()` suffit pour le débogage manuel
+- **Backup GitHub indispensable** — repo privé, fine-grained token, accès limité au seul repo
+
+## Prochaines étapes (optionnelles, non prioritaires)
+
+- [ ] Créer un `lancer_mercredi.bat` unique qui enchaîne rapport → agents → email
+- [ ] Simplifier la config (fusionner les deux config.json en un seul)
+- [ ] Nettoyer les agents non utilisés
+
+## Références
+
+- Dépôt GitHub : `https://github.com/m4554y46/AssistanteSASU`
+- Profil Michael : Product Management, Digital Transformation, Mobile, IA
+- TJM cible : 750€ (min 650€)
+- Email : massayag@gmail.com
+- SMTP : Brevo (smtp-relay.brevo.com:587)
