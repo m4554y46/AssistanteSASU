@@ -1,0 +1,28 @@
+﻿Client: ACME Corp
+Projet: Audit IA et Product Discovery
+Date: 2026-06-02
+Participants: Michael (consultant), Sophie (CDO), Marc (CTO)
+Durée: 45 min
+---
+Contexte:
+Premier rendez-vous qualifié suite à un appel d'offre. ACME Corp souhaite auditer ses processus produit et evaluer les opportunités d'intégration d'agents IA.
+
+Points abordés:
+- Sophie a présenté l'organisation actuelle : 3 équipes produit, pas de discovery structurée, backlog priorisé au ressenti
+- Marc a exprimé le besoin d'automatiser les comptes-rendus de daily meeting et le reporting
+- Le budget pour 2026 prévoit une enveloppe IA de 150k€
+- L'équipe tech utilise Jira, Slack, Notion
+- Pas de product manager dédié, les features sont définies par la direction
+
+Décisions:
+- Un diagnostic plus approfondi est nécessaire avant de proposer une solution
+- Sophie enverra les documents de cadrage des 3 derniers projets
+- Prochain call pour définir le périmètre de l'audit
+
+Actions:
+- [Michael] Envoyer une proposition d'audit cadrage avant le 10/06/2026
+- [Sophie] Partager les documents de cadrage projet avant 06/06/2026
+- [Marc] Lister les 5 processus les plus chronophages à automatiser courant juin
+
+Prochaine réunion:
+Call de suivi le 10/06/2026 à 14h

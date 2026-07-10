@@ -1,0 +1,107 @@
+{
+  "recipient": "Michael ASSAYAG",
+  "author": "Virginie ASSAYAG",
+  "positioning": "Freelance senior : gestion de projet, product management digital et IA",
+  "output_dir": "C:\\Users\\micas\\OneDrive\\Bureau\\Rapports Assistant SASU",
+  "report_prefix": "Rapport_Assistant_SASU",
+  "max_articles": 7,
+  "max_opportunities": 5,
+  "max_methods": 4,
+  "search": {
+    "timeout_seconds": 18,
+    "results_per_query": 8,
+    "freshness_days": 21,
+    "article_queries": [
+      "agents IA entreprise product management agile 2026",
+      "agentic AI enterprise product operating model 2026",
+      "product management AI discovery agile 2026",
+      "transformation digitale IA gouvernance agents 2026",
+      "continuous discovery product management AI 2026",
+      "agile delivery AI transformation 2026"
+    ],
+    "opportunity_queries": [
+      "site:free-work.com/fr/tech-it/product-owner/job-mission product owner IA freelance France",
+      "site:free-work.com/fr/tech/product-owner/job-mission product owner IA freelance France",
+      "site:free-work.com/fr/tech-it/assistant-chef-de-projet/job-mission chef de projet IA freelance France",
+      "site:free-work.com/fr/tech-it/jobs/ia-generative freelance chef de projet product owner IA",
+      "site:linkedin.com/jobs/view product owner IA freelance France",
+      "site:linkedin.com/jobs/view product manager IA freelance France",
+      "site:welcometothejungle.com/fr/jobs product manager IA freelance"
+    ],
+    "freework_pages": [
+      "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
+      "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
+      "https://www.free-work.com/fr/tech/product-owner/job-mission",
+      "https://www.free-work.com/fr/tech-it/assistant-chef-de-projet/job-mission"
+    ]
+  },
+  "keywords": {
+    "article_positive": [
+      "agent", "agentic", "ia", "ai", "automation", "automatisation",
+      "product", "discovery", "operating model", "agile", "delivery",
+      "gouvernance", "transformation", "workflow", "roadmap"
+    ],
+    "opportunity_positive": [
+      "freelance", "product owner", "product manager", "chef de projet",
+      "consultant ia", "ia", "ai", "digital", "delivery", "transformation",
+      "automatisation", "remote", "tjm"
+    ],
+    "negative": [
+      "stage", "alternance", "internship", "junior", "emploi cdi uniquement",
+      "formation gratuite", "template", "sponsorise"
+      , "embaucher des freelances", "trouver des freelances", "annuaire",
+      "lesbonsfreelances", "fr.freelancer.com", "emplois freelances en ligne",
+      "statics.free-work.com/users/documents"
+    ]
+  },
+  "method_library": [
+    {
+      "name": "Product Operating Model",
+      "url": "https://www.svpg.com/product-operating-model/",
+      "definition": "Modele d'organisation qui responsabilise les equipes produit sur des outcomes plutot que sur une simple livraison de projets.",
+      "business_value": "Permet de parler aux dirigeants de creation de valeur, d'arbitrage et de gouvernance produit.",
+      "client_use": "Diagnostic d'organisation produit, clarification des roles, passage d'une logique projet a une logique outcome.",
+      "commercial_use": "Supporter une offre d'audit Product/IA oriente decisions, responsabilites et mesure d'impact."
+    },
+    {
+      "name": "Continuous Discovery",
+      "url": "https://www.producttalk.org/continuous-discovery-habits/",
+      "definition": "Pratique continue d'apprentissage client qui relie interviews, hypotheses, opportunites et experiments.",
+      "business_value": "Reduit le risque de construire des solutions non adoptees et accelere les arbitrages produit.",
+      "client_use": "Ateliers discovery, structuration d'entretiens clients, priorisation des hypotheses.",
+      "commercial_use": "Packager un atelier de cadrage avant build pour equipes produit, metiers ou IA."
+    },
+    {
+      "name": "Opportunity Solution Tree",
+      "url": "https://www.producttalk.org/opportunity-solution-tree/",
+      "definition": "Representation visuelle reliant outcome, opportunites client, solutions candidates et tests.",
+      "business_value": "Rend visibles les arbitrages et evite que les roadmaps deviennent des listes d'idees.",
+      "client_use": "Alignement sponsor, product, UX, tech et operations avant de lancer un pilote.",
+      "commercial_use": "Outil d'atelier tres lisible pour missions de cadrage produit ou agent IA."
+    },
+    {
+      "name": "Team Topologies",
+      "url": "https://teamtopologies.com/",
+      "definition": "Approche d'organisation des equipes tech/produit autour des flux de valeur, plateformes et charge cognitive.",
+      "business_value": "Aide a identifier pourquoi le delivery ralentit malgre les rituels agiles.",
+      "client_use": "Revue d'organisation, dependances, plateformes internes, friction entre equipes.",
+      "commercial_use": "Nourrir des diagnostics delivery et transformation digitale."
+    },
+    {
+      "name": "Shape Up",
+      "url": "https://basecamp.com/shapeup",
+      "definition": "Methode Basecamp pour cadrer, parier et livrer des cycles produits avec un appetit de temps clair.",
+      "business_value": "Aide les organisations a sortir des backlogs infinis et a mieux cadrer les paris produit.",
+      "client_use": "Cadrage de problemes, scopes variables, cycles de delivery courts.",
+      "commercial_use": "Proposer un format de cadrage executive avant sprint ou pilote IA."
+    },
+    {
+      "name": "Scrum Guide - Product Goal",
+      "url": "https://scrumguides.org/scrum-guide.html",
+      "definition": "Reference officielle Scrum recentrant l'equipe sur Product Goal, Sprint Goal et Definition of Done.",
+      "business_value": "Permet de distinguer agilité utile et ceremonies sans impact.",
+      "client_use": "Audit agile, clarification du role PO, evaluation de la valeur livree.",
+      "commercial_use": "Argumentaire pour offres de remise a plat delivery/product."
+    }
+  ]
+}

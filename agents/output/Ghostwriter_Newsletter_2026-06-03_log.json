@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-06-03T21:03:07.360515+00:00",
+  "canal": "newsletter",
+  "contenus": [
+    {
+      "type": "article_opinion",
+      "titre": "Pourquoi les agents IA ne remplaceront pas les product managers (mais vont les rendre incontournables)",
+      "corps": "Cette semaine, une analyse qui merite qu'on s'y arrete : product - English-French Dictionary WordReference.com.\n\nDans un marche ou chaque startup leve des fonds pour ajouter 'IA' a son produit, le vrai travail du product manager reste le meme : choisir quel probleme resoudre, dans quel ordre, et comment mesurer l'impact.\n\nCe qui change avec l'IA agentique, ce n'est pas la discipline produit. C'est la vitesse a laquelle on peut iterer et la nature des solutions qu'on peut envisager. Mais sans cadrage, sans discovery, sans priorisation, un agent IA n'est qu'un bug qui parle.",
+      "canal": "Newsletter Assistant SASU",
+      "signature": "\n\n---\nASSISTANT SASU\n"
+    },
+    {
+      "type": "retour_experience",
+      "titre": "Retour d'experience : accompagnement une PME industrielle sur la mise en place d'un Product Operating Model",
+      "corps": "Contexte : une ETI du secteur bancaire avait 3 equipes produit fonctionnant en silos, pas de product managers dedies, une roadmap decidee par la direction.\n\nNotre intervention :\n- Diagnostic Product Operating Model (4 semaines)\n- Mise en place de continuous discovery (interviews clients, scoring opportunites)\n- Definition des outcome-based OKRs\n\nResultats a 3 mois : 30% de features en moins livrees, mais 2x plus d'impact mesure. Les equipes passent moins de temps a coder dans le vide.",
+      "canal": "Newsletter Assistant SASU",
+      "signature": "\n\n---\nASSISTANT SASU\n"
+    },
+    {
+      "type": "conseil_pratique",
+      "titre": "Conseil pratique : les 3 questions a se poser avant de lancer un pilote IA",
+      "corps": "Vous voulez integrer un agent IA dans votre produit ou votre processus ? Avant de coder quoi que ce soit, posez-vous ces 3 questions :\n\n1. Quel est l'outcome attendu ? (pas la feature, le resultat metier)\n2. Avez-vous les donnees pour alimenter l'agent ? (propre, structuree, accessible)\n3. Qui valide les decisions que l'agent prendra ? (gouvernance minimum)\n\nSans reponse claire a ces questions, vous allez ajouter de la complexite sans valeur. Avec ces reponses, vous avez deja 80% du travail de cadrage fait.",
+      "canal": "Newsletter Assistant SASU",
+      "signature": "\n\n---\nASSISTANT SASU\n"
+    },
+    {
+      "type": "analyse_tendance",
+      "titre": "Analyse : ce que les levées de fonds IA nous disent du marché du product management",
+      "corps": "Le marche parle de lui-meme : les entreprises qui investissent dans l'IA sont celles qui ont deja une discipline produit solide. La technologie ne remplace pas la strategie, elle l'expose.",
+      "canal": "Newsletter Assistant SASU",
+      "signature": "\n\n---\nASSISTANT SASU\n"
+    }
+  ]
+}

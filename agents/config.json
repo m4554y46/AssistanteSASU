@@ -1,0 +1,131 @@
+{
+  "profile": {
+    "name": "Michael ASSAYAG",
+    "company": "ASSISTANT SASU",
+    "title": "Head of Product & Digital Transformation",
+    "positioning": "Senior Product & Project Manager | Digital Transformation | Mobile | Omnichannel | IA",
+    "tjm_cible": 750,
+    "tjm_min": 650,
+    "email": "michael@assistant-sasu.fr",
+    "target_roles": [
+      "Directeur de projet IT senior",
+      "Head of Product",
+      "Senior Product Manager",
+      "Consultant transformation digitale",
+      "Chief Digital Officer (interim)",
+      "Program Manager digital"
+    ],
+    "industries": ["Luxe", "Retail", "Logistique", "Services", "Telco"],
+    "key_skills": [
+      "Product Management", "Product Discovery", "Roadmap stratégique",
+      "Mobile (iOS/Android) deployment worldwide",
+      "Omnichannel customer experience",
+      "ERP / PIM implementation",
+      "Agile (Certified PM)", "Team management (POs, designers)",
+      "Transformation digitale", "Innovation (AR, 3D)",
+      "Gouvernance produit", "Conseil dirigeant"
+    ],
+    "key_clients": [
+      "GeoPost / La Poste Groupe (Head of Mobile App Deployment - Worldwide)",
+      "B&B Hotel / Goldman Sachs LBO (Product - freelance)",
+      "Kering (Gucci, Saint Laurent, Balenciaga, Bottega Veneta) - 7 ans",
+      "Saint-Gobain (8 ans, équipe 9+ personnes)"
+    ],
+    "value_proposition": "Je dirige le déploiement mobile worldwide chez GeoPost (DPD, Chronopost, BRT...). J'ai transformé l'expérience client omnicanal chez Kering (Gucci, Saint Laurent) et piloté l'innovation digitale chez Saint-Gobain (AR, 3D). Je cherche des missions de consulting senior, direction de projet, ou product management à fort impact."
+  },
+  "chasseur_missions": {
+    "enabled": true,
+    "max_missions": 10,
+    "timeout_seconds": 15,
+    "results_per_query": 10,
+    "freework_pages": [
+      "https://www.free-work.com/fr/tech-it/directeur-de-projet-it/job-mission",
+      "https://www.free-work.com/fr/tech-it/product-manager/job-mission",
+      "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
+      "https://www.free-work.com/fr/tech-it/head-of-product/job-mission",
+      "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
+      "https://www.free-work.com/fr/tech-it/consultant-ia/job-mission",
+      "https://www.free-work.com/fr/tech-it/program-manager/job-mission",
+      "https://www.free-work.com/fr/tech-it/digital-transformation/job-mission"
+    ],
+    "bing_queries": [
+      "site:free-work.com mission directeur projet digital freelance",
+      "site:free-work.com mission head of product freelance Paris",
+      "site:free-work.com mission product manager senior freelance",
+      "site:linkedin.com/jobs/view product manager senior freelance France",
+      "site:linkedin.com/jobs/view head of product freelance Paris",
+      "site:linkedin.com/jobs/view directeur projet digital freelance",
+      "site:welcometothejungle.com/fr/jobs product manager freelance",
+      "site:welcometothejungle.com/fr/jobs head of product freelance",
+      "mission directeur projet transformation digitale TJM 700"
+    ],
+    "keywords_positive": [
+      "directeur de projet", "head of product", "product manager", "product owner",
+      "senior", "freelance", "mission", "digital", "transformation",
+      "mobile", "omnicanal", "retail", "luxe", "logistique",
+      "TJM", "700", "750", "800", "management", "équipe", "pilotage",
+      "strategie", "roadmap", "delivery", "agile", "scrum",
+      "international", "worldwide", "ecommerce", "ERP", "PIM"
+    ],
+    "keywords_negative": [
+      "stage", "alternance", "junior", "H/F", "formation",
+      "CDI", "emploi cadre", "salaire", "BTS", "DUT",
+      "developpeur", "developpeur front", "developpeur back"
+    ]
+  },
+  "personal_branding": {
+    "enabled": true,
+    "canal": "newsletter",
+    "plateforme": "Substack (Product & Leadership Brief)",
+    "ton": "expert senior - direct, concret, sans bullshit",
+    "themes": [
+      "Transformation digitale dans le retail/luxe",
+      "Mobile deployment à l'echelle mondiale",
+      "Product Management dans des contextes complexes (LBO, groupes internationaux)",
+      "Conseil aux dirigeants de PME",
+      "Innovation (AR, 3D) appliquée au commerce",
+      "Omnicanal : le vrai du faux"
+    ]
+  },
+  "propositions": {
+    "enabled": true,
+    "output_dir": "C:\\Users\\micas\\OneDrive\\Bureau\\Rapports Assistant SASU\\agents\\output",
+    "offres": [
+      {
+        "nom": "Audit Produit & Digital",
+        "duree": "5 jours",
+        "tjm": 800,
+        "description": "Diagnostic flash de l'organisation produit, de la stratégie digitale et des opportunités IA. Livrable : rapport exécutif + plan d'action 90 jours."
+      },
+      {
+        "nom": "Conseil à la Direction",
+        "duree": "2 jours/mois",
+        "tjm": 850,
+        "description": "Accompagnement de dirigeant de PME/ETI sur la stratégie produit, l'organisation des équipes digitales, et la gouvernance des projets."
+      },
+      {
+        "nom": "Management de Transition - Head of Product",
+        "duree": "6 mois",
+        "tjm": 750,
+        "description": "Prise en charge intérimaire de la direction produit : cadrage stratégique, management d'équipe, delivery et mise en place des process."
+      },
+      {
+        "nom": "Transformation Mobile & Omnicanale",
+        "duree": "3-6 mois",
+        "tjm": 780,
+        "description": "Déploiement de solutions mobiles worldwide, optimisation de l'expérience omnicanale, coordination des parties prenantes internationales."
+      }
+    ]
+  },
+  "veille_tarifaire": {
+    "enabled": true,
+    "timeout_seconds": 12,
+    "results_per_query": 8,
+    "queries": [
+      "site:free-work.com tjm directeur projet IT freelance",
+      "site:free-work.com tjm head of product freelance",
+      "site:free-work.com tjm product manager senior freelance",
+      "site:free-work.com tjm consultant transformation digitale freelance"
+    ]
+  }
+}

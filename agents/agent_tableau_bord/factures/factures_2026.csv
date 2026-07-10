@@ -1,0 +1,12 @@
+﻿date;montant_ht;tjm;jours;client;mission
+2026-01-15;6500;650;10;Client A;Audit produit
+2026-01-30;5200;650;8;Client B;Accompagnement agile
+2026-02-15;5850;650;9;Client C;Conseil IA
+2026-02-28;4550;650;7;Client A;Audit produit phase 2
+2026-03-10;7150;650;11;Client D;Product discovery
+2026-03-25;6500;650;10;Client C;Conseil IA phase 2
+2026-04-05;3900;650;6;Client E;Formation agile
+2026-04-20;5850;650;9;Client B;Accompagnement agile phase 2
+2026-05-04;6500;650;10;Client D;Product discovery phase 2
+2026-05-25;5200;650;8;Client F;AMOA transformation
+2026-06-02;3900;650;6;Client G;Audit IA rapide

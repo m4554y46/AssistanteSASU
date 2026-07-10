@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-06-03T21:03:09.838865+00:00",
+  "analyses": [
+    {
+      "profil": "Product Owner",
+      "resultats": 5,
+      "tjms_trouves": 0,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Donnees insuffisantes pour ce profil",
+      "alerte": false
+    },
+    {
+      "profil": "Product Manager",
+      "resultats": 0,
+      "tjms_trouves": 0,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Donnees insuffisantes pour ce profil",
+      "alerte": false
+    },
+    {
+      "profil": "Chef de projet IT",
+      "resultats": 0,
+      "tjms_trouves": 0,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Donnees insuffisantes pour ce profil",
+      "alerte": false
+    },
+    {
+      "profil": "Consultant IA / Data",
+      "resultats": 1,
+      "tjms_trouves": 0,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Donnees insuffisantes pour ce profil",
+      "alerte": false
+    },
+    {
+      "profil": "Scrum Master / Agile Coach",
+      "resultats": 0,
+      "tjms_trouves": 0,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Donnees insuffisantes pour ce profil",
+      "alerte": false
+    }
+  ]
+}
