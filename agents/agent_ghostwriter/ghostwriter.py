@@ -106,7 +106,7 @@ CONTENUS_POSSIBLES = [
 
 
 def generer_article_opinion(config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASSISTANT SASU")
+    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
     sujet = random.choice([
         "Pourquoi le Product Operating Model est la cle d'une transformation IA reussie",
         "Ce que le deploiement mobile dans 30 pays nous a appris sur la gouvernance produit",
@@ -140,7 +140,7 @@ def generer_article_opinion(config: dict) -> dict:
 
 
 def generer_retour_experience(mission: dict, config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASSISTANT SASU")
+    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
     titre = f"Cas client : {mission['titre']}"
     body = (
         f"Contexte\n"
@@ -169,7 +169,7 @@ def generer_retour_experience(mission: dict, config: dict) -> dict:
 
 
 def generer_conseil_dirigeant(config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASSISTANT SASU")
+    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
     titre = random.choice([
         "Comment evaluer la maturite produit de votre entreprise en 2 heures",
         "Les 5 signes que votre organisation produit a besoin d'un audit",
@@ -199,7 +199,7 @@ def generer_conseil_dirigeant(config: dict) -> dict:
 
 
 def generer_analyse_tendance(config: dict) -> dict:
-    company = config.get("profile", {}).get("company", "ASSISTANT SASU")
+    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
     titre = random.choice([
         "Transformation digitale dans le retail : les lecons du luxe applicables aux PME",
         "Mobile first en B2B : ce que la logistique nous apprend sur l'adoption",
@@ -230,7 +230,7 @@ def generer_analyse_tendance(config: dict) -> dict:
 
 
 def build_report(config: dict, contenus: list[dict], output_path: Path):
-    company = config.get("profile", {}).get("company", "ASSISTANT SASU")
+    company = config.get("profile", {}).get("company", "ASTRA MOMENTUM")
     doc = setup_doc(
         "NEWSLETTER - CONTENUS EDITORIAUX",
         f"Contenus pour le positionnement de {company}",

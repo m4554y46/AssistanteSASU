@@ -106,7 +106,7 @@ def parse_brief(path: Path) -> dict:
 
 def generer_proposition(brief: dict, config: dict) -> dict:
     sasu = config.get("sasu", {})
-    company = sasu.get("company", "ASSISTANT SASU")
+    company = sasu.get("company", "ASTRA MOMENTUM")
     name = sasu.get("name", "")
     positioning = sasu.get("positioning", "")
     tjm_cible = int(sasu.get("tjm_cible", 650))

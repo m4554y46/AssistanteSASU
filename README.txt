@@ -1,11 +1,11 @@
 =====================================
-  ASSISTANT SASU - Projet Agents IA
+  ASTRA MOMENTUM - Projet Assistante IA
 =====================================
 
 Ce dossier contient le systeme d'agents IA autonomes pour
 la prospection de missions freelance et la generation de rapports.
 
-Auteur : Michael ASSAYAG - ASSISTANT SASU
+Auteur : Michael ASSAYAG - Président ASTRA MOMENTUM
 
 
 POUR ROUVRIR LE PROJET DANS OPENCODE
@@ -17,7 +17,7 @@ POUR ROUVRIR LE PROJET DANS OPENCODE
    cd "C:\Users\micas\OneDrive\Bureau\Rapports Assistant SASU"
 
 3. Quand le chat s'ouvre, dire simplement :
-   "continue le projet ASSISTANT SASU"
+    "continue le projet ASTRA MOMENTUM"
 
 
 LANCER LES AGENTS
