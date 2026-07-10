@@ -4,7 +4,7 @@ Dernière mise à jour : 2026-07-10
 
 ## Description
 
-Système d'agents IA autonome pour la prospection freelance et la génération de rapports hebdomadaires. Remplace une assistante virtuelle pour Michael ASSAYAG (Head of Product & Digital Transformation, freelance).
+Système d'agents IA pour ASTRA MOMENTUM (Michael ASSAYAG, Président). Remplace une assistante virtuelle (11h/sem) pour la prospection freelance, la veille, les comptes-rendus et la génération de rapports hebdomadaires.
 
 **Principe fondateur** : Simplicité et contrôle total. Chaque fichier est visible, modifiable sans outil, remplaçable manuellement. Pas de framework, pas de dépendances magiques, pas d'industrialisation inutile.
 
@@ -43,7 +43,7 @@ Rapports Assistant SASU/
 | `missions` | Chasseur de Missions | Scrape Free-Work + Bing, classe les missions |
 | `pipeline` | Pipeline CRM | Suivi pipeline client |
 | `tableau` | Tableau de bord mensuel | CA, TJM, taux occupation, projection |
-| `cr` | Compte rendu de réunion | Notes .txt → CR structuré .docx |
+| `cr` | Compte rendu de réunion | Notes .txt → CR structuré .docx. Auto-généré si aucune note manuelle (scrape Bing → news freelance, écosystème) |
 | `branding` | Personal Branding | 4 contenus newsletter Substack |
 | `proposition` | Offres consulting | Propositions commerciales .docx depuis un brief |
 | `tarif` | Veille tarifaire | Benchmark TJM du marché |
@@ -59,7 +59,10 @@ Rapports Assistant SASU/
 | `moteur_rapport/rapport_engine/docx_report.py` | Génération DOCX professionnel (tableaux, couleurs, hyperliens) |
 | `agents/core/web.py` | Scraping partagé pour les agents (quasi-identique à collectors.py) |
 | `agents/core/common.py` | Utilitaires DOCX partagés pour tous les agents |
+| `agents/agent_cr_reunion/generate_notes.py` | Génération automatique de notes de réunion réalistes (Bing → marché, écosystème freelance) |
 | `send_report.py` | Envoi du rapport par email via Brevo SMTP |
+| `lancer_mercredi.bat` | Lanceur unique mercredi : délai aléatoire → rapport → agents → email |
+| `installer_tache_mercredi.ps1` | Script pour créer la tâche planifiée Windows |
 
 ## Commandes
 
@@ -80,8 +83,11 @@ python run_agent.py tarif
 # Envoyer le dernier rapport par email
 python send_report.py
 
-# Lancer rapport avec délai aléatoire (pour horaire type 15h)
-lancer_rapport_aleatoire.bat
+# Lancer le cycle complet (rapport + agents + email)
+lancer_mercredi.bat
+
+# Planifier la tâche Windows (mercredi 14h30)
+pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 ```
 
 ## Règles de Conduite (gravées dans le marbre le 2026-07-10)
@@ -102,6 +108,17 @@ lancer_rapport_aleatoire.bat
 - Backup créé sur GitHub (repo privé) : `https://github.com/m4554y46/AssistanteSASU`
 - Création du fichier `AGENTS.md` pour la mémoire de session
 - Fine-grained token GitHub utilisé pour l'authentification
+
+### 2026-07-10 — Suite session : renommage ASTRA MOMENTUM + CR réunion auto-généré + launcher mercredi
+
+- Renommage complet ASSISTANT SASU → **ASTRA MOMENTUM** (config, rapports, email, ghostwriter, propositions)
+- Création de `lancer_mercredi.bat` : délai aléatoire 15-45min → rapport → agents → email
+- Création de `installer_tache_mercredi.ps1` : planifie la tâche Windows tous les mercredis 14h30
+- Création de `agent_cr_reunion/generate_notes.py` : génère des notes réalistes (Bing RSS → marché freelance, écosystème, IA/Product) formatées en CR d'assistante
+- Modification de `cr_reunion.py` : si aucune note manuelle → appel automatique à generate_notes
+- Filtrage anti-bruit dans generate_notes (domaines bloqués, mots-clés, dédicacage)
+- `.gitignore` : `.env`, `clé GitHub.txt`, `Clé SMTP Brevo.txt`
+- Tokens sensibles supprimés du disque
 
 ### Décisions de conception
 - **Ne pas toucher à l'architecture existante** — la duplication entre `collectors.py` et `core/web.py` est volontaire (découplage = contrôle)

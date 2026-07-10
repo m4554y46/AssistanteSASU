@@ -289,20 +289,17 @@ def main() -> int:
     notes = list_notes()
 
     if not notes:
-        print("  Aucune note trouvée.")
-        print(f"  Déposez un fichier .txt dans : {INPUT_DIR}")
-        print("  Exemple de format :")
-        print("    Client: ACME Corp")
-        print("    Projet: Audit IA")
-        print("    Date: 2026-06-03")
-        print("    Participants: Jean, Marie")
-        print("    ---")
-        print("    Points abordés:")
-        print("    - Point 1...")
-        print("    Décisions:")
-        print("    - Décision 1...")
-        print("    Actions:")
-        print("    - [Michel] Faire X avant 15/06/2026")
+        print("  Aucune note manuelle trouvée. Génération automatique...")
+        try:
+            from .generate_notes import main as gen_main
+            gen_main()
+            notes = list_notes()
+        except Exception as e:
+            print(f"  [ERR] Génération automatique échouée : {e}")
+            return 1
+
+    if not notes:
+        print("  Aucune note à traiter.")
         return 0
 
     output_dir = ensure_output_dir(config)
@@ -320,7 +317,10 @@ def main() -> int:
         # Archive processed note
         archived = note_path.parent / "processed"
         archived.mkdir(exist_ok=True)
-        note_path.rename(archived / note_path.name)
+        dest = archived / note_path.name
+        if dest.exists():
+            dest = archived / f"{note_path.stem}_{datetime.now(timezone.utc).strftime('%H%M%S')}{note_path.suffix}"
+        note_path.rename(dest)
 
     run_log = output_dir / f"CR_Reunion_{today}_log.json"
     save_json_report(
