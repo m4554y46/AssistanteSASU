@@ -122,3 +122,4 @@ lancer_rapport_aleatoire.bat
 - TJM cible : 750€ (min 650€)
 - Email : massayag@gmail.com
 - SMTP : Brevo (smtp-relay.brevo.com:587)
+- Token GitHub : stocké dans `.env` (fichier local, pas versionné) — utilisé pour `git push`
