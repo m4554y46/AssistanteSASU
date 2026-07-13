@@ -37,13 +37,23 @@
       "site:linkedin.com/jobs/view product manager IA freelance France",
       "site:welcometothejungle.com/fr/jobs product manager IA freelance",
       "site:free-work.com/fr/tech-it/jobs/ia-generative optimisation tokens consultant",
-      "consultant optimisation cout tokens IA entreprise freelance TJM"
+      "consultant optimisation cout tokens IA entreprise freelance TJM",
+      "mission courte conseil organisation produit freelance 2026",
+      "coaching IA atelier formation entreprise freelance 2026",
+      "consultant produit mission courte audit organisation 2026",
+      "formation product manager chef de projet IA atelier 2026",
+      "site:malt.fr mission conseil produit digital transformation",
+      "site:free-work.com/fr/tech-it/consultant/job-mission freelance transformation digitale",
+      "site:free-work.com/fr/tech-it/coach-agile/job-mission product owner agile"
     ],
     "freework_pages": [
       "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
       "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
       "https://www.free-work.com/fr/tech/product-owner/job-mission",
-      "https://www.free-work.com/fr/tech-it/assistant-chef-de-projet/job-mission"
+      "https://www.free-work.com/fr/tech-it/assistant-chef-de-projet/job-mission",
+      "https://www.free-work.com/fr/tech-it/consultant/job-mission",
+      "https://www.free-work.com/fr/tech-it/coach-agile/job-mission",
+      "https://www.free-work.com/fr/tech-it/formation/job-mission"
     ],
     "tokenforge_queries": [
       "site:github.com LLM token compression proxy cost reduction",
@@ -82,7 +92,8 @@
     "opportunity_positive": [
       "freelance", "product owner", "product manager", "chef de projet",
       "consultant ia", "ia", "ai", "digital", "delivery", "transformation",
-      "automatisation", "remote", "tjm"
+      "automatisation", "remote", "tjm", "mission courte", "conseil",
+      "coaching", "formation", "atelier", "audit", "organisation"
     ],
     "negative": [
       "stage", "alternance", "internship", "junior", "emploi cdi uniquement",

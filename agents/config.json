@@ -47,7 +47,10 @@
       "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
       "https://www.free-work.com/fr/tech-it/consultant-ia/job-mission",
       "https://www.free-work.com/fr/tech-it/program-manager/job-mission",
-      "https://www.free-work.com/fr/tech-it/digital-transformation/job-mission"
+      "https://www.free-work.com/fr/tech-it/digital-transformation/job-mission",
+      "https://www.free-work.com/fr/tech-it/consultant/job-mission",
+      "https://www.free-work.com/fr/tech-it/coach-agile/job-mission",
+      "https://www.free-work.com/fr/tech-it/formation/job-mission"
     ],
     "bing_queries": [
       "site:free-work.com mission directeur projet digital freelance",
@@ -63,7 +66,12 @@
       "mission directeur projet transformation digitale TJM 700",
       "consultant optimisation tokens IA entreprise freelance mission",
       "site:free-work.com mission optimisation cout IA tokens freelance",
-      "reduction cout tokens IA entreprise consultant product manager"
+      "reduction cout tokens IA entreprise consultant product manager",
+      "mission courte conseil organisation produit freelance",
+      "coaching IA atelier formation entreprise consultant",
+      "formation product manager chef de projet IA atelier",
+      "mission conseil transformation digitale court duree freelance",
+      "site:malt.fr consultant produit coaching organisation freelance"
     ],
     "keywords_positive": [
       "directeur de projet", "head of product", "product manager", "product owner",
@@ -73,7 +81,9 @@
       "strategie", "roadmap", "delivery", "agile", "scrum",
       "international", "worldwide", "ecommerce", "ERP", "PIM",
       "IA", "agent", "agentic", "automatisation", "innovation",
-      "token", "cout token", "optimisation ia", "pricing ia"
+      "token", "cout token", "optimisation ia", "pricing ia",
+      "mission courte", "conseil", "coaching", "formation", "atelier",
+      "audit", "organisation", "court duree"
     ],
     "keywords_negative": [
       "stage", "alternance", "junior", "H/F", "formation",
