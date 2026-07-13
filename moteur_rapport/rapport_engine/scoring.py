@@ -72,8 +72,6 @@ def score_item(item: SearchItem, positive: list[str], negative: list[str]) -> di
         "score": score,
         "keyword_hits": pos,
         "negative_hits": neg,
-        "selection_reason": selection_reason(item, score, pos),
-        "recommendation": recommendation(item, score),
     }
 
 

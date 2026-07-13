@@ -1,12 +1,17 @@
 from __future__ import annotations
 
 import csv
+import random
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 from core.common import (
+    accent_heading,
+    add_callout,
     add_hyperlink,
+    add_separator,
+    apply_table_borders,
     bullet,
     ensure_output_dir,
     load_config,
@@ -73,13 +78,17 @@ def build_report(config: dict, pipeline: list[dict], stages: list[str], output_p
     doc = setup_doc(
         "SUIVI PIPELINE CRM - RAPPORT HEBDOMADAIRE",
         "État du pipeline commercial, relances et actions prioritaires",
-        config.get("author", "Assistant IA SASU"),
+        config.get("author", "Virginie Benayoun"),
     )
 
-    para(doc, "1. Résumé du pipeline", style="Heading 1")
+    accent_heading(doc, "1. Resume du pipeline")
     total = len(pipeline)
     if total == 0:
-        bullet(doc, "Aucun prospect dans le pipeline. Ajoutez des lignes dans le fichier pipeline.csv.")
+        bullet(doc, random.choice([
+            "Aucun prospect dans le pipeline cette semaine.",
+            "Pipeline vide cette semaine, aucun prospect en cours.",
+            "Pas de nouveau prospect dans le pipeline pour cette periode.",
+        ]))
         doc.save(output_path)
         return
 
@@ -106,12 +115,12 @@ def build_report(config: dict, pipeline: list[dict], stages: list[str], output_p
     # Relances urgentes
     urgent = [p for p in pipeline if days_since(p.get("date_dernier_contact")) is not None and days_since(p.get("date_dernier_contact")) >= 7]
     if urgent:
-        para(doc, f"Relances urgentes cette semaine : {len(urgent)}", bold=True, color=RED, size=11, before=10)
+        add_callout(doc, f"{len(urgent)} prospect(s) necessitent une relance urgente cette semaine.", title="Relances urgentes")
 
-    para(doc, "", after=8)
+    add_separator(doc)
 
     # Section 2: Tableau détaillé
-    para(doc, "2. Détail du pipeline", style="Heading 1")
+    accent_heading(doc, "2. Detail du pipeline")
     table = doc.add_table(rows=1, cols=6)
     headers = ["Entreprise", "Contact", "Stage", "Dernier contact", "Statut", "Prochaine action"]
     for i, h in enumerate(headers):
@@ -144,9 +153,11 @@ def build_report(config: dict, pipeline: list[dict], stages: list[str], output_p
                 shade_cell(cell, "FDE8E8")
 
     set_table_widths(table, [1.2, 1.1, 1.2, 0.9, 0.9, 1.2])
+    apply_table_borders(table)
 
     # Section 3: Recommandations de relance
-    para(doc, "3. Recommandations de relance", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "3. Recommandations de relance")
     for p in pipeline:
         ds = days_since(p.get("date_dernier_contact"))
         if ds is None or ds < 7:

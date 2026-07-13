@@ -23,6 +23,8 @@ ECOSYSTEM_QUERIES = [
     'Shine compte pro indépendant 2026',
     'Qonto banque en ligne professionnelle 2026',
     'formation certifiante freelance management 2026',
+    'mutuelle freelance independant comparatif 2026',
+    'prevoyance assurance freelance independant 2026',
 ]
 
 IA_PRODUCT_QUERIES = [
@@ -36,6 +38,10 @@ RANDOM_TOPICS = [
     'Malt freelance plateforme mission 2026',
     'Deel plateforme paie internationale freelance',
     'TVA franchise indépendant 2026 seuil',
+    'Alan mutuelle freelance avis 2026',
+    'Spirica prévoyance indépendant 2026',
+    'Blank compta freelance 2026',
+    'frais kilométrique freelance SASU 2026',
 ]
 
 
@@ -49,7 +55,7 @@ BLOCKED_DOMAINS = [
     "decathlon", "booking", "tripadvisor",
     "larousse", "lerobert", "dictionnaire", "wiktionary", "cnrtl",
     "linternaute", "wikihow", "wikipedia",
-    "fiverr", "freelance.com", "malt.fr", "upwork", "peopleperhour",
+    "fiverr", "freelance.com", "upwork", "peopleperhour",
     "mission-emploi", "indeed", "hellowork",
     "allocine", "facebook", "instagram", "twitter", "x.com", "tiktok",
     "mozzartbet", "bet365", "parionssport", "poker",
@@ -57,6 +63,7 @@ BLOCKED_DOMAINS = [
     "leboncoin", "aujourdhui",
     "wordreference", "producthunt", "linguee", "reverso",
     "cambridge", "merriam", "oxford", "collins",
+    "synonymo",
 ]
 BLOCKED_WORDS = [
     "login", "sign in", "se connecter", "s identifier", "password",
@@ -128,7 +135,11 @@ def _duree() -> str:
 
 def _generer_market_notes(articles: list[str]) -> str:
     if not articles:
-        return "  - Rien de marquant sur le marché cette semaine, j'ai principalement vu passer des annonces Free-Work classiques.\n"
+        return random.choice([
+            "  - Rien de marquant sur le marche cette semaine, j'ai principalement vu passer des annonces Free-Work classiques.\n",
+            "  - Semaine calme sur le marche freelance, rien de particulier a signaler.\n",
+            "  - Pas de movement notable cette semaine sur le marche des missions IT.\n",
+        ])
 
     notes = ""
     has_paris = any("paris" in a.lower() or "france" in a.lower() for a in articles)
@@ -243,7 +254,7 @@ def generate() -> str:
     notes = f"""Client: ASTRA MOMENTUM
 Projet: Point hebdo freelance
 Date: {date.today().isoformat()}
-Participants: Michael ASSAYAG, Virginie ASSAYAG
+Participants: Michael ASSAYAG, Virginie Benayoun
 Durée: {duree}
 ---
 Contexte:

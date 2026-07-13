@@ -1,6 +1,6 @@
 # AssistanteSASU — Session Memory
 
-Dernière mise à jour : 2026-07-10
+Dernière mise à jour : 2026-07-12
 
 ## Description
 
@@ -101,6 +101,12 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 
 ## Live Session Log
 
+### 2026-07-12 — Style DOCX pro + filtrage anti-langues étrangères + livrables propres
+
+- **Style grand cabinet de conseil** : `accent_heading()` (barre latérale bleue), `add_callout()` (encadré propre 1 cellule avec bordure gauche épaisse), `make_pro_table()`, `apply_table_borders()` sur tous les DOCX générés (common.py + docx_report.py + tous les agents)
+- **Filtrage radical** : `_is_latin()` rejette tout résultat contenant des caractères non latins (arabe, cyrillique, chinois...). Ajouté dans collectors.py, web.py, ghostwriter.py, chasseur.py
+- **Livrables propres** : plus d'envoi email (via Brevo grille l'illusion). Les DOCX sont copiés dans `OneDrive\Bureau\ASTRA MOMENTUM - Livrables\` après chaque cycle, zéro code Python à côté
+
 ### 2026-07-10 — Session initiale : analyse + backup GitHub
 
 - Analyse complète du projet (forces, faiblesses, axes de progrès)
@@ -128,13 +134,37 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 - **Ne pas ajouter de logging structuré** — `print()` suffit pour le débogage manuel
 - **Backup GitHub indispensable** — repo privé, fine-grained token, accès limité au seul repo
 
+### 2026-07-12 — Ajout sujets tokens IA (veille + prospection + branding)
+
+- Requêtes Bing/RSS ajoutées dans `moteur_rapport/config.json` (article_queries) : optimisation tokens, compression tokens, pricing IA, coût exorbitant des tokens, marché des tokens
+- Keywords positifs `article_positive` enrichis : token, compression, pricing ia, cout token
+- Requêtes opportunités ajoutées dans `moteur_rapport/config.json` (opportunity_queries) : consultant optimisation tokens, Free-Work
+- Requêtes Bing ajoutées dans `agents/config.json` (chasseur_missions.bing_queries) : consultant optimisation tokens IA, réduction coût tokens
+- Keywords positifs chasseur_missions enrichis : token, cout token, optimisation ia, pricing ia
+- Thèmes newsletter personal_branding ajoutés : optimisation tokens, compression tokens, pricing IA
+
+### 2026-07-12 — Prospection Pack (drafts email manuels)
+
+- Problème identifié : le chasseur trouvait des missions mais ne contactait jamais personne
+- Création du **Prospection Pack** : génère des drafts email personnalisés pour les missions scorées >= 5.0
+- Extraction du nom d'entreprise Free-Work via `extract_freework_company()` (JSON-LD + fallback titre)
+- Chargement de `leads_manuels.csv` comme source supplémentaire de prospection
+- 3 accroches variées, signature Virginie Benayoun (Responsable commerciale)
+- Tracking CSV généré (`prospection_tracking.csv`) avec colonnes sent/date_sent à remplir manuellement
+- Sortie : `Prospection_Pack_YYYY-MM-DD.docx` dans `agents/output/`
+
 ## Prochaines étapes (optionnelles, non prioritaires)
 
-- [ ] Créer un `lancer_mercredi.bat` unique qui enchaîne rapport → agents → email
+- [x] Créer un `lancer_mercredi.bat` unique qui enchaîne rapport → agents → email
 
 ## Références
 
 - Dépôt GitHub : `https://github.com/m4554y46/AssistanteSASU`
+
+## Décisions de conception
+
+- **Plus d'envoi email** — remplacé par copie des DOCX dans `OneDrive\Bureau\ASTRA MOMENTUM - Livrables\` (dossier clean sans code). Évite le "via Brevo" qui grille l'illusion humaine.
+- **Dossier livrables propre** — les rapports DOCX sont copiés dans un dossier séparé du code Python après chaque cycle. Montrable à un client sans éveiller les soupçons.
 - Profil Michael : Product Management, Digital Transformation, Mobile, IA
 - TJM cible : 750€ (min 650€)
 - Email : massayag@gmail.com

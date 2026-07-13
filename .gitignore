@@ -6,3 +6,14 @@ __pycache__/
 .env
 clé GitHub.txt
 Clé SMTP Brevo.txt
+
+# Generated output files
+Rapport_Astra_Momentum_*.docx
+Rapport_Astra_Momentum_*_runlog.json
+Rapport_Assistant_SASU_*.docx
+Rapport_Assistant_SASU_*_runlog.json
+agents/output/*.docx
+agents/output/*_log.json
+agents/output/prospection_tracking.csv
+agents/agent_cr_reunion/notes/processed/
+Livrable Semaine */

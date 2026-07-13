@@ -11,11 +11,25 @@ from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from typing import Iterable
 
-
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36"
 )
+
+BLOCKED_DOMAINS = [
+    "pinterest", "amazon", "ebay", "etsy", "aliexpress", "walmart",
+    "shopify", "boulanger", "fnac", "cdiscount", "ikea", "leroymerlin",
+    "decathlon", "booking", "tripadvisor",
+    "larousse", "lerobert", "dictionnaire", "wiktionary", "cnrtl",
+    "linternaute", "wikihow", "wikipedia",
+    "fiverr", "freelance.com", "upwork", "peopleperhour",
+    "facebook", "instagram", "twitter", "x.com", "tiktok",
+    "youtube", "leboncoin",
+    "wordreference", "linguee", "reverso",
+    "cambridge", "merriam", "oxford", "collins",
+    "allocine", "mozzartbet", "bet365", "parionssport", "poker",
+    "synonymo", "aujourdhui",
+]
 
 
 @dataclass
@@ -31,11 +45,23 @@ class SearchItem:
     verification_note: str = ""
 
 
+def _is_latin(text: str) -> bool:
+    for ch in text:
+        cp = ord(ch)
+        if cp > 0x024F and cp < 0x1E00:
+            return False
+        if cp > 0x1EFF and cp < 0x2000:
+            return False
+        if cp > 0x2E7F:
+            return False
+    return True
+
+
 def clean_text(value: str | None) -> str:
     if not value:
         return ""
-    value = re.sub(r"<[^>]+>", " ", value)
     value = html.unescape(value)
+    value = re.sub(r"<[^>]*>?", " ", value)
     value = re.sub(r"\s+", " ", value).strip()
     return value
 
@@ -47,8 +73,19 @@ def host_from_url(url: str) -> str:
         return "source inconnue"
 
 
-def bing_rss_url(query: str, count: int) -> str:
-    params = urllib.parse.urlencode({"q": query, "format": "rss", "count": str(count), "cc": "FR"})
+CURATED_FEEDS = [
+    ("https://www.producttalk.org/feed/", "Product Talk"),
+    ("https://www.svpg.com/feed/", "SVPG"),
+    ("https://medium.com/feed/product-coalition", "Product Coalition"),
+    ("https://medium.com/feed/mind-the-product", "Mind the Product"),
+    ("https://www.agilealliance.org/feed/", "Agile Alliance"),
+    ("https://martinfowler.com/feed.atom", "Martin Fowler"),
+    ("https://medium.com/feed/leading-agile", "Leading Agile"),
+]
+
+
+def bing_html_url(query: str, count: int) -> str:
+    params = urllib.parse.urlencode({"q": query, "cc": "FR"})
     return f"https://www.bing.com/search?{params}"
 
 
@@ -67,29 +104,78 @@ def parse_pub_date(value: str | None) -> str | None:
         return clean_text(value)[:32] or None
 
 
-def search_bing_rss(query: str, kind: str, timeout: int, count: int) -> list[SearchItem]:
-    url = bing_rss_url(query, count)
-    raw = fetch_url(url, timeout)
-    root = ET.fromstring(raw)
+def extract_rss_feed(feed_url: str, source_name: str, kind: str, timeout: int) -> list[SearchItem]:
     items: list[SearchItem] = []
-    for node in root.findall(".//item"):
-        title = clean_text(node.findtext("title"))
-        link = clean_text(node.findtext("link"))
-        snippet = clean_text(node.findtext("description"))
-        published = parse_pub_date(node.findtext("pubDate"))
-        if not title or not link:
+    try:
+        raw = fetch_url(feed_url, timeout)
+        root = ET.fromstring(raw)
+        for node in root.findall(".//item"):
+            title = clean_text(node.findtext("title"))
+            link = clean_text(node.findtext("link"))
+            snippet = clean_text(node.findtext("description"))
+            published = parse_pub_date(node.findtext("pubDate"))
+            if not title or not link:
+                continue
+            domain = host_from_url(link)
+            if any(b in domain for b in BLOCKED_DOMAINS):
+                continue
+            if not _is_latin(title) or (snippet and not _is_latin(snippet)):
+                continue
+            items.append(
+                SearchItem(
+                    kind=kind,
+                    title=title,
+                    url=link,
+                    snippet=snippet[:500] if snippet else "",
+                    source=source_name,
+                    published=published,
+                    query=source_name,
+                )
+            )
+    except Exception:
+        pass
+    return items
+
+
+def search_bing_html(query: str, kind: str, timeout: int, count: int) -> list[SearchItem]:
+    url = bing_html_url(query, count)
+    raw = fetch_url(url, timeout).decode("utf-8", "ignore")
+    items: list[SearchItem] = []
+    seen_urls: set[str] = set()
+    for idx, href in enumerate(re.findall(r'<a[^>]+href="(https?://[^"]+)"[^>]*>(.*?)</a>', raw, flags=re.I | re.S)):
+        link, title_block = href
+        if not link or any(x in link for x in ["bing.com", "go.microsoft", "creativecommons"]):
             continue
+        if link in seen_urls:
+            continue
+        seen_urls.add(link)
+        title = clean_text(title_block)
+        if not title or len(title) < 10:
+            continue
+        domain = host_from_url(link)
+        if any(b in domain for b in BLOCKED_DOMAINS):
+            continue
+        if not _is_latin(title):
+            continue
+        caption = ""
+        for cap_match in re.finditer(r'<p[^>]*>(.*?)</p>', raw[idx:idx+3000], flags=re.I | re.S):
+            cap_text = clean_text(cap_match.group(1))
+            if cap_text and len(cap_text) > 20:
+                caption = cap_text[:500]
+                break
         items.append(
             SearchItem(
                 kind=kind,
                 title=title,
                 url=link,
-                snippet=snippet,
-                source=host_from_url(link),
-                published=published,
+                snippet=caption,
+                source=domain,
+                published=None,
                 query=query,
             )
         )
+        if len(items) >= count:
+            break
     return items
 
 
@@ -223,14 +309,20 @@ def collect(config: dict) -> tuple[list[SearchItem], list[SearchItem], dict]:
 
     for query in search_cfg["article_queries"]:
         try:
-            article_items.extend(search_bing_rss(query, "article", timeout, count))
+            article_items.extend(search_bing_html(query, "article", timeout, count))
             time.sleep(0.4)
         except Exception as exc:
             errors.append(f"Article query failed: {query} ({type(exc).__name__})")
 
+    for feed_url, source_name in CURATED_FEEDS:
+        try:
+            article_items.extend(extract_rss_feed(feed_url, source_name, "article", timeout))
+        except Exception as exc:
+            errors.append(f"RSS feed failed: {source_name} ({type(exc).__name__})")
+
     for query in search_cfg["opportunity_queries"]:
         try:
-            opportunity_items.extend(search_bing_rss(query, "opportunity", timeout, count))
+            opportunity_items.extend(search_bing_html(query, "opportunity", timeout, count))
             time.sleep(0.4)
         except Exception as exc:
             errors.append(f"Opportunity query failed: {query} ({type(exc).__name__})")

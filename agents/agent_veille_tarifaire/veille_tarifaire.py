@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import random
 import re
 from collections import defaultdict
 from datetime import date, datetime, timezone
@@ -7,9 +8,14 @@ from pathlib import Path
 from typing import Any
 
 from core.common import (
+    accent_heading,
+    add_callout,
+    add_separator,
+    apply_table_borders,
     bullet,
     ensure_output_dir,
     load_config,
+    make_pro_table,
     para,
     save_json_report,
     set_run_font,
@@ -17,7 +23,7 @@ from core.common import (
     shade_cell,
     setup_doc,
 )
-from core.web import SearchResult, multi_search
+from core.web import SearchResult, multi_search, collect_freework_jobs
 from docx.shared import Pt, RGBColor
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
@@ -60,14 +66,32 @@ def collecter_donnees(agent_cfg: dict) -> dict[str, dict]:
     timeout = int(agent_cfg.get("timeout_seconds", 12))
     count = int(agent_cfg.get("results_per_query", 6))
     queries = agent_cfg.get("queries", [])
+    freework_pages = agent_cfg.get("freework_pages", [])
 
-    print(f"  Recherche TJM: {len(queries)} requetes...")
-    raw = multi_search(queries, timeout, count)
-    print(f"  Resultats bruts: {len(raw)}")
+    all_raw: list[SearchResult] = []
+
+    if freework_pages:
+        print(f"  Scraping {len(freework_pages)} pages Free-Work...")
+        try:
+            fw_items = collect_freework_jobs(freework_pages, timeout)
+            print(f"    -> {len(fw_items)} offres trouvees")
+            all_raw.extend(fw_items)
+        except Exception as e:
+            print(f"    -> Free-Work scrape failed: {e}")
+
+    print(f"  Recherche Bing: {len(queries)} requetes...")
+    try:
+        raw = multi_search(queries, timeout, count)
+        print(f"    -> {len(raw)} resultats")
+        all_raw.extend(raw)
+    except Exception as e:
+        print(f"    -> Bing search failed: {e}")
+
+    print(f"  Total resultats: {len(all_raw)}")
 
     profils_data = {p["nom"]: {"results": [], "tjms": []} for p in PROFILS}
 
-    for item in raw:
+    for item in all_raw:
         text = f"{item.title} {item.snippet}".lower()
         tjms = extraire_tjm(text + " " + item.url)
         for profil in PROFILS:
@@ -135,16 +159,19 @@ def build_report(config: dict, analyses: list[dict], output_path: Path):
     doc = setup_doc(
         "VEILLE CONCURRENTIELLE TARIFAIRE",
         "Analyse des TJM pratiques sur le marche freelance IT",
-        config.get("author", "Assistant IA SASU"),
+        config.get("author", "Virginie Benayoun"),
     )
 
-    para(doc, "1. Position actuelle", style="Heading 1")
-    bullet(doc, f"Votre TJM cible actuel : {tjm_cible} EUR")
-    bullet(doc, f"Votre TJM plancher : {tjm_min} EUR")
-    bullet(doc, f"Positionnement : {sasu.get('positioning', '')}")
-    para(doc, "", after=6)
+    accent_heading(doc, "1. Position actuelle")
+    add_callout(doc,
+        f"Votre TJM cible actuel : {tjm_cible} EUR\n"
+        f"Votre TJM plancher : {tjm_min} EUR\n"
+        f"Positionnement : {sasu.get('positioning', '')}",
+        title="Position tarifaire"
+    )
 
-    para(doc, "2. Analyse par profil", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "2. Analyse par profil")
 
     table = doc.add_table(rows=1, cols=6)
     headers = ["Profil", "TJM moyen", "Min", "Max", "Echantillon", "Recommandation"]
@@ -173,29 +200,52 @@ def build_report(config: dict, analyses: list[dict], output_path: Path):
                     set_run_font(r, size=8.5, color=RED if a["alerte"] and i == 5 else BLACK)
 
     set_table_widths(table, [1.3, 0.9, 0.7, 0.7, 0.7, 2.1])
+    apply_table_borders(table)
 
-    para(doc, "3. Synthese et recommandation tarifaire", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "3. Synthese et recommandation tarifaire")
     avg_market = [a["tjm_moyen"] for a in analyses if a["tjm_moyen"] > 0]
     if avg_market:
         market_avg = round(sum(avg_market) / len(avg_market), 0)
         bullet(doc, f"TJM moyen observe sur le marche (tous profils confondus) : {market_avg:,.0f} EUR")
 
         if tjm_cible > market_avg * 1.15:
-            bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) est significativement au-dessus de la moyenne du marche ({market_avg:,.0f} EUR). Assurez-vous que votre positionnement le justifie.")
+            bullet(doc, random.choice([
+                f"Votre TJM cible ({tjm_cible} EUR) est significativement au-dessus de la moyenne du marche ({market_avg:,.0f} EUR). Assurez-vous que votre positionnement le justifie.",
+                f"A {tjm_cible} EUR, vous etes au-dessus de la moyenne de marche ({market_avg:,.0f} EUR). Verifions que le positionnement tient la route.",
+                f"Ecart significatif : votre TJM ({tjm_cible} EUR) depasse la moyenne ({market_avg:,.0f} EUR). C'est tenable si le positionnement est clair.",
+            ]))
         elif tjm_cible >= market_avg * 0.9:
-            bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) est dans la fourchette haute du marche. Positionnement premium maintenable.")
+            bullet(doc, random.choice([
+                f"Votre TJM cible ({tjm_cible} EUR) est dans la fourchette haute du marche. Positionnement premium maintenable.",
+                f"A {tjm_cible} EUR, vous etes bien positionne dans le haut du marche ({market_avg:,.0f} EUR de moyenne). Pas d'inquietude.",
+                f"Votre TJM ({tjm_cible} EUR) est coherent avec un positionnement premium par rapport a la moyenne ({market_avg:,.0f} EUR).",
+            ]))
         else:
-            bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) est dans la moyenne du marche ({market_avg:,.0f} EUR). Une augmentation est envisageable.")
+            bullet(doc, random.choice([
+                f"Votre TJM cible ({tjm_cible} EUR) est dans la moyenne du marche ({market_avg:,.0f} EUR). Une augmentation est envisageable.",
+                f"A {tjm_cible} EUR, vous etes dans la moyenne ({market_avg:,.0f} EUR). On pourrait envisager une montee progressive.",
+                f"TJM ({tjm_cible} EUR) aligne avec la moyenne de marche ({market_avg:,.0f} EUR). Il y a de la marge pour augmenter.",
+            ]))
     else:
-        bullet(doc, "Pas assez de donnees pour calculer une moyenne de marche.", size=10)
+        bullet(doc, random.choice([
+            "Pas assez de donnees pour calculer une moyenne de marche.",
+            "Echantillon insuffisant pour etablir une moyenne fiable ce mois-ci.",
+            "Trop peu de donnees collectees pour degager une tendance de marche.",
+        ]), size=10)
 
-    para(doc, "4. Actions recommandees", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "4. Actions recommandees")
     alerts = [a for a in analyses if a["alerte"]]
     if alerts:
         for a in alerts:
             bullet(doc, f"ALERTE : {a['profil']} - {a['recommandation']}", size=10)
     else:
-        bullet(doc, "Aucune alerte tarifaire. Votre positionnement est coherent avec le marche.")
+        bullet(doc, random.choice([
+            "Aucune alerte tarifaire. Votre positionnement est coherent avec le marche.",
+            "Pas d'alerte cette semaine : le positionnement tarifaire est en phase avec le marche.",
+            "Tout est coherent au niveau tarifaire. Rien a signaler pour cette semaine.",
+        ]))
 
     doc.save(output_path)
     return output_path

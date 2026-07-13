@@ -6,9 +6,14 @@ from pathlib import Path
 from typing import Any
 
 from core.common import (
+    accent_heading,
+    add_callout,
+    add_separator,
+    apply_table_borders,
     bullet,
     ensure_output_dir,
     load_config,
+    make_pro_table,
     para,
     save_json_report,
     set_run_font,
@@ -197,7 +202,7 @@ def build_report(config: dict, meta: dict, sections: dict, output_path: Path):
     doc = setup_doc(
         f"COMPTE-RENDU DE RÉUNION",
         f"{projet} - {client}",
-        config.get("author", "Assistant IA SASU"),
+        config.get("author", "Virginie Benayoun"),
     )
 
     meta_table = doc.add_table(rows=1, cols=2)
@@ -224,31 +229,32 @@ def build_report(config: dict, meta: dict, sections: dict, output_path: Path):
                 for p in cell.paragraphs:
                     for r in p.runs:
                         set_run_font(r, size=10)
+    apply_table_borders(meta_table)
 
-    para(doc, "", after=8)
+    add_separator(doc)
 
     # Contexte
     if sections.get("contexte"):
-        para(doc, "1. Contexte et objectif", style="Heading 1")
-        para(doc, sections["contexte"])
+        accent_heading(doc, "1. Contexte et objectif")
+        add_callout(doc, sections["contexte"], title="Contexte")
 
     # Points abordés
-    para(doc, "2. Points abordés", style="Heading 1")
+    accent_heading(doc, "2. Points abordés")
     for idx, point in enumerate(sections.get("points_abordes", []), 1):
         bullet(doc, point)
 
     # Décisions
     if sections.get("decisions"):
-        para(doc, "3. Décisions", style="Heading 1")
+        accent_heading(doc, "3. Decisions")
         for dec in sections["decisions"]:
             bullet(doc, dec)
 
     # Actions
     actions = sections.get("actions_parsed", [])
     if actions:
-        para(doc, "4. Actions et responsabilités", style="Heading 1")
+        accent_heading(doc, "4. Actions et responsabilites")
         action_table = doc.add_table(rows=1, cols=3)
-        for i, h in enumerate(["Action", "Responsable", "Échéance"]):
+        for i, h in enumerate(["Action", "Responsable", "Echeance"]):
             cell = action_table.rows[0].cells[i]
             shade_cell(cell, PALEBLUE)
             cell.text = h
@@ -265,13 +271,14 @@ def build_report(config: dict, meta: dict, sections: dict, output_path: Path):
                     for r in p.runs:
                         set_run_font(r, size=9.2)
         set_table_widths(action_table, [3.5, 1.5, 1.5])
+        apply_table_borders(action_table)
     elif sections.get("actions"):
-        para(doc, "4. Actions", style="Heading 1")
+        accent_heading(doc, "4. Actions")
         for a in sections["actions"]:
             bullet(doc, a)
 
     if sections.get("prochaines_etapes"):
-        para(doc, "5. Prochaines étapes", style="Heading 1")
+        accent_heading(doc, "5. Prochaines etapes")
         para(doc, sections["prochaines_etapes"])
 
     doc.save(output_path)

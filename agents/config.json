@@ -1,4 +1,5 @@
 {
+  "author": "Virginie Benayoun",
   "profile": {
     "name": "Michael ASSAYAG",
     "company": "ASTRA MOMENTUM",
@@ -6,7 +7,7 @@
     "positioning": "Senior Product & Project Manager | Digital Transformation | Mobile | Omnichannel | IA",
     "tjm_cible": 750,
     "tjm_min": 650,
-    "email": "michael@assistant-sasu.fr",
+    "email": "massayag@gmail.com",
     "target_roles": [
       "Directeur de projet IT senior",
       "Head of Product",
@@ -52,12 +53,17 @@
       "site:free-work.com mission directeur projet digital freelance",
       "site:free-work.com mission head of product freelance Paris",
       "site:free-work.com mission product manager senior freelance",
+      "site:free-work.com mission product owner IA freelance",
       "site:linkedin.com/jobs/view product manager senior freelance France",
       "site:linkedin.com/jobs/view head of product freelance Paris",
       "site:linkedin.com/jobs/view directeur projet digital freelance",
+      "site:linkedin.com/jobs/view product owner IA freelance",
       "site:welcometothejungle.com/fr/jobs product manager freelance",
-      "site:welcometothejungle.com/fr/jobs head of product freelance",
-      "mission directeur projet transformation digitale TJM 700"
+      "site:welcometothejungle.com/fr/jobs product owner freelance",
+      "mission directeur projet transformation digitale TJM 700",
+      "consultant optimisation tokens IA entreprise freelance mission",
+      "site:free-work.com mission optimisation cout IA tokens freelance",
+      "reduction cout tokens IA entreprise consultant product manager"
     ],
     "keywords_positive": [
       "directeur de projet", "head of product", "product manager", "product owner",
@@ -65,7 +71,9 @@
       "mobile", "omnicanal", "retail", "luxe", "logistique",
       "TJM", "700", "750", "800", "management", "équipe", "pilotage",
       "strategie", "roadmap", "delivery", "agile", "scrum",
-      "international", "worldwide", "ecommerce", "ERP", "PIM"
+      "international", "worldwide", "ecommerce", "ERP", "PIM",
+      "IA", "agent", "agentic", "automatisation", "innovation",
+      "token", "cout token", "optimisation ia", "pricing ia"
     ],
     "keywords_negative": [
       "stage", "alternance", "junior", "H/F", "formation",
@@ -84,7 +92,10 @@
       "Product Management dans des contextes complexes (LBO, groupes internationaux)",
       "Conseil aux dirigeants de PME",
       "Innovation (AR, 3D) appliquée au commerce",
-      "Omnicanal : le vrai du faux"
+      "Omnicanal : le vrai du faux",
+      "Optimisation des tokens IA en entreprise : le nouveau puit sans fond",
+      "Compression de tokens en IA : mythe ou réalité ?",
+      "Pricing des IA : combien coutent vraiment les tokens aux entreprises ?"
     ]
   },
   "propositions": {
@@ -117,6 +128,10 @@
       }
     ]
   },
+  "prospection": {
+    "enabled": true,
+    "min_score": 5.0
+  },
   "veille_tarifaire": {
     "enabled": true,
     "timeout_seconds": 12,
@@ -126,6 +141,14 @@
       "site:free-work.com tjm head of product freelance",
       "site:free-work.com tjm product manager senior freelance",
       "site:free-work.com tjm consultant transformation digitale freelance"
+    ],
+    "freework_pages": [
+      "https://www.free-work.com/fr/tech-it/product-manager/job-mission",
+      "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
+      "https://www.free-work.com/fr/tech-it/directeur-de-projet-it/job-mission",
+      "https://www.free-work.com/fr/tech-it/consultant-ia/job-mission",
+      "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
+      "https://www.free-work.com/fr/tech-it/scrum-master/job-mission"
     ]
   },
   "sasu": {

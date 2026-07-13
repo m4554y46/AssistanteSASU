@@ -30,11 +30,14 @@ cd /d "%~dp0agents"
 python run_agent.py all
 if errorlevel 1 echo [ERR] Agents echoues
 
-:: 4. ENVOI EMAIL
-echo [%time:~0,8%] Envoi du rapport par email...
-cd /d "%~dp0"
-python send_report.py
-if errorlevel 1 echo [ERR] Envoi email echoue
+:: 4. COPIE VERS DOSSIER PROPRE (sans le code IA)
+echo [%time:~0,8%] Copie des livrables vers le dossier clean...
+set LIVRABLES="C:\Users\micas\OneDrive\Bureau\ASTRA MOMENTUM - Livrables"
+copy /Y "%~dp0Rapport_Astra_Momentum_*.docx" %LIVRABLES% >nul 2>&1
+copy /Y "%~dp0agents\output\*.docx" %LIVRABLES% >nul 2>&1
+echo [%time:~0,8%] Livrables copies dans %LIVRABLES%
+
+:: 5. OUVERTURE DU DOSSIER PROPRE
+explorer %LIVRABLES%
 
 echo [%time:~0,8%] === CYCLE TERMINE ===
-pause

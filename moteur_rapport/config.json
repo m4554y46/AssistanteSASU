@@ -14,10 +14,18 @@
     "article_queries": [
       "agents IA entreprise product management agile 2026",
       "agentic AI enterprise product operating model 2026",
-      "product management AI discovery agile 2026",
-      "transformation digitale IA gouvernance agents 2026",
-      "continuous discovery product management AI 2026",
-      "agile delivery AI transformation 2026"
+      "product management product discovery innovation 2026",
+      "chef de projet IT transformation digitale agile 2026",
+      "product owner agile delivery IA 2026",
+      "formation product manager chef de projet IT certification 2026",
+      "SASU freelance fiscalite impots optimisation 2026",
+      "mutuelle prevoyance assurance freelance independant 2026",
+      "compte bancaire pro outil compta freelance 2026",
+      "optimisation tokens IA entreprise cout compression 2026",
+      "compression tokens IA modele langage inference 2026",
+      "pricing modeles IA tarification tokens cout entreprise 2026",
+      "cout exorbitant tokens IA facture entreprise 2026",
+      "marche tokens IA explosion croissance projection 2026"
     ],
     "opportunity_queries": [
       "site:free-work.com/fr/tech-it/product-owner/job-mission product owner IA freelance France",
@@ -26,7 +34,9 @@
       "site:free-work.com/fr/tech-it/jobs/ia-generative freelance chef de projet product owner IA",
       "site:linkedin.com/jobs/view product owner IA freelance France",
       "site:linkedin.com/jobs/view product manager IA freelance France",
-      "site:welcometothejungle.com/fr/jobs product manager IA freelance"
+      "site:welcometothejungle.com/fr/jobs product manager IA freelance",
+      "site:free-work.com/fr/tech-it/jobs/ia-generative optimisation tokens consultant",
+      "consultant optimisation cout tokens IA entreprise freelance TJM"
     ],
     "freework_pages": [
       "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
@@ -39,7 +49,8 @@
     "article_positive": [
       "agent", "agentic", "ia", "ai", "automation", "automatisation",
       "product", "discovery", "operating model", "agile", "delivery",
-      "gouvernance", "transformation", "workflow", "roadmap"
+      "gouvernance", "transformation", "workflow", "roadmap",
+      "token", "compression", "pricing ia", "cout token"
     ],
     "opportunity_positive": [
       "freelance", "product owner", "product manager", "chef de projet",
@@ -55,6 +66,22 @@
     ]
   },
   "method_library": [
+    {
+      "name": "Freelance SASU - Optimisation fiscale et sociale",
+      "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069565/LEGISCTA000006191753/",
+      "definition": "Cadre legal et fiscal de la SASU : responsabilite limitee au capital, cotisations sociales sur salaire, dividendes, TVA franchise en deça de 37 500EUR de CA.",
+      "business_value": "Permet de conseiller des dirigeants de PME sur le statut SASU vs EI vs EURL et d'identifier les leviers d'optimisation.",
+      "client_use": "Clients dirigeants de PME/ETI en freelance ou portage. Sujet recurrent dans les echanges coachings.",
+      "commercial_use": "Argumentaire pour missions de conseil strategique aupres de dirigeants de PME."
+    },
+    {
+      "name": "Ecosysteme freelance - Banque, assurance et outils",
+      "url": "https://www.shine.fr/",
+      "definition": "Ensemble des services pour independants : compte pro (Qonto, Shine, Blank), mutuelle (Alan), prevoyance (April, Spirica), compta (Indy, Dougs), facturation electronique.",
+      "business_value": "Aide a naviguer l'ecosysteme freelance pour recommander les meilleurs outils aux clients et gerer sa propre structure.",
+      "client_use": "Clients freelances ou TPE cherchant a structurer leur administration. Sujet frequent en mentoring.",
+      "commercial_use": "Sujet d'accroche LinkedIn et newsletter pour attirer des dirigeants de PME en freelance."
+    },
     {
       "name": "Product Operating Model",
       "url": "https://www.svpg.com/product-operating-model/",

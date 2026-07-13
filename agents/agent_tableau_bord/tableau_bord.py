@@ -2,12 +2,17 @@ from __future__ import annotations
 
 import csv
 import json
+import random
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 from core.common import (
+    accent_heading,
+    add_callout,
+    add_separator,
+    apply_table_borders,
     bullet,
     ensure_output_dir,
     load_config,
@@ -92,12 +97,15 @@ def build_report(config: dict, invoices: list[dict], output_path: Path):
     doc = setup_doc(
         "TABLEAU DE BORD MENSUEL SASU",
         "Suivi de gestion : CA, TJM, taux d'occupation et projections",
-        config.get("author", "Assistant IA SASU"),
+        config.get("author", "Virginie Benayoun"),
     )
 
     if not invoices:
-        para(doc, "Aucune facture trouvée.", bold=True, color=RED)
-        bullet(doc, f"Placez vos fichiers CSV ou JSON dans : {config.get('tableau_bord', {}).get('factures_dir', '')}")
+        para(doc, random.choice([
+            "Aucune facture renseignée pour le mois en cours.",
+            "Pas de facture saisie pour ce mois-ci.",
+            "Aucune donnee de facturation pour la periode en cours.",
+        ]), bold=True, color=RED)
         doc.save(output_path)
         return
 
@@ -132,8 +140,11 @@ def build_report(config: dict, invoices: list[dict], output_path: Path):
         })
 
     if not parsed:
-        para(doc, "Format de facture non reconnu.", bold=True, color=RED)
-        bullet(doc, "Format attendu (CSV) : date;montant_ht;tjm;jours;client;mission")
+        para(doc, random.choice([
+            "Impossible de lire les factures : verifie le format des fichiers.",
+            "Erreur de lecture du fichier de factures : format peut-être invalide.",
+            "Le fichier de factures n'a pas pu etre lu. Verifier le format et les colonnes attendues.",
+        ]), bold=True, color=RED)
         doc.save(output_path)
         return
 
@@ -179,8 +190,8 @@ def build_report(config: dict, invoices: list[dict], output_path: Path):
     next_tva, days_to_tva = next_tva_date()
 
     # --- BUILD REPORT ---
-    para(doc, f"1. Synthèse du mois de {MONTHS_FR[today.month]} {today.year}", style="Heading 1")
-    para(doc, "Indicateurs clés", style="Heading 2")
+    accent_heading(doc, f"1. Synthese du mois de {MONTHS_FR[today.month]} {today.year}")
+    para(doc, "Indicateurs cles", style="Heading 2")
 
     # Dashboard table
     table = doc.add_table(rows=1, cols=3)
@@ -236,9 +247,11 @@ def build_report(config: dict, invoices: list[dict], output_path: Path):
                 set_run_font(r, bold=True, size=9.2, color=GREEN if ok else RED)
 
     set_table_widths(table, [2.2, 1.8, 1.0])
+    apply_table_borders(table)
 
     # Section 2: Mensual detail
-    para(doc, "2. Détail mensuel", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "2. Detail mensuel")
     m_table = doc.add_table(rows=1, cols=5)
     for i, h in enumerate(["Mois", "CA (€)", "Jours", "TJM moyen", "Missions"]):
         cell = m_table.rows[0].cells[i]
@@ -265,9 +278,11 @@ def build_report(config: dict, invoices: list[dict], output_path: Path):
                     set_run_font(r, size=8.5)
 
     set_table_widths(m_table, [1.5, 1.2, 0.6, 1.0, 2.2])
+    apply_table_borders(m_table)
 
     # Section 3: TVA Alert
-    para(doc, "3. Alertes et échéances", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "3. Alertes et echeances")
     if days_to_tva <= 30:
         bullet(doc, f"⚠ TVA à déclarer dans {days_to_tva} jours (le {next_tva.isoformat()})", size=10.5)
     else:
@@ -281,7 +296,8 @@ def build_report(config: dict, invoices: list[dict], output_path: Path):
         bullet(doc, f"✓ Projection annuelle ({projected_annual:,.0f} €) au-dessus de l'objectif ({obj_annuel:,.0f} €)", size=10.5)
 
     # Section 4: Prospection gap
-    para(doc, "4. Analyse et recommandations", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "4. Analyse et recommandations")
     if occupancy < 50:
         bullet(doc, "⚠ Faible taux d'occupation - intensifier la prospection (cf. Agent Chasseur de Leads)")
     elif occupancy < 75:

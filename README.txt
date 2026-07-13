@@ -1,8 +1,8 @@
 =====================================
-  ASTRA MOMENTUM - Projet Assistante IA
+  ASTRA MOMENTUM - Agents autonomes
 =====================================
 
-Ce dossier contient le systeme d'agents IA autonomes pour
+Ce dossier contient le systeme d'agents autonomes pour
 la prospection de missions freelance et la generation de rapports.
 
 Auteur : Michael ASSAYAG - Président ASTRA MOMENTUM
@@ -64,23 +64,21 @@ Agent 4 : Compte rendu de reunion
 
 Agent 5 : Personal Branding
   - 4 contenus editoriaux pour newsletter Substack
-  - Positionnement "cabinet conseil" (pas solo)
+  - Positionnement freelance senior Product & IA
 
 Agent 6 : Offres consulting
   - Propositions commerciales .docx depuis un brief
 
 Agent 7 : Veille tarifaire
   - Benchmark TJM du marche
+  - Generation automatique de drafts email de prospection
 
 
 CE QUI RESTE A FAIRE
 =====================================
 
 [ ] Envoi automatique des rapports par email
-    -> necessite un compte Gmail avec App Password
-    -> script send_reports.py + Task Scheduler Windows
 [ ] Planification automatique (tous les mercredis 15h)
 [ ] Ajouter d'autres sources de scraping
-    (WelcomeToTheJungle, Malt, LinkedIn...)
 [ ] Ameliorer le scoring des missions
 [ ] Creer une landing page Substack automatique

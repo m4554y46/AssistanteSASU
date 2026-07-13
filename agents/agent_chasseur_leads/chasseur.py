@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import random
 import re
 import sys
 from datetime import date, datetime, timezone
@@ -8,10 +9,14 @@ from pathlib import Path
 from typing import Any
 
 from core.common import (
+    accent_heading,
+    add_callout,
     add_hyperlink,
+    add_separator,
     bullet,
     ensure_output_dir,
     load_config,
+    make_pro_table,
     para,
     save_json_report,
     set_run_font,
@@ -40,7 +45,20 @@ BLOCKED_ROLES = [
     "cobol", "mainframe", "as400", "rust", "developpeur back",
     "charge de recrutement", "ingenieur reseau", "analyste mainframe",
     "integrateur devops", "ingenieur devops",
+    "mission locale",
 ]
+
+
+def _is_latin(text: str) -> bool:
+    for ch in text:
+        cp = ord(ch)
+        if cp > 0x024F and cp < 0x1E00:
+            return False
+        if cp > 0x1EFF and cp < 0x2000:
+            return False
+        if cp > 0x2E7F:
+            return False
+    return True
 
 
 def is_blocked(item: SearchResult) -> bool:
@@ -48,6 +66,8 @@ def is_blocked(item: SearchResult) -> bool:
         return True
     text = f"{item.title} {item.snippet}".lower()
     if any(role in text for role in BLOCKED_ROLES):
+        return True
+    if not _is_latin(item.title) or (item.snippet and not _is_latin(item.snippet)):
         return True
     return False
 
@@ -126,6 +146,7 @@ def calculer_score_mission(item: SearchResult, profil: dict) -> dict | None:
         "fit_skills": fit_skills,
         "decision": decision,
         "industry_match": industry_hits,
+        "company": item.company,
     }
 
 
@@ -191,6 +212,7 @@ def collect_missions(agent_cfg: dict, profil: dict) -> list[dict]:
             "fit_skills": [],
             "decision": "POSTULER - Cible identifiee manuellement",
             "industry_match": [],
+            "company": m.get("entreprise", "").strip(),
         })
     print(f"  Missions manuelles: {len(manual)}")
 
@@ -211,26 +233,28 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
     doc = setup_doc(
         "CHASSEUR DE MISSIONS - RAPPORT HEBDOMADAIRE",
         f"Cibles freelance identifiees pour {name} - {positioning}",
-        "Assistant IA SASU",
+        config.get("author", "Virginie Benayoun"),
     )
 
     # Executive summary
-    para(doc, "1. Synthese executive", style="Heading 1")
-    bullet(doc, f"Profil cible : {' | '.join(targets[:3])}")
-    bullet(doc, f"TJM vise : {tjm_cible} EUR+")
-    bullet(doc, f"Mission identifiees ce cycle : {len(missions)}")
+    accent_heading(doc, "1. Synthese executive")
 
     premium = [m for m in missions if m.get("tjm_value", 0) >= 700]
     bulletin = [m for m in missions if m["decision"] == "POSTULER EN PRIORITE" or m["decision"] == "POSTULER"]
 
-    bullet(doc, f"  - Missions premium (TJM >= 700EUR) : {len(premium)}")
-    bullet(doc, f"  - Recommandees en priorite : {len(bulletin)}")
+    summary_lines = (
+        f"Profil cible : {' | '.join(targets[:3])}\n"
+        f"TJM vise : {tjm_cible} EUR+\n"
+        f"Missions identifiees ce cycle : {len(missions)}\n"
+        f"Missions premium (TJM >= 700EUR) : {len(premium)}\n"
+        f"Recommandees en priorite : {len(bulletin)}"
+    )
     if premium:
-        bullet(doc, f"  - TJM max detecte : {max(m['tjm_value'] for m in missions)} EUR")
-    para(doc, "", after=6)
+        summary_lines += f"\nTJM max detecte : {max(m['tjm_value'] for m in missions)} EUR"
+    add_callout(doc, summary_lines, title="Synthese")
 
     # Missions detail
-    para(doc, "2. Missions qualifiees", style="Heading 1")
+    accent_heading(doc, "2. Missions qualifiees")
     for idx, m in enumerate(missions, 1):
         decision_color = GREEN if "PRIORITE" in m["decision"] else (RGBColor(200, 120, 0) if m["decision"] == "POSTULER" else GRAY)
         para(doc, f"{idx}. {m['title']}", style="Heading 3")
@@ -247,19 +271,36 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
         set_run_font(p.add_run(f"Decision : {m['decision']}"), bold=True, color=decision_color)
 
     # Recommandations
-    para(doc, "3. Recommandations de la semaine", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "3. Recommandations de la semaine")
     if bulletin:
         para(doc, "Missions a cibler cette semaine :", style="Heading 2")
         for m in bulletin[:3]:
             bullet(doc, f"{m['title']} - {m['source']} (TJM: {m['tjm']})")
     else:
-        bullet(doc, "Aucune mission prioritaire detectee ce cycle.")
+        bullet(doc, random.choice([
+            "Aucune mission prioritaire detectee ce cycle.",
+            "Pas de mission urgente identifiee cette semaine.",
+            "Je n'ai pas reperee d'opportunite a qualifier en priorite ce cycle.",
+        ]))
 
     if premium:
         bullet(doc, f"TJM moyen des missions premium : {sum(m['tjm_value'] for m in premium)/len(premium):,.0f} EUR")
-    bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) est tenable sur le marche actuel." if premium else "Elargir les criteres de recherche pour trouver plus d'opportunites.")
+    if premium:
+        bullet(doc, random.choice([
+            f"Votre TJM cible ({tjm_cible} EUR) est tenable sur le marche actuel.",
+            f"A {tjm_cible} EUR, votre positionnement est coherent avec les missions premium reperees.",
+            f"Les missions premium confirment que votre TJM cible ({tjm_cible} EUR) est dans le marche.",
+        ]))
+    else:
+        bullet(doc, random.choice([
+            "Elargir les criteres de recherche pour trouver plus d'opportunites.",
+            "Je te suggere d'elargir le perimetre de recherche pour augmenter le volume de missions.",
+            "Envisager d'ajuster les mots-cles de recherche pour remonter plus d'offres pertinentes.",
+        ]))
 
-    para(doc, "4. Profil valorise", style="Heading 1")
+    add_separator(doc)
+    accent_heading(doc, "4. Profil valorise")
     for client in profil.get("key_clients", []):
         bullet(doc, f"Reference : {client}")
     for skill in profil.get("key_skills", [])[:6]:
@@ -267,6 +308,145 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
 
     doc.save(output_path)
     return output_path
+
+
+INTRO_VARIATIONS = [
+    "Je me permets de vous contacter pour vous proposer un profil qui saura r\u00e9pondre \u00e0 vos probl\u00e9matiques organisationnelles et technologiques.",
+    "Je souhaitais vous pr\u00e9senter un profil senior en product management et transformation digitale qui pourrait correspondre \u00e0 vos besoins.",
+    "Dans le cadre de mon activit\u00e9 chez ASTRA MOMENTUM, je me permets de vous proposer un accompagnement sur vos enjeux produit et digital.",
+]
+
+
+def generate_prospection_pack(config: dict, missions: list[dict], output_dir: Path):
+    agent_cfg = config.get("chasseur_missions", {})
+    prospection_cfg = config.get("prospection", {})
+    if not prospection_cfg.get("enabled", True):
+        print("  Prospection pack desactive.")
+        return
+
+    min_score = prospection_cfg.get("min_score", 5.0)
+    profil = config.get("profile", {})
+
+    target_missions = [m for m in missions if m["score"] >= min_score and m.get("company")]
+
+    leads_path = Path(__file__).resolve().parent / "leads_manuels.csv"
+    if leads_path.exists():
+        with leads_path.open(newline="", encoding="utf-8-sig") as f:
+            for row in csv.DictReader(f, delimiter=";"):
+                company = row.get("entreprise", "").strip()
+                if company:
+                    target_missions.append({
+                        "title": row.get("contexte", "Lead manuel"),
+                        "url": row.get("url", ""),
+                        "snippet": "",
+                        "source": row.get("source", ""),
+                        "score": 10.0,
+                        "tjm": "non specific",
+                        "tjm_value": 0,
+                        "fit_skills": [],
+                        "decision": "CONTACTER - Lead identifie manuellement",
+                        "industry_match": [],
+                        "company": company,
+                    })
+
+    if not target_missions:
+        print("  Aucune mission qualifiee pour le prospection pack.")
+        return
+
+    today = date.today().isoformat()
+    doc = setup_doc(
+        "PROSPECTION PACK - EMAILS DE CONTACT",
+        f"Drafts d'emails pour les missions cibles - {today}",
+        config.get("author", "Virginie Benayoun"),
+    )
+
+    accent_heading(doc, "Emails de prospection generes")
+    add_callout(doc,
+        f"Profil propose : {profil.get('name', 'Michael ASSAYAG')}\n"
+        f"Positionnement : {profil.get('positioning', '')}\n"
+        f"Contacts generes : {len(target_missions)}",
+        title="Prospection Pack"
+    )
+
+    tracking_data = []
+    random.shuffle(INTRO_VARIATIONS)
+    intro_idx = 0
+
+    for i, m in enumerate(target_missions, 1):
+        company = m.get("company", "")
+        if not company:
+            continue
+
+        if intro_idx >= len(INTRO_VARIATIONS):
+            intro_idx = 0
+        intro = INTRO_VARIATIONS[intro_idx]
+        intro_idx += 1
+
+        subject = f"ASTRA MOMENTUM \u2014 Accompagnement {company} / Product & Digital"
+        body = f"""Bonjour,
+
+{intro}
+
+Michael ASSAYAG, Head of Product & Digital Transformation chez ASTRA MOMENTUM, accompagne les directions produit et digitales dans leur transformation avec une double expertise :
+\u2192 Product Management & Delivery (Kering \u2014 Gucci, Saint Laurent \u2014 7 ans)
+\u2192 D\u00e9ploiement mobile worldwide (GeoPost / DPD \u2014 \u00e9quipe 9+ pays)
+\u2192 Innovation & strat\u00e9gie digitale (Saint-Gobain \u2014 AR, 3D, ERP)
+
+Il intervient en freelance sur des missions de :
+- Direction de produit / Head of Product (int\u00e9rim ou conseil)
+- Transformation digitale & organisation produit
+- Conseil \u00e0 la direction de PME/ETI
+
+Je reste \u00e0 votre disposition pour \u00e9changer sur vos besoins actuels ou \u00e0 venir.
+
+Bien cordialement,
+Virginie Benayoun
+Responsable commerciale \u2014 ASTRA MOMENTUM"""
+
+        para(doc, f"Email {i} \u2014 {company}", style="Heading 2")
+        p = para(doc, after=2)
+        set_run_font(p.add_run(f"Mission : {m['title']}"), bold=True, size=10)
+        if m.get("url"):
+            p = para(doc, after=2)
+            set_run_font(p.add_run("URL : "), size=9.5, color=GRAY)
+            add_hyperlink(p, m["url"], m["url"])
+        p = para(doc, after=2)
+        set_run_font(p.add_run(f"Objet : {subject}"), size=9.5, color=GRAY)
+        para(doc, body, after=6)
+        para(doc, "\u2500" * 60, after=6)
+
+        tracking_data.append({
+            "date_generated": today,
+            "company": company,
+            "mission_title": m["title"],
+            "mission_url": m.get("url", ""),
+            "subject": subject,
+            "sent": "",
+            "date_sent": "",
+        })
+
+    output_path = output_dir / f"Prospection_Pack_{today}.docx"
+    doc.save(output_path)
+    print(f"  Prospection pack : {output_path}")
+
+    tracking_path = output_dir / "prospection_tracking.csv"
+    existing_rows = []
+    if tracking_path.exists():
+        with tracking_path.open(newline="", encoding="utf-8-sig") as f:
+            existing_rows = list(csv.DictReader(f, delimiter=";"))
+
+    seen = {(r.get("company", ""), r.get("mission_url", "")) for r in existing_rows}
+    for row in tracking_data:
+        key = (row["company"], row["mission_url"])
+        if key not in seen:
+            existing_rows.append(row)
+            seen.add(key)
+
+    with tracking_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=["date_generated", "company", "mission_title", "mission_url", "subject", "sent", "date_sent"], delimiter=";")
+        writer.writeheader()
+        writer.writerows(existing_rows)
+    print(f"  Tracking CSV : {tracking_path}")
 
 
 def main() -> int:
@@ -295,6 +475,8 @@ def main() -> int:
         run_log,
     )
     print(f"  Rapport : {output_path}")
+
+    generate_prospection_pack(config, missions, output_dir)
     return 0
 
 

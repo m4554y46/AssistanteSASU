@@ -6,7 +6,10 @@ from pathlib import Path
 from typing import Any
 
 from core.common import (
+    accent_heading,
+    add_callout,
     add_hyperlink,
+    add_separator,
     bullet,
     ensure_output_dir,
     load_config,
@@ -158,24 +161,17 @@ def generer_proposition(brief: dict, config: dict) -> dict:
 
 
 def build_report(config: dict, propositions: list[dict], output_path: Path):
+    if not propositions:
+        return
+
     doc = setup_doc(
         "PROPOSITIONS COMMERCIALES",
         "Projets commerciaux generes depuis les briefs",
-        config.get("author", "Assistant IA SASU"),
+        config.get("author", "Virginie Benayoun"),
     )
 
-    if not propositions:
-        para(doc, "Aucun brief trouve.", bold=True, color=RGBColor(155, 28, 28))
-        brief_path = str(BRIEFS_DIR)
-        bullet(doc, f"Deposez un fichier .txt dans : {brief_path}")
-        bullet(doc, "Format attendu :")
-        for l in ["Client: Nom", "Contexte: ...", "Besoin: ...", "Perimetre: ...", "Duree: 3 mois", "TJM: 650", "Objectif: ..."]:
-            bullet(doc, l)
-        doc.save(output_path)
-        return
-
     for idx, prop in enumerate(propositions, 1):
-        para(doc, f"{idx}. {prop['titre']}", style="Heading 1")
+        accent_heading(doc, f"{idx}. {prop['titre']}")
         p = para(doc, after=2)
         set_run_font(p.add_run(f"Client : {prop['client']} | Statut : {prop['statut']} | Date : {prop['date']}"), size=9.5, color=GRAY)
 
@@ -203,7 +199,7 @@ def build_report(config: dict, propositions: list[dict], output_path: Path):
         bullet(doc, f"TJM propose : {prop.get('tjm', 650):,.0f} EUR")
         bullet(doc, "Modalites : Facturation mensuelle, TVA 20%, paiement a 30 jours")
 
-        para(doc, "", after=6)
+        add_separator(doc)
         doc.add_page_break()
 
     doc.save(output_path)
@@ -229,6 +225,16 @@ def main() -> int:
 
     output_dir = ensure_output_dir(config)
     today = date.today().isoformat()
+
+    if not propositions:
+        print("  Aucun brief trouve. Aucune proposition generee.")
+        run_log = output_dir / f"Propositions_{today}_log.json"
+        save_json_report(
+            {"generated_at": datetime.now(timezone.utc).isoformat(), "propositions_count": 0},
+            run_log,
+        )
+        return 0
+
     output_path = output_dir / f"Propositions_Commerciales_{today}.docx"
     build_report(config, propositions, output_path)
 

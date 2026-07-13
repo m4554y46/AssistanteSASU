@@ -12,11 +12,25 @@ from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from typing import Iterable
 
-
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36"
 )
+
+BLOCKED_DOMAINS = [
+    "pinterest", "amazon", "ebay", "etsy", "aliexpress", "walmart",
+    "shopify", "boulanger", "fnac", "cdiscount", "ikea", "leroymerlin",
+    "decathlon", "booking", "tripadvisor",
+    "larousse", "lerobert", "dictionnaire", "wiktionary", "cnrtl",
+    "linternaute", "wikihow", "wikipedia",
+    "fiverr", "freelance.com", "upwork", "peopleperhour",
+    "facebook", "instagram", "twitter", "x.com", "tiktok",
+    "youtube", "leboncoin",
+    "wordreference", "linguee", "reverso",
+    "cambridge", "merriam", "oxford", "collins",
+    "allocine", "mozzartbet", "bet365", "parionssport", "poker",
+    "synonymo", "aujourdhui",
+]
 
 
 @dataclass
@@ -27,13 +41,26 @@ class SearchResult:
     source: str
     published: str | None = None
     query: str | None = None
+    company: str | None = None
+
+
+def _is_latin(text: str) -> bool:
+    for ch in text:
+        cp = ord(ch)
+        if cp > 0x024F and cp < 0x1E00:
+            return False
+        if cp > 0x1EFF and cp < 0x2000:
+            return False
+        if cp > 0x2E7F:
+            return False
+    return True
 
 
 def clean_text(value: str | None) -> str:
     if not value:
         return ""
-    value = re.sub(r"<[^>]+>", " ", value)
     value = html.unescape(value)
+    value = re.sub(r"<[^>]*>?", " ", value)
     value = re.sub(r"\s+", " ", value).strip()
     return value
 
@@ -76,6 +103,11 @@ def search_bing_rss(query: str, timeout: int = 15, count: int = 8) -> list[Searc
         snippet = clean_text(node.findtext("description"))
         published = parse_pub_date(node.findtext("pubDate"))
         if not title or not link:
+            continue
+        domain = host_from_url(link)
+        if any(b in domain for b in BLOCKED_DOMAINS):
+            continue
+        if not _is_latin(title) or (snippet and not _is_latin(snippet)):
             continue
         items.append(
             SearchResult(
@@ -197,6 +229,24 @@ def extract_freework_location(page: str) -> str | None:
     return None
 
 
+def extract_freework_company(page: str) -> str | None:
+    ld_matches = re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', page, re.I | re.S)
+    for ld_str in ld_matches:
+        try:
+            data = json.loads(ld_str)
+            if isinstance(data, dict):
+                org = data.get("hiringOrganization") or {}
+                name = org.get("name")
+                if name:
+                    return clean_text(name)
+        except json.JSONDecodeError:
+            pass
+    match = re.search(r"-\s*(.+?)\s*\|", extract_page_title(page, ""))
+    if match:
+        return match.group(1).strip()
+    return None
+
+
 def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 50) -> list[SearchResult]:
     urls: list[str] = []
     for page_url in pages:
@@ -221,6 +271,7 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 50) -
             tjm = extract_freework_tjm(page)
             duree = extract_freework_duration(page)
             location = extract_freework_location(page)
+            company = extract_freework_company(page)
             extra = ""
             if tjm:
                 extra += f" | TJM: {tjm}EUR"
@@ -232,6 +283,7 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 50) -
         except Exception:
             title = fallback
             snippet = "Offre Free-Work"
+            company = None
         items.append(
             SearchResult(
                 title=title,
@@ -239,6 +291,7 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 50) -
                 snippet=snippet,
                 source="free-work.com",
                 query="Free-Work direct",
+                company=company,
             )
         )
         time.sleep(0.3)
