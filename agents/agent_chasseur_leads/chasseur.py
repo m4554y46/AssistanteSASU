@@ -278,26 +278,14 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
         for m in bulletin[:3]:
             bullet(doc, f"{m['title']} - {m['source']} (TJM: {m['tjm']})")
     else:
-        bullet(doc, random.choice([
-            "Aucune mission prioritaire detectee ce cycle.",
-            "Pas de mission urgente identifiee cette semaine.",
-            "Je n'ai pas reperee d'opportunite a qualifier en priorite ce cycle.",
-        ]))
+        bullet(doc, "Aucune mission prioritaire detectee ce cycle.")
 
     if premium:
         bullet(doc, f"TJM moyen des missions premium : {sum(m['tjm_value'] for m in premium)/len(premium):,.0f} EUR")
     if premium:
-        bullet(doc, random.choice([
-            f"Votre TJM cible ({tjm_cible} EUR) est tenable sur le marche actuel.",
-            f"A {tjm_cible} EUR, votre positionnement est coherent avec les missions premium reperees.",
-            f"Les missions premium confirment que votre TJM cible ({tjm_cible} EUR) est dans le marche.",
-        ]))
+        bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) tient la route par rapport au marche actuel.")
     else:
-        bullet(doc, random.choice([
-            "Elargir les criteres de recherche pour trouver plus d'opportunites.",
-            "Je te suggere d'elargir le perimetre de recherche pour augmenter le volume de missions.",
-            "Envisager d'ajuster les mots-cles de recherche pour remonter plus d'offres pertinentes.",
-        ]))
+        bullet(doc, "Je te suggere d'elargir les criteres de recherche pour trouver plus de missions.")
 
     add_separator(doc)
     accent_heading(doc, "4. Profil valorise")
@@ -311,9 +299,9 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
 
 
 INTRO_VARIATIONS = [
-    "Je me permets de vous contacter pour vous proposer un profil qui saura r\u00e9pondre \u00e0 vos probl\u00e9matiques organisationnelles et technologiques.",
-    "Je souhaitais vous pr\u00e9senter un profil senior en product management et transformation digitale qui pourrait correspondre \u00e0 vos besoins.",
-    "Dans le cadre de mon activit\u00e9 chez ASTRA MOMENTUM, je me permets de vous proposer un accompagnement sur vos enjeux produit et digital.",
+    "Je me permets de vous contacter pour vous proposer un profil qui pourrait correspondre a vos besoins.",
+    "Je souhaitais vous presenter un profil senior en gestion de projet et transformation digitale.",
+    "Dans le cadre de mon activite chez ASTRA MOMENTUM, je me permets de vous proposer un accompagnement sur vos projets produit et digitaux.",
 ]
 
 
@@ -382,28 +370,28 @@ def generate_prospection_pack(config: dict, missions: list[dict], output_dir: Pa
         intro = INTRO_VARIATIONS[intro_idx]
         intro_idx += 1
 
-        subject = f"ASTRA MOMENTUM \u2014 Accompagnement {company} / Product & Digital"
+        subject = f"ASTRA MOMENTUM - Accompagnement {company} / Produit & Digital"
         body = f"""Bonjour,
 
 {intro}
 
-Michael ASSAYAG, Head of Product & Digital Transformation chez ASTRA MOMENTUM, accompagne les directions produit et digitales dans leur transformation avec une double expertise :
-\u2192 Product Management & Delivery (Kering \u2014 Gucci, Saint Laurent \u2014 7 ans)
-\u2192 D\u00e9ploiement mobile worldwide (GeoPost / DPD \u2014 \u00e9quipe 9+ pays)
-\u2192 Innovation & strat\u00e9gie digitale (Saint-Gobain \u2014 AR, 3D, ERP)
+Michael ASSAYAG, Head of Product & Digital Transformation chez ASTRA MOMENTUM, intervient aupres des directions produit et digitales pour leurs projets de transformation. Il a une double expertise :
+- Product Management & Delivery (Kering - Gucci, Saint Laurent - 7 ans)
+- Deploiement mobile worldwide (GeoPost / DPD - equipe 9+ pays)
+- Innovation & strategie digitale (Saint-Gobain - AR, 3D, ERP)
 
 Il intervient en freelance sur des missions de :
-- Direction de produit / Head of Product (int\u00e9rim ou conseil)
-- Transformation digitale & organisation produit
-- Conseil \u00e0 la direction de PME/ETI
+- Direction de produit / Head of Product (interim ou conseil)
+- Transformation digitale et organisation produit
+- Conseil aupres des dirigeants de PME/ETI
 
-Je reste \u00e0 votre disposition pour \u00e9changer sur vos besoins actuels ou \u00e0 venir.
+Je reste a votre disposition pour echanger sur vos besoins actuels ou a venir.
 
 Bien cordialement,
 Virginie Benayoun
-Responsable commerciale \u2014 ASTRA MOMENTUM"""
+Responsable commerciale - ASTRA MOMENTUM"""
 
-        para(doc, f"Email {i} \u2014 {company}", style="Heading 2")
+        para(doc, f"Email {i} - {company}", style="Heading 2")
         p = para(doc, after=2)
         set_run_font(p.add_run(f"Mission : {m['title']}"), bold=True, size=10)
         if m.get("url"):

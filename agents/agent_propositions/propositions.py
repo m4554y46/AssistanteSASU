@@ -123,22 +123,22 @@ def generer_proposition(brief: dict, config: dict) -> dict:
 
     # Generer contenu de proposition
     approche = (
-        f"Notre approche repose sur trois piliers :\n\n"
-        f"1. Diagnostic et cadrage : comprendre le contexte, les parties prenantes, les contraintes et les objectifs mesurables.\n"
-        f"2. Accompagnement operationnel : mise en place de rituels, outils et processus adaptes au contexte du client.\n"
-        f"3. Transfert de competence : autonomisation des equipes internes pour assurer la perennite des pratiques mises en place."
+        f"Notre facon de travailler se decoupe en trois temps :\n\n"
+        f"1. Comprendre le contexte, les interlocuteurs, les contraintes et les objectifs.\n"
+        f"2. Mettre en place des rituels, des outils et des processus adaptes au client.\n"
+        f"3. Transmettre les bonnes pratiques aux equipes pour que cela tienne dans la duree."
     )
 
     livrables = [
         "Compte-rendu de chaque atelier / point d'avancement",
         "Tableau de bord de suivi des indicateurs cles",
-        "Document de cadrage et feuille de route",
+        "Document de cadrage et planning previsionnel",
         "Synthese et recommandations finales",
     ]
 
     planning = (
         f"La mission se deroulerait sur {duree}, avec un rythme suggere de 2 a 3 jours par semaine. "
-        f"Un point d'etape hebdomadaire sera organise avec le sponsor du projet."
+        f"Un point d'etape hebdomadaire sera organise avec le referent du projet."
     )
 
     return {

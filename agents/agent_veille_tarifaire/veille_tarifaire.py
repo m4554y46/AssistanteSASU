@@ -131,7 +131,7 @@ def analyser(profils_data: dict, config: dict) -> list[dict]:
             recommandation = f"Le marche est sous votre TJM plancher ({tjm_min} EUR). Verifiez si votre positionnement est correct."
             alerte = True
         elif tjm_moyen >= tjm_cible:
-            recommandation = f"Votre TJM cible ({tjm_cible} EUR) est dans la fourchette haute du marche. Maintenez."
+            recommandation = f"Votre TJM cible ({tjm_cible} EUR) est dans le haut du marche. C'est coherent."
             alerte = False
         else:
             recommandation = f"Le marche est entre {tjm_min_t:,.0f} et {tjm_max_t:,.0f} EUR. Vous pouvez envisager une augmentation progressive."
@@ -210,29 +210,13 @@ def build_report(config: dict, analyses: list[dict], output_path: Path):
         bullet(doc, f"TJM moyen observe sur le marche (tous profils confondus) : {market_avg:,.0f} EUR")
 
         if tjm_cible > market_avg * 1.15:
-            bullet(doc, random.choice([
-                f"Votre TJM cible ({tjm_cible} EUR) est significativement au-dessus de la moyenne du marche ({market_avg:,.0f} EUR). Assurez-vous que votre positionnement le justifie.",
-                f"A {tjm_cible} EUR, vous etes au-dessus de la moyenne de marche ({market_avg:,.0f} EUR). Verifions que le positionnement tient la route.",
-                f"Ecart significatif : votre TJM ({tjm_cible} EUR) depasse la moyenne ({market_avg:,.0f} EUR). C'est tenable si le positionnement est clair.",
-            ]))
+            bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) est au-dessus de la moyenne du marche ({market_avg:,.0f} EUR). Veillez a ce que votre positionnement le justifie.")
         elif tjm_cible >= market_avg * 0.9:
-            bullet(doc, random.choice([
-                f"Votre TJM cible ({tjm_cible} EUR) est dans la fourchette haute du marche. Positionnement premium maintenable.",
-                f"A {tjm_cible} EUR, vous etes bien positionne dans le haut du marche ({market_avg:,.0f} EUR de moyenne). Pas d'inquietude.",
-                f"Votre TJM ({tjm_cible} EUR) est coherent avec un positionnement premium par rapport a la moyenne ({market_avg:,.0f} EUR).",
-            ]))
+            bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) est dans le haut du marche (moyenne: {market_avg:,.0f} EUR). Ca tient la route.")
         else:
-            bullet(doc, random.choice([
-                f"Votre TJM cible ({tjm_cible} EUR) est dans la moyenne du marche ({market_avg:,.0f} EUR). Une augmentation est envisageable.",
-                f"A {tjm_cible} EUR, vous etes dans la moyenne ({market_avg:,.0f} EUR). On pourrait envisager une montee progressive.",
-                f"TJM ({tjm_cible} EUR) aligne avec la moyenne de marche ({market_avg:,.0f} EUR). Il y a de la marge pour augmenter.",
-            ]))
+            bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) est dans la moyenne du marche ({market_avg:,.0f} EUR). On pourrait envisager une petite augmentation.")
     else:
-        bullet(doc, random.choice([
-            "Pas assez de donnees pour calculer une moyenne de marche.",
-            "Echantillon insuffisant pour etablir une moyenne fiable ce mois-ci.",
-            "Trop peu de donnees collectees pour degager une tendance de marche.",
-        ]), size=10)
+        bullet(doc, "Pas assez de donnees pour calculer une moyenne de marche fiable ce mois-ci.", size=10)
 
     add_separator(doc)
     accent_heading(doc, "4. Actions recommandees")
@@ -241,11 +225,7 @@ def build_report(config: dict, analyses: list[dict], output_path: Path):
         for a in alerts:
             bullet(doc, f"ALERTE : {a['profil']} - {a['recommandation']}", size=10)
     else:
-        bullet(doc, random.choice([
-            "Aucune alerte tarifaire. Votre positionnement est coherent avec le marche.",
-            "Pas d'alerte cette semaine : le positionnement tarifaire est en phase avec le marche.",
-            "Tout est coherent au niveau tarifaire. Rien a signaler pour cette semaine.",
-        ]))
+        bullet(doc, "Aucune alerte tarifaire cette semaine. Le positionnement est coherent avec le marche.")
 
     doc.save(output_path)
     return output_path

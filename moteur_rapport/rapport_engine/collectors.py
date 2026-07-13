@@ -137,6 +137,42 @@ def extract_rss_feed(feed_url: str, source_name: str, kind: str, timeout: int) -
     return items
 
 
+def bing_rss_url(query: str, count: int = 8) -> str:
+    params = urllib.parse.urlencode({"q": query, "format": "rss", "count": str(count), "cc": "FR"})
+    return f"https://www.bing.com/search?{params}"
+
+
+def search_bing_rss(query: str, kind: str, timeout: int, count: int) -> list[SearchItem]:
+    url = bing_rss_url(query, count)
+    raw = fetch_url(url, timeout)
+    root = ET.fromstring(raw)
+    items: list[SearchItem] = []
+    for node in root.findall(".//item"):
+        title = clean_text(node.findtext("title"))
+        link = clean_text(node.findtext("link"))
+        snippet = clean_text(node.findtext("description"))
+        published = parse_pub_date(node.findtext("pubDate"))
+        if not title or not link:
+            continue
+        domain = host_from_url(link)
+        if any(b in domain for b in BLOCKED_DOMAINS):
+            continue
+        if not _is_latin(title) or (snippet and not _is_latin(snippet)):
+            continue
+        items.append(
+            SearchItem(
+                kind=kind,
+                title=title,
+                url=link,
+                snippet=snippet,
+                source=domain,
+                published=published,
+                query=query,
+            )
+        )
+    return items
+
+
 def search_bing_html(query: str, kind: str, timeout: int, count: int) -> list[SearchItem]:
     url = bing_html_url(query, count)
     raw = fetch_url(url, timeout).decode("utf-8", "ignore")
@@ -252,6 +288,8 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 40) -
             published = None
             verified = False
             note = f"Acces limite ou echec verification: {type(exc).__name__}"
+        if not _is_latin(title) or (snippet and not _is_latin(snippet)):
+            continue
         items.append(
             SearchItem(
                 kind="opportunity",
@@ -279,6 +317,51 @@ def dedupe(items: Iterable[SearchItem]) -> list[SearchItem]:
         seen.add(key)
         result.append(item)
     return result
+
+
+def search_github_sources(queries: list[str], timeout: int, count: int) -> list[SearchItem]:
+    items: list[SearchItem] = []
+    for query in queries:
+        if "site:github.com" not in query:
+            query = f"site:github.com {query}"
+        try:
+            # RSS-based search works better than HTML for site: queries
+            items.extend(search_bing_rss(query, "github", timeout, count))
+            time.sleep(0.3)
+        except Exception:
+            try:
+                items.extend(search_bing_html(query, "github", timeout, count))
+                time.sleep(0.3)
+            except Exception:
+                pass
+    seen = set()
+    unique = []
+    for item in items:
+        key = (item.title, item.url)
+        if key not in seen:
+            seen.add(key)
+            unique.append(item)
+    return unique
+
+
+def collect_tokenforge(config: dict) -> list[SearchItem]:
+    search_cfg = config["search"]
+    timeout = int(search_cfg.get("timeout_seconds", 18))
+    count = int(search_cfg.get("results_per_query", 8))
+    queries = search_cfg.get("tokenforge_queries", [])
+    items: list[SearchItem] = []
+
+    items.extend(search_github_sources(queries, timeout, count))
+
+    non_github = [q for q in queries if "github" not in q.lower()]
+    for query in non_github:
+        try:
+            items.extend(search_bing_rss(query, "article", timeout, count))
+            time.sleep(0.4)
+        except Exception:
+            pass
+
+    return dedupe(items)
 
 
 def verify_item(item: SearchItem, timeout: int) -> SearchItem:
@@ -309,7 +392,7 @@ def collect(config: dict) -> tuple[list[SearchItem], list[SearchItem], dict]:
 
     for query in search_cfg["article_queries"]:
         try:
-            article_items.extend(search_bing_html(query, "article", timeout, count))
+            article_items.extend(search_bing_rss(query, "article", timeout, count))
             time.sleep(0.4)
         except Exception as exc:
             errors.append(f"Article query failed: {query} ({type(exc).__name__})")
@@ -322,7 +405,7 @@ def collect(config: dict) -> tuple[list[SearchItem], list[SearchItem], dict]:
 
     for query in search_cfg["opportunity_queries"]:
         try:
-            opportunity_items.extend(search_bing_html(query, "opportunity", timeout, count))
+            opportunity_items.extend(search_bing_rss(query, "opportunity", timeout, count))
             time.sleep(0.4)
         except Exception as exc:
             errors.append(f"Opportunity query failed: {query} ({type(exc).__name__})")

@@ -27,81 +27,81 @@ ACCENT_BG = "005B96"
 
 _V = {
     "exec_summary": [
-        "Ce rapport rassemble les signaux de veille et les opportunites que j'ai identifies cette semaine pour ASTRA MOMENTUM. Chaque source a ete verifiee et selectionnee selon sa pertinence pour le positionnement de Michael ASSAYAG en product management, transformation digitale et IA.",
-        "Voici les elements de veille et les pistes commerciales que j'ai degages cette semaine pour ASTRA MOMENTUM. J'ai verifie chaque source et retenu ce qui correspond le mieux a votre positionnement Product/IA.",
-        "Cette semaine, j'ai compile pour ASTRA MOMENTUM les signaux de veille et opportunites les plus pertinents. Chaque source a ete relue et qualifyee en fonction de votre positionnement en product management et transformation digitale.",
+        "Cette semaine, j'ai prepare pour toi une selection d'articles et d'opportunites que j'ai trouves pertinents pour ASTRA MOMENTUM. J'ai verifie chaque source avant de les inclure.",
+        "Voici les infos et les pistes que j'ai degagees cette semaine. J'ai tout verifie pour gagner du temps.",
+        "J'ai rassemble dans ce rapport les articles et missions que j'ai selectionnes pour toi cette semaine. Chaque lien a ete controle.",
     ],
     "note_intro": [
         "Cette semaine, j'ai explore {a} pistes de veille et {o} axes de prospection.",
-        "Pour cette edition, j'ai consulte {a} sources de veille et {o} canaux de prospection.",
-        "Cette semaine, j'ai passe en revue {a} pistes de veille et {o} directions de prospection.",
+        "J'ai consulte {a} sources de veille et {o} canaux de prospection cette semaine.",
+        "Cette semaine, j'ai parcouru {a} sujets de veille et {o} directions de prospection.",
     ],
     "note_retained": [
-        "Apres relecture, j'ai retenu {a} signaux de veille et {o} opportunites qui me semblent les plus pertinents pour toi.",
-        "Apres tri, j'ai selectionne {a} articles de veille et {o} opportunites qui meritent ton attention.",
-        "J'ai conserve {a} signaux de veille et {o} opportunites apres un premier passage de qualification.",
+        "Apres relecture, j'ai retenu {a} articles et {o} opportunites qui me semblent les plus interessants pour toi.",
+        "Apres tri, j'ai garde {a} articles et {o} opportunites qui meritent un coup d'oeil.",
+        "J'ai conserve {a} articles de veille et {o} opportunites apres un premier passage.",
     ],
     "note_verified": [
-        "J'ai verifie chaque source et ecarte les contenus sans interet commercial ou methodologique.",
-        "J'ai ecarte les sources non pertinentes ou trop generiques pour ne garder que l'essentiel.",
-        "Chaque contenu a ete relu et verifie avant d'etre inclus dans ce rapport.",
+        "J'ai verifie chaque lien et ecarte ce qui n'avait pas d'interet pour nous.",
+        "J'ai ecarte les sources trop generiques ou sans rapport avec le positionnement.",
+        "Chaque contenu a ete relu rapidement avant d'etre inclus ici.",
     ],
     "subtitle": [
-        "Veille approfondie, prospection qualifiee et recommandations Product/IA",
-        "Signaux de veille, opportunites freelance et pistes methodologiques",
-        "Synthese hebdomadaire : veille, prospection et recommandations operationnelles",
+        "Veille, prospection et bonnes pratiques de la semaine",
+        "Articles, missions et ressources utiles pour la semaine",
+        "Ma synthese hebdomadaire : veille, prospection et recommandations",
     ],
     "veille_intro": [
-        "Chaque contenu ci-dessous a ete relu et selectionne pour son interet commercial ou methodologique.",
-        "J'ai retenu les contenus les plus en phase avec le positionnement et les cibles d'ASTRA MOMENTUM.",
-        "Voici les articles et ressources qui m'ont semble les plus utiles pour la semaine a venir.",
+        "Voici les articles et ressources qui m'ont paru les plus utiles cette semaine.",
+        "J'ai retenu les contenus qui collent le mieux a ton activite et a tes cibles.",
+        "Une selection d'articles qui peuvent t'interesser pour la semaine a venir.",
     ],
     "pertinence": [
-        "Pertinence : ce contenu peut alimenter une conversation client ou un post LinkedIn sur le positionnement Product/IA d'ASTRA MOMENTUM.",
-        "Pertinence : un signal utile pour enrichir vos echanges avec des DSI ou CDO cibles.",
-        "Pertinence : de quoi nourrir une prise de parole ou un argumentaire commercial cette semaine.",
+        "Pertinence : peut servir dans une conversation client ou pour un post sur LinkedIn.",
+        "Pertinence : utile pour preparer un echange avec un client ou prospect.",
+        "Pertinence : de quoi alimenter une prise de parole ou un argumentaire.",
     ],
     "vigilance": [
-        "Points de vigilance : verifier le TJM, le statut freelance, les modalites de remote et le niveau d'autonomie attendu.",
-        "A verifier avant de postuler : TJM, statut, remote possible et autonomie requise.",
-        "Points a confirmer : fourchette tarifaire, modalites de travail et perimetre exact de la mission.",
+        "Points a verifier : le TJM, le statut freelance, le remote et l'autonomie attendue.",
+        "A verifier avant de postuler : TJM, statut, possibilite de remote et autonomie.",
+        "Points a confirmer : fourchette de prix, modalites de travail et perimetre de la mission.",
     ],
     "angle": [
-        "Angle de reponse propose : mettre en avant le savoir-faire en cadrage, priorisation valeur/complexite, coordination d'equipes et mesure d'impact.",
-        "Approche conseillee : valoriser l'experience en cadrage de projet, priorisation et accompagnement au changement.",
-        "Proposition de angle : insister sur la capacite a structurer la roadmap et a coordonner les parties prenantes.",
+        "Comment se positionner : mettre en avant l'experience en cadrage de projet, priorisation et coordination d'equipe.",
+        "Approche conseillee : valoriser l'experience en gestion de projet, pilotage et accompagnement au changement.",
+        "Proposition : insister sur la capacite a organiser le travail, prioriser et coordonner les equipes.",
     ],
     "action_recs": [
         [
             "Qualifier en priorite : {opp}.",
-            "Transformer le signal '{art}' en prise de parole LinkedIn.",
-            "Mettre a jour l'offre 'Audit IA et Product Discovery' avec une promesse courte, un livrable et un format 5 jours.",
+            "Utiliser l'article '{art}' pour un post LinkedIn cette semaine.",
+            "Retravailler l'offre de conseil pour la rendre plus claire et plus courte.",
         ],
         [
-            "Priorite de la semaine : qualifier {opp}.",
-            "Publier un post LinkedIn autour de '{art}' pour renforcer le positionnement.",
-            "Retravailler l'offre 'Audit IA et Product Discovery' en version 5 jours avec un livrable concret.",
+            "Priorite de la semaine : suivre {opp}.",
+            "Publier un post LinkedIn autour de '{art}' pour renforcer la visibilite.",
+            "Simplifier l'offre de conseil pour qu'elle soit plus percutante en entretien.",
         ],
         [
-            "En tete de liste : {opp} a traiter en priorite.",
-            "Utiliser le signal '{art}' comme pivot d'un post LinkedIn cette semaine.",
-            "Simplifier l'offre 'Audit IA et Product Discovery' pour la rendre plus percutante en entretien.",
+            "En tete de liste : {opp} a regarder en priorite.",
+            "S'inspirer de '{art}' pour un post LinkedIn cette semaine.",
+            "Affiner l'offre de conseil produit/IA pour la rendre plus operationnelle.",
         ],
     ],
     "li_post": [
-        "Les agents IA ne creent pas de valeur par magie. Ils deviennent utiles quand ils sont relies a un outcome clair, a une gouvernance simple et a un processus metier que l'on comprend vraiment. En 2026, le sujet n'est plus seulement de tester des outils IA : c'est de choisir les bons cas d'usage, de mesurer l'impact et d'organiser l'adoption.",
-        "On me demande souvent : par ou commencer avec l'IA ? Ma reponse est toujours la meme : pas par l'outil, mais par le probleme. Sans cadrage, un agent IA n'est qu'une solution qui cherche son probleme. La valeur vient de la gouvernance, de la priorisation et de la mesure d'impact. Le reste n'est que technique.",
-        "Le vrai sujet IA en 2026 n'est plus 'quel outil utiliser'. C'est : quel processus transformer, quel gain mesurer, comment organiser l'adoption. Les entreprises qui reussissent sont celles qui ont mis la gouvernance avant la technologie. Un constat que je fais chaque semaine sur le terrain.",
+        "Proposition de post LinkedIn sur le sujet du jour : 'On me demande souvent par ou commencer avec l'IA. Ma reponse est toujours la meme : pas par l'outil, mais par le probleme. Sans un bon cadrage, meme le meilleur outil ne sert a rien. La valeur vient de la priorisation et de l'organisation. Le reste n'est que technique.' A ajuster selon ton style.",
+        "Voici une ebauche de post : 'Le vrai sujet IA en 2026 n'est plus quel outil utiliser. C'est quel processus transformer et comment mesurer le gain. Les entreprises qui reussissent sont celles qui ont mis l'organisation avant la technologie.' Tu peux bien sur la modifier a ta sauce.",
+        "Un draft de post LinkedIn si tu veux : 'Les outils IA ne creent pas de valeur tout seuls. Ils deviennent utiles quand on les relie a un vrai besoin metier. Le sujet aujourd'hui n'est plus de tester des outils, mais de choisir les bons cas d'usage et d'organiser l'adoption.' Dis-moi si tu veux que je le retravaille.",
     ],
     "fallback_snippet": [
-        "Contenu pertinent pour le positionnement Product/IA.",
-        "Article en lien avec les thematiques de transformation digitale.",
-        "Signal interessant dans le cadre de votre veille Produit/IA.",
+        "Contenu en lien avec les thematiques produits et IA.",
+        "Article interessant dans le cadre de la veille de la semaine.",
+        "Signal utile pour le positionnement produit et IA.",
     ],
     "fallback_opp": [
         "Opportunite identifiee via les canaux de recherche habituels.",
-        "Mission reperee dans le cadre de la prospection hebdomadaire.",
-        "Annonce trouvee lors du passage en revue des plateformes freelance.",
+        "Mission reperee lors de la prospection de la semaine.",
+        "Annonce trouvee sur les plateformes freelance.",
     ],
 }
 
@@ -447,7 +447,7 @@ def add_opportunity(doc, idx, item):
 
 
 def add_methods(doc, methods):
-    accent_heading(doc, "4. Enrichissement culturel et methodologique")
+    accent_heading(doc, "4. Ressources et methodes")
     for method in methods:
         accent_heading(doc, method["name"], level=3)
         bullet(doc, "Definition : " + method["definition"])
@@ -466,7 +466,7 @@ def add_actions(doc, articles, opportunities):
     top_article = articles[0]["title"] if articles else "le signal IA/Product le plus fort"
     for text in random.choice(_V["action_recs"]):
         bullet(doc, text.format(opp=top_opp, art=top_article))
-    para(doc, "Brouillon court de post LinkedIn", style="Heading 2")
+    para(doc, "Proposition de post LinkedIn", style="Heading 2")
     para(
         doc,
         random.choice(_V["li_post"]),
@@ -491,7 +491,64 @@ def add_sources(doc, articles, opportunities, methods, meta):
         add_hyperlink(p, method["url"], method["url"])
 
 
-def build_report(config: dict, articles: list[dict], opportunities: list[dict], methods: list[dict], meta: dict, output_path: Path) -> Path:
+def _repo_name(item: dict) -> str:
+    title = item.get("title", "")
+    for prefix in ["GitHub - ", "GitHub: ", "github.com/"]:
+        if title.startswith(prefix):
+            title = title[len(prefix):]
+    parts = title.split(": ")
+    return parts[0].strip() if len(parts) > 1 else title[:60].strip()
+
+
+def add_tokenforge_watch(doc, items: list[dict]):
+    if not items:
+        return
+    add_separator(doc)
+    accent_heading(doc, "7. TokenForge Watch - cout des tokens et outils pratiques")
+    para(doc,
+         "Outils et articles pour reduire le cout des tokens et mieux gerer la conso IA.",
+         before=4, after=8, color=GRAY, size=9.5, italic=True)
+
+    github_items = [i for i in items if i.get("kind") == "github" or "github.com" in i.get("url", "")]
+    articles_items = [i for i in items if i not in github_items]
+
+    if github_items:
+        accent_heading(doc, "A. Outils et ressources utiles", level=2)
+        make_pro_table(doc,
+            ["Projet", "Description", "Score", "Lien"],
+            [
+                [
+                    _repo_name(g),
+                    g.get("snippet", "")[:120],
+                    f"{g['score']}/10",
+                    g.get("url", ""),
+                ]
+                for g in github_items[:6]
+            ],
+            [1.8, 2.8, 0.6, 1.2],
+        )
+        for g in github_items[:6]:
+            p = para(doc, after=2)
+            set_run_font(p.add_run(f"{_repo_name(g)} : "), size=9, color=NAVY, bold=True)
+            add_hyperlink(p, g.get("url", ""), g.get("url", ""))
+
+    if articles_items:
+        accent_heading(doc, "B. Articles et actualites", level=2)
+        for a in articles_items[:4]:
+            bullet(doc, f"{a.get('title', '')[:100]}", size=9.5)
+            p = para(doc, after=2)
+            add_hyperlink(p, a.get("url", ""), a.get("url", ""))
+
+    accent_heading(doc, "C. A creuser pour TokenForge", level=2)
+    top = items[0] if items else None
+    if top:
+        bullet(doc, f"[Prioritaire] {_repo_name(top)}: {top.get('snippet', '')[:200]}")
+    if len(items) > 1:
+        bullet(doc, f"[Interessant] {_repo_name(items[1])}: {items[1].get('snippet', '')[:200]}")
+    bullet(doc, "Penser a regarder les sites et articles ci-dessus pour voir si on peut les utiliser dans TokenForge.")
+
+
+def build_report(config: dict, articles: list[dict], opportunities: list[dict], methods: list[dict], meta: dict, output_path: Path, tokenforge_items: list[dict] | None = None) -> Path:
     doc = setup_doc()
     today = date.today().isoformat()
     para(doc, "RAPPORT HEBDOMADAIRE ", size=23, color=NAVY, bold=True, after=4)
@@ -512,7 +569,7 @@ def build_report(config: dict, articles: list[dict], opportunities: list[dict], 
 
     add_dashboard(doc, articles, opportunities, meta)
     add_separator(doc)
-    accent_heading(doc, "2. Veille technologique, product, agile et IA")
+    accent_heading(doc, "2. Veille de la semaine")
     para(doc,
          random.choice(_V["veille_intro"]),
          before=4, after=8, color=GRAY, size=9.5, italic=True)
@@ -520,12 +577,14 @@ def build_report(config: dict, articles: list[dict], opportunities: list[dict], 
     for idx, item in enumerate(articles, 1):
         add_article(doc, idx, item)
     add_separator(doc)
-    accent_heading(doc, "3. Prospection commerciale freelance")
+    accent_heading(doc, "3. Missions et opportunites")
     for idx, item in enumerate(opportunities, 1):
         add_opportunity(doc, idx, item)
     add_methods(doc, methods)
     add_actions(doc, articles, opportunities)
     add_sources(doc, articles, opportunities, methods, meta)
+    if tokenforge_items:
+        add_tokenforge_watch(doc, tokenforge_items)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output_path)

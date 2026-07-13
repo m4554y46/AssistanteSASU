@@ -158,3 +158,36 @@ def rank_items(items: list[SearchItem], positive: list[str], negative: list[str]
     scored = [score_item(item, positive, negative) for item in items]
     scored.sort(key=lambda x: (x["score"], x["verified"], x["keyword_hits"]), reverse=True)
     return scored[:limit]
+
+
+def extract_tokenforge_items(items: list[SearchItem], positive: list[str], limit: int) -> list[dict]:
+    scored = []
+    for item in items:
+        text = text_of(item)
+        hits = keyword_hits(text, positive)
+        if hits < 1:
+            continue
+        source = source_quality(item.source)
+        freshness = date_bonus(item.published)
+        # Base: 4.0 + hits + source + freshness, capped at 9.5
+        raw = 4.0 + min(hits, 10) * 0.6 + source + freshness
+        if item.kind == "github":
+            raw += 0.8  # GitHub = outil directement exploitable
+        if item.verified:
+            raw += 0.3
+        # Pricing news bonus
+        pricing_kw = ["pricing", "tariff", "price", "cheaper", "cost", "reduction"]
+        if any(kw in text for kw in pricing_kw):
+            raw += 0.5
+        # TokenForge core bonus
+        core_kw = ["compression", "token", "proxy", "caching", "optimization", "finops"]
+        if any(kw in text for kw in core_kw):
+            raw += 0.5
+        score = max(3.0, min(9.5, round(raw, 1)))
+        scored.append({
+            **asdict(item),
+            "score": score,
+            "keyword_hits": hits,
+        })
+    scored.sort(key=lambda x: (x["score"], x["keyword_hits"]), reverse=True)
+    return scored[:limit]

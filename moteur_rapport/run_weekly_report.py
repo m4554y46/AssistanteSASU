@@ -6,9 +6,9 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from rapport_engine.collectors import collect
+from rapport_engine.collectors import collect, collect_tokenforge
 from rapport_engine.docx_report import build_report
-from rapport_engine.scoring import rank_items
+from rapport_engine.scoring import extract_tokenforge_items, rank_items
 
 
 ROOT = Path(__file__).resolve().parent
@@ -48,9 +48,19 @@ def main() -> int:
     )
     methods = choose_methods(config)
 
+    print("Collecte TokenForge...")
+    tokenforge_raw = collect_tokenforge(config)
+    print(f"  {len(tokenforge_raw)} resultats TokenForge bruts")
+    tokenforge_items = extract_tokenforge_items(
+        tokenforge_raw,
+        keywords.get("tokenforge_positive", []),
+        int(config.get("max_tokenforge", 8)),
+    )
+    print(f"  {len(tokenforge_items)} resultats TokenForge retenus")
+
     output_dir = Path(config["output_dir"])
     output_path = output_dir / f"{config['report_prefix']}_{date.today().isoformat()}.docx"
-    build_report(config, articles, opportunities, methods, meta, output_path)
+    build_report(config, articles, opportunities, methods, meta, output_path, tokenforge_items)
 
     run_log = output_dir / f"{config['report_prefix']}_{date.today().isoformat()}_runlog.json"
     run_log.write_text(
@@ -60,6 +70,7 @@ def main() -> int:
                 "articles": articles,
                 "opportunities": opportunities,
                 "methods": methods,
+                "tokenforge_items": tokenforge_items,
                 "output": str(output_path),
             },
             ensure_ascii=False,

@@ -135,11 +135,7 @@ def _duree() -> str:
 
 def _generer_market_notes(articles: list[str]) -> str:
     if not articles:
-        return random.choice([
-            "  - Rien de marquant sur le marche cette semaine, j'ai principalement vu passer des annonces Free-Work classiques.\n",
-            "  - Semaine calme sur le marche freelance, rien de particulier a signaler.\n",
-            "  - Pas de movement notable cette semaine sur le marche des missions IT.\n",
-        ])
+        return "  - Rien de marquant sur le marche cette semaine, j'ai principalement vu passer des annonces Free-Work classiques.\n"
 
     notes = ""
     has_paris = any("paris" in a.lower() or "france" in a.lower() for a in articles)

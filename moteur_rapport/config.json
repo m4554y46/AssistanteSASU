@@ -1,12 +1,13 @@
 {
   "recipient": "Michael ASSAYAG",
-  "author": "Virginie ASSAYAG",
-  "positioning": "Freelance senior : gestion de projet, product management digital et IA",
+  "author": "Virginie Benayoun",
+  "positioning": "Freelance senior : gestion de projet, digital et IA",
   "output_dir": "C:\\Users\\micas\\OneDrive\\Bureau\\Rapports Assistant SASU",
   "report_prefix": "Rapport_Astra_Momentum",
   "max_articles": 7,
   "max_opportunities": 5,
   "max_methods": 4,
+  "max_tokenforge": 8,
   "search": {
     "timeout_seconds": 18,
     "results_per_query": 8,
@@ -43,6 +44,24 @@
       "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
       "https://www.free-work.com/fr/tech/product-owner/job-mission",
       "https://www.free-work.com/fr/tech-it/assistant-chef-de-projet/job-mission"
+    ],
+    "tokenforge_queries": [
+      "site:github.com LLM token compression proxy cost reduction",
+      "site:github.com prompt optimization CLI tool token",
+      "site:github.com AI FinOps cost management enterprise",
+      "site:github.com token caching agent reusable skills",
+      "site:github.com LLM inference optimization techniques",
+      "RTK Rust Token Killer token reduction LLM proxy",
+      "LLM token consumption reduction enterprise technique 2026",
+      "AI FinOps framework cost governance token budget 2026",
+      "prompt caching strategy LLM agents enterprise 2026",
+      "token optimization RAG retrieval augmentation cost 2026",
+      "OpenAI API pricing token cost tariff update 2026",
+      "Anthropic Claude token pricing update revision 2026",
+      "Mistral AI pricing model cost reduction 2026",
+      "LLM inference cost optimization provider comparison 2026",
+      "Google Gemini API pricing token cost 2026",
+      "AI model pricing war OpenAI Anthropic Google cheaper 2026"
     ]
   },
   "keywords": {
@@ -51,6 +70,14 @@
       "product", "discovery", "operating model", "agile", "delivery",
       "gouvernance", "transformation", "workflow", "roadmap",
       "token", "compression", "pricing ia", "cout token"
+    ],
+    "tokenforge_positive": [
+      "token", "compression", "optimization", "cost reduction",
+      "finops", "pricing", "change", "update", "budget",
+      "caching", "prompt", "proxy", "RTK", "CLI",
+      "LLM", "inference", "savings", "efficiency",
+      "reduction", "cheaper", "enterprise", "reusable",
+      "skill", "agent", "throughput", "github"
     ],
     "opportunity_positive": [
       "freelance", "product owner", "product manager", "chef de projet",

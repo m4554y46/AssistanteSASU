@@ -284,6 +284,8 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 50) -
             title = fallback
             snippet = "Offre Free-Work"
             company = None
+        if not _is_latin(title) or (snippet and not _is_latin(snippet)):
+            continue
         items.append(
             SearchResult(
                 title=title,

@@ -1,6 +1,6 @@
 # AssistanteSASU — Session Memory
 
-Dernière mise à jour : 2026-07-12
+Dernière mise à jour : 2026-07-13
 
 ## Description
 
@@ -152,6 +152,40 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 - 3 accroches variées, signature Virginie Benayoun (Responsable commerciale)
 - Tracking CSV généré (`prospection_tracking.csv`) avec colonnes sent/date_sent à remplir manuellement
 - Sortie : `Prospection_Pack_YYYY-MM-DD.docx` dans `agents/output/`
+
+### 2026-07-13 — TokenForge Watch (section 7 du rapport hebdo)
+
+- **Nouvelle section "TokenForge Watch"** dans le rapport hebdo : veille ciblée sur FinOps IA, compression de tokens, pricing LLM, outils open source de réduction de coûts
+- **Fonctions ajoutées** :
+  - `collectors.py` : `bing_rss_url()`, `search_bing_rss()`, `search_github_sources()`, `collect_tokenforge()`
+  - `scoring.py` : `extract_tokenforge_items()` — score basé sur pertinence token/FinOps/pricing, bonus GitHub, bonus pricing core
+  - `docx_report.py` : `add_tokenforge_watch()` — section 7 avec sous-sections A (GitHub repos), B (marché & pricing), C (actions prioritaires)
+- **Entrées config** : 16 queries tokenforge dans `config.json` (`tokenforge_queries` + `tokenforge_positive` keywords), `max_tokenforge: 8`
+- **Fix Bing HTML** : `search_bing_html()` ne remontait plus aucun résultat (Bing a changé sa structure HTML). Ajout de `search_bing_rss()` dans `collectors.py` (copié depuis `agents/core/web.py`) comme méthode RSS fonctionnelle
+- **Correction typo** : "Virginie ASSAYAG" → "Virginie Benayoun" dans `config.json`
+- **Résultat** : 79 résultats bruts TokenForge → 8 retenus après scoring, intégrés dans le rapport du 2026-07-13 (45KB)
+- `run_weekly_report.py` : appelle `collect_tokenforge()` et passe les items à `build_report()`, loggue `tokenforge_items` dans le runlog
+
+### 2026-07-13 — Audit qualité + refonte complète du langage + fix Bing RSS
+
+- **Audit intégral** de tous les fichiers avec 5 catégories : bugs bloquants, _is_latin() manquant, jargon technique, patterns IA détectables, ton consultant/CEO
+- **Bugs corrigés** :
+  - `search_bing_html()` remplacé par `search_bing_rss()` dans `collect()` (articles + opportunités) et `collect_tokenforge()` — tout Bing retournait 0 depuis que Bing a changé son HTML
+  - `_is_latin()` ajouté dans `collect_freework_jobs()` (collectors.py + core/web.py) — les caractères arabes/cyrilliques/CJC passaient à travers
+- **Contenu assistante naturelle** (docx_report.py) :
+  - `_V` réécrit : plus de "Product/IA", "signaux", "pistes méthodologiques", "cas d'usage", "outcome", "gouvernance", "roadmap"
+  - LinkedIn posts transformés en drafts d'assistante ("à ajuster selon ton style")
+  - Titres de sections simplifiés : "Veille de la semaine", "Missions et opportunités", "Ressources et méthodes"
+- **Jargon traqué** :
+  - "repos" → "sites et articles"
+  - "fourchette haute du marché" → "haut du marché"
+  - "pilier / parties prenantes / autonomisation / pérennité" → langage simple
+  - "sponsor du projet" → "référent du projet"
+  - "feuille de route" → "planning prévisionnel"
+- **Patrons IA supprimés** : 25+ triples `random.choice([...3 items...])` remplacés par des phrases uniques dans chasseur.py, veille_tarifaire.py, generate_notes.py, docx_report.py
+- **Em dashes** : 6x `\u2014` dans chasseur.py, plusieurs dans docx_report.py → remplacés par `-`
+- **Zéro ém dash ni "repos" restant** dans tout le codebase (vérifié)
+- **Test complet** : rapport hebdo (136 articles, 45 opportunités, 8 tokenforge) + 7 agents → tout OK
 
 ## Prochaines étapes (optionnelles, non prioritaires)
 
