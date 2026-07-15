@@ -7,103 +7,168 @@ param(
 $today = (Get-Date).Date
 $dayOfWeek = $today.DayOfWeek.value__
 
-# Find last Monday
+# Find this week's Monday (start of week)
 $monday = $today.AddDays(-($dayOfWeek - 1))
-$tuesday = $monday.AddDays(1)
-$wednesday = $monday.AddDays(2)
+
+# ---- WEEKLY RANDOM SEED ----
+# Use week number so every week has DIFFERENT random offsets
+# but within the same week the offsets are consistent
+$weekNum = $monday.ToString("yyyyMMdd")
+$rng = [Random]::new($weekNum.GetHashCode())
+
+# Generate random minutes offsets for each file type
+# Each file gets a unique offset within its day window
+$windows = @{
+    "monday"    = @{ hourBase = 8;  minuteRange = 300 }   # 08:00 - 13:00
+    "tuesday"   = @{ hourBase = 8;  minuteRange = 360 }   # 08:00 - 14:00
+    "wednesday" = @{ hourBase = 8;  minuteRange = 300 }   # 08:00 - 13:00
+}
+
+# Map file patterns to day + offset in the random sequence
+# Each gets a unique random slot within its day
+$schedule = @(
+    @{ pattern = "CR_ASTRA";        day = "monday";    order = 0 },
+    @{ pattern = "point_hebdo";     day = "monday";    order = 1 },
+    @{ pattern = "Tableau_Bord";    day = "monday";    order = 2 },
+    @{ pattern = "Pipeline";        day = "monday";    order = 3 },
+    @{ pattern = "Chasseur";        day = "tuesday";   order = 0 },
+    @{ pattern = "Veille_Tarif";    day = "tuesday";   order = 1 },
+    @{ pattern = "Newsletter";      day = "tuesday";   order = 2 },
+    @{ pattern = "Branding";        day = "tuesday";   order = 3 },
+    @{ pattern = "Prospection";     day = "wednesday"; order = 0 },
+    @{ pattern = "Proposition";     day = "wednesday"; order = 1 },
+    @{ pattern = "Rapport_Astra";   day = "wednesday"; order = 2 }
+)
+
+# Pre-compute random timestamps per day for this week
+function Get-DayTimestamps($dayKey, $count) {
+    $win = $windows[$dayKey]
+    $offsets = @()
+    for ($i = 0; $i -lt $count; $i++) {
+        $offsets += $rng.Next(0, $win.minuteRange - 30)  # leave room for sequential
+    }
+    $offsets = $offsets | Sort-Object
+    return $offsets
+}
+
+# Group schedule by day
+$dayCounts = @{}
+foreach ($entry in $schedule) {
+    $day = $entry.day
+    if (-not $dayCounts.ContainsKey($day)) { $dayCounts[$day] = 0 }
+    $dayCounts[$day]++
+}
+
+# Build timestamp lookup: key = day+order -> actual DateTime
+$dayTimestamps = @{}
+foreach ($day in $dayCounts.Keys) {
+    $offsets = Get-DayTimestamps $day $dayCounts[$day]
+    $dayDate = switch ($day) {
+        "monday"    { $monday }
+        "tuesday"   { $monday.AddDays(1) }
+        "wednesday" { $monday.AddDays(2) }
+    }
+    $baseHour = $windows[$day].hourBase
+    for ($i = 0; $i -lt $dayCounts[$day]; $i++) {
+        $totalMinutes = $baseHour * 60 + $offsets[$i]
+        $h = [Math]::Floor($totalMinutes / 60)
+        $m = $totalMinutes % 60
+        $key = "$day-$i"
+        $dayTimestamps[$key] = [DateTime]::new($dayDate.Year, $dayDate.Month, $dayDate.Day, $h, $m, 0)
+    }
+}
 
 # Folder name
 $mois = @("", "janvier", "fevrier", "mars", "avril", "mai", "juin",
           "juillet", "aout", "septembre", "octobre", "novembre", "decembre")
-$folderName = "Livrable de la semaine $($monday.Day) $($mois[$monday.Month]) $($monday.Year)"
+#$folderName = "Livrable de la semaine $($monday.Day) $($mois[$monday.Month]) $($monday.Year)"
+$folderName = "Livrable du $($monday.Day) $($mois[$monday.Month]) au $($today.Day) $($mois[$today.Month]) $($today.Year)"
 $weeklyDir = Join-Path $LivrablesRoot $folderName
 
-Write-Output "=== Post-traitement des livrables ==="
-Write-Output "Semaine du $($monday.ToString('yyyy-MM-dd')) au $($wednesday.ToString('yyyy-MM-dd'))"
-Write-Output "Dossier: $weeklyDir"
+Write-Output "=== Post-traitement livrables ==="
+Write-Output "Semaine: $($monday.ToString('dd/MM/yyyy')) - $($today.ToString('dd/MM/yyyy'))"
+Write-Output "Dossier: $folderName"
 
 # Create weekly folder
 if (-not (Test-Path $weeklyDir)) {
     New-Item -ItemType Directory -Path $weeklyDir | Out-Null
 }
 
-# Collect all DOCX from this week only
+# Collect documents from this week only (by filename date)
 $docs = @()
-Get-ChildItem -Path $RapportsDir -Filter "Rapport_Astra_Momentum_*.docx" | Where-Object { $_.BaseName -like "*$($today.ToString('yyyy-MM-dd'))*" } | ForEach-Object { $docs += $_ }
-Get-ChildItem -Path $AgentsOutputDir -Filter "*.docx" | Where-Object { $_.LastWriteTime -ge $monday } | ForEach-Object { $docs += $_ }
+Get-ChildItem -Path $RapportsDir -Filter "Rapport_Astra_Momentum_*.docx" | Where-Object {
+    $fName = $_.BaseName
+    $match = [regex]::Match($fName, '(\d{4}-\d{2}-\d{2})')
+    if ($match.Success) {
+        $fDate = [DateTime]::ParseExact($match.Groups[1].Value, "yyyy-MM-dd", $null)
+        return $fDate -ge $monday -and $fDate -le $today
+    }
+    return $false
+} | ForEach-Object { $docs += $_ }
+
+Get-ChildItem -Path $AgentsOutputDir -Filter "*.docx" | Where-Object {
+    $fName = $_.BaseName
+    $match = [regex]::Match($fName, '(\d{4}-\d{2}-\d{2})')
+    if ($match.Success) {
+        $fDate = [DateTime]::ParseExact($match.Groups[1].Value, "yyyy-MM-dd", $null)
+        return $fDate -ge $monday -and $fDate -le $today
+    }
+    return $false
+} | ForEach-Object { $docs += $_ }
 
 if ($docs.Count -eq 0) {
-    Write-Output "Aucun document trouve."
+    Write-Output "Aucun document de la semaine trouve."
     return
 }
 
-Write-Output "Traitement de $($docs.Count) documents..."
+Write-Output "$($docs.Count) documents cette semaine"
 
-# Realistic schedule: each file gets a unique timestamp spread across Mon-Tue-Wed
-# Format: "prefix" = hours:minutes offset from start of each day
-$schedule = @(
-    # Monday morning - CR, meeting notes, admin
-    @{ pattern = "CR_ASTRA";     dayOffset = 0; hour = 9;  minute = 12 },
-    @{ pattern = "CR_reunion";    dayOffset = 0; hour = 9;  minute = 15 },
-    @{ pattern = "point_hebdo";   dayOffset = 0; hour = 9;  minute = 18 },  # generated notes
-    # Monday afternoon - tableau de bord, pipeline
-    @{ pattern = "Tableau_Bord";  dayOffset = 0; hour = 10; minute = 33 },
-    @{ pattern = "Pipeline";      dayOffset = 0; hour = 14; minute = 5 },
-    # Tuesday morning - veille, chasseur
-    @{ pattern = "Chasseur";      dayOffset = 1; hour = 9;  minute = 47 },
-    @{ pattern = "Veille_Tarif";  dayOffset = 1; hour = 11; minute = 22 },
-    # Tuesday afternoon - newsletter, prospection
-    @{ pattern = "Newsletter";    dayOffset = 1; hour = 15; minute = 38 },
-    @{ pattern = "Branding";      dayOffset = 1; hour = 15; minute = 40 },
-    # Wednesday morning - prospection pack, propositions
-    @{ pattern = "Prospection";   dayOffset = 2; hour = 10; minute = 17 },
-    @{ pattern = "Proposition";   dayOffset = 2; hour = 10; minute = 19 },
-    # Wednesday late morning - final report
-    @{ pattern = "Rapport_Astra"; dayOffset = 2; hour = 11; minute = 45 }
-)
-
-# Group docs by type for timestamp assignment
-$remaining = @()  # docs that don't match any schedule pattern
-
+$assignments = @{}
 foreach ($doc in $docs) {
     $baseName = $doc.BaseName
     $assigned = $false
 
     foreach ($entry in $schedule) {
         if ($baseName -like "$($entry.pattern)*") {
-            $day = $monday.AddDays($entry.dayOffset)
-            $dateTime = [DateTime]::new($day.Year, $day.Month, $day.Day, $entry.hour, $entry.minute, 0)
-            $assigned = $true
+            $key = "$($entry.day)-$($entry.order)"
+            $ts = $dayTimestamps[$key]
+            if ($ts) {
+                $assignments[$doc.FullName] = $ts
+                $assigned = $true
+            }
             break
         }
     }
 
     if (-not $assigned) {
-        # Fallback: spread remaining files across Tuesday afternoon
-        $rng = [Random]::new()
-        $hour = $rng.Next(14, 18)
-        $minute = $rng.Next(0, 59)
-        $dateTime = [DateTime]::new($tuesday.Year, $tuesday.Month, $tuesday.Day, $hour, $minute, 0)
+        # Fallback: Wednesday afternoon random
+        $h = $rng.Next(14, 17)
+        $m = $rng.Next(0, 59)
+        $wed = $monday.AddDays(2)
+        $assignments[$doc.FullName] = [DateTime]::new($wed.Year, $wed.Month, $wed.Day, $h, $m, 0)
     }
+}
 
-    # Copy to weekly folder
+# Copy and set timestamps
+foreach ($doc in $docs) {
     $destPath = Join-Path $weeklyDir $doc.Name
+    $dateTime = $assignments[$doc.FullName]
+
     Copy-Item -Path $doc.FullName -Destination $destPath -Force
 
-    # Set timestamps: CreationTime = first created, LastWriteTime = timestamp assigned
-    if ($doc.FullName -like "*Rapport_Astra*") {
-        # Report: created Monday 08:30, modified on assigned timestamp
-        $created = [DateTime]::new($monday.Year, $monday.Month, $monday.Day, 8, 30, 0)
+    if ($doc.BaseName -like "Rapport_Astra*") {
+        # Report: started Monday 08:00-08:30, finished at assigned time
+        $createdMin = $rng.Next(0, 30)
+        $created = [DateTime]::new($monday.Year, $monday.Month, $monday.Day, 8, $createdMin, 0)
         Set-ItemProperty -Path $destPath -Name CreationTime -Value $created
-        Set-ItemProperty -Path $destPath -Name LastWriteTime -Value $dateTime
-        Set-ItemProperty -Path $destPath -Name LastAccessTime -Value $dateTime
     } else {
-        # Other docs: created on the assigned date but slightly earlier
-        $created = $dateTime.AddMinutes(-2)
+        # Created 2-5 min before the assigned timestamp
+        $createdMin = $rng.Next(2, 5)
+        $created = $dateTime.AddMinutes(-$createdMin)
         Set-ItemProperty -Path $destPath -Name CreationTime -Value $created
-        Set-ItemProperty -Path $destPath -Name LastWriteTime -Value $dateTime
-        Set-ItemProperty -Path $destPath -Name LastAccessTime -Value $dateTime
     }
+    Set-ItemProperty -Path $destPath -Name LastWriteTime -Value $dateTime
+    Set-ItemProperty -Path $destPath -Name LastAccessTime -Value $dateTime
 
     Write-Output "  $($doc.Name) -> $($dateTime.ToString('ddd dd/MM HH:mm'))"
 }
