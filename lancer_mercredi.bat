@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 :: ============================================================
 :: LANCEUR MERCREDI 15h — Assistante Virtuelle
-:: Enchaîne : délai aléatoire → rapport hebdo → agents → email
+:: Enchaîne : délai aléatoire → rapport hebdo → agents → post-traitement
 :: À programmer dans le Task Scheduler vers 14h30
 :: ============================================================
 
@@ -30,14 +30,10 @@ cd /d "%~dp0agents"
 python run_agent.py all
 if errorlevel 1 echo [ERR] Agents echoues
 
-:: 4. COPIE VERS DOSSIER PROPRE (sans le code IA)
-echo [%time:~0,8%] Copie des livrables vers le dossier clean...
-set LIVRABLES="C:\Users\micas\OneDrive\Bureau\ASTRA MOMENTUM - Livrables"
-copy /Y "%~dp0Rapport_Astra_Momentum_*.docx" %LIVRABLES% >nul 2>&1
-copy /Y "%~dp0agents\output\*.docx" %LIVRABLES% >nul 2>&1
-echo [%time:~0,8%] Livrables copies dans %LIVRABLES%
-
-:: 5. OUVERTURE DU DOSSIER PROPRE
-explorer %LIVRABLES%
+:: 4. POST-TRAITEMENT : dossier semaine + timestamps réalistes
+echo [%time:~0,8%] Post-traitement des livrables...
+cd /d "%~dp0"
+powershell -ExecutionPolicy Bypass -File post_traitement_livrables.ps1
+if errorlevel 1 echo [ERR] Post-traitement echoue
 
 echo [%time:~0,8%] === CYCLE TERMINE ===
