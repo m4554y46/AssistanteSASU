@@ -348,8 +348,7 @@ def build_report(config: dict, contenus: list[dict], output_path: Path):
     accent_heading(doc, "1. Strategie de contenu")
     add_callout(doc,
         f"Positionnement : {company} - conseil en produit et transformation digitale\n"
-        f"Ton : expert, direct, sans bullshit\n"
-        f"Canal suggere : Newsletter Substack + LinkedIn\n"
+        f"Format : Newsletter Substack + LinkedIn\n"
         f"Rythme : 1 publication / semaine\n"
         f"Cible : Dirigeants de PME/ETI, DSI, CDO, directeurs produits",
         title="Strategie editoriale"

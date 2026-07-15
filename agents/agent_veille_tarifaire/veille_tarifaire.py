@@ -238,13 +238,19 @@ def main() -> int:
         print("Agent Veille tarifaire desactive.")
         return 0
 
+    # Monthly check: only run once per month
+    output_dir = ensure_output_dir(config)
+    today = date.today()
+    prefix = f"Veille_Tarifaire_{today.year}-{today.month:02d}"
+    for existing in output_dir.glob(f"{prefix}*.docx"):
+        print(f"  Rapport deja genere ce mois-ci ({existing.name}). Passage en mode mensuel : skip.")
+        return 0
+
     print(">>> Agent 7 : Veille concurrentielle tarifaire")
     profils_data = collecter_donnees(agent_cfg)
     analyses = analyser(profils_data, config)
 
-    output_dir = ensure_output_dir(config)
-    today = date.today().isoformat()
-    output_path = output_dir / f"Veille_Tarifaire_{today}.docx"
+    output_path = output_dir / f"Veille_Tarifaire_{today.isoformat()}.docx"
     build_report(config, analyses, output_path)
 
     run_log = output_dir / f"Veille_Tarifaire_{today}_log.json"

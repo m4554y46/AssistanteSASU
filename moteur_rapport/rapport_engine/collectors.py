@@ -29,7 +29,41 @@ BLOCKED_DOMAINS = [
     "cambridge", "merriam", "oxford", "collins",
     "allocine", "mozzartbet", "bet365", "parionssport", "poker",
     "synonymo", "aujourdhui",
+    "opencare.com", "doctor.webmd.com", "deltadental.com", "seattlemet.com",
+    "zocdoc.com", "healthgrades.com", "ratemds.com",
 ]
+
+BLOCKED_CONTENT = [
+    "dentist", "dentiste", "dental", "tooth", "teeth", "orthodontist",
+    "plumber", "plombier", "electrician", "electricien",
+    "lawyer", "avocat", "attorney", "notaire",
+    "doctor", "medecin", "physician", "hospital", "hopital", "clinic", "clinique",
+    "restaurant", "pizza", "sushi", "bakery", "boulangerie",
+    "real estate", "immobilier", "apartment", "appartement", "condo",
+    "mechanic", "garage auto", "car repair",
+    "best near me", "top rated", "top 10", "top 5", "best of",
+    "yelp.com", "opencare.com", "healthgrades",
+    "insurance", "assurance auto", "assurance habitation",
+    "pest control", "exterminator",
+    "landscaping", "jardinier",
+    "moving company", "demenageur",
+    "chiropractor", "chiropracteur",
+    "optician", "opticien", "optometrist",
+    "daycare", "nounou", "babysitter",
+    "gym", "fitness", "yoga studio",
+    "nail salon", "coiffeur", "barber",
+    "vet", "veterinaire", "pet grooming",
+    "locksmith", "serrurier",
+    "roofer", "couvreur", "contractor",
+    "carpet cleaning", "nettoyage",
+]
+
+def _has_blocked_content(text: str) -> bool:
+    lower = text.lower()
+    for term in BLOCKED_CONTENT:
+        if term in lower:
+            return True
+    return False
 
 
 @dataclass
@@ -121,6 +155,8 @@ def extract_rss_feed(feed_url: str, source_name: str, kind: str, timeout: int) -
                 continue
             if not _is_latin(title) or (snippet and not _is_latin(snippet)):
                 continue
+            if _has_blocked_content(title) or (snippet and _has_blocked_content(snippet)):
+                continue
             items.append(
                 SearchItem(
                     kind=kind,
@@ -158,6 +194,8 @@ def search_bing_rss(query: str, kind: str, timeout: int, count: int) -> list[Sea
         if any(b in domain for b in BLOCKED_DOMAINS):
             continue
         if not _is_latin(title) or (snippet and not _is_latin(snippet)):
+            continue
+        if _has_blocked_content(title) or (snippet and _has_blocked_content(snippet)):
             continue
         items.append(
             SearchItem(
