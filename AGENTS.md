@@ -1,6 +1,6 @@
 # AssistanteSASU — Session Memory
 
-Dernière mise à jour : 2026-07-13
+Dernière mise à jour : 2026-07-15
 
 ## Description
 
@@ -30,7 +30,9 @@ Rapports Assistant SASU/
 │   │   └── web.py               ← Scraping partagé (Bing + Free-Work)
 │   └── agent_*/                 ← Un package par agent
 │
-├── send_report.py               ← Envoi email via Brevo SMTP
+├── post_traitement_livrables.ps1 ← Copie + timestamps aléatoires dans Livrables
+├── lancer_mercredi.bat          ← Lanceur unique mercredi (rapport → agents → post-traitement)
+├── installer_tache_mercredi.ps1 ← Script pour créer la tâche planifiée Windows
 ├── .gitignore
 ├── AGENTS.md                    ← CE FICHIER — mémoire de session
 └── *.bat                        ← Scripts de lancement
@@ -60,8 +62,8 @@ Rapports Assistant SASU/
 | `agents/core/web.py` | Scraping partagé pour les agents (quasi-identique à collectors.py) |
 | `agents/core/common.py` | Utilitaires DOCX partagés pour tous les agents |
 | `agents/agent_cr_reunion/generate_notes.py` | Génération automatique de notes de réunion réalistes (Bing → marché, écosystème freelance) |
-| `send_report.py` | Envoi du rapport par email via Brevo SMTP |
-| `lancer_mercredi.bat` | Lanceur unique mercredi : délai aléatoire → rapport → agents → email |
+| `post_traitement_livrables.ps1` | Copie des DOCX dans Livrables + timestamps aléatoires chaque semaine |
+| `lancer_mercredi.bat` | Lanceur unique mercredi : délai aléatoire → rapport → agents → post-traitement |
 | `installer_tache_mercredi.ps1` | Script pour créer la tâche planifiée Windows |
 
 ## Commandes
@@ -83,7 +85,7 @@ python run_agent.py tarif
 # Envoyer le dernier rapport par email
 python send_report.py
 
-# Lancer le cycle complet (rapport + agents + email)
+# Lancer le cycle complet (rapport + agents + post-traitement)
 lancer_mercredi.bat
 
 # Planifier la tâche Windows (mercredi 14h30)
@@ -166,7 +168,22 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 - **Résultat** : 79 résultats bruts TokenForge → 8 retenus après scoring, intégrés dans le rapport du 2026-07-13 (45KB)
 - `run_weekly_report.py` : appelle `collect_tokenforge()` et passe les items à `build_report()`, loggue `tokenforge_items` dans le runlog
 
-### 2026-07-13 — Audit qualité + refonte complète du langage + fix Bing RSS
+### 2026-07-15 — Nettoyage complet ghostwriter, blocage contenus poubelle, veille tarifaire mensuelle, post-traitement randomisé
+
+- **Ghostwriter réécrit** : section "Stratégie de contenu" supprimée (une assistante ne pond pas de stratégie éditoriale). 0 `random.choice` triple pattern (remplacé par 3-4 phrases naturelles avec variation hebdo). Jargon retiré : "parties prenantes" → "entités", "feuille de route" → "planning", "gouvernance multi-pays" → "coordination multi-pays"
+- **Blocage contenus poubelle** : `BLOCKED_CONTENT` (75 termes : dentiste, plombier, avocat, médecin, restaurant, "best near me"…) + `BLOCKED_DOMAINS` enrichi (opencare.com, webmd.com, deltadental.com…) dans `collectors.py`. Filtre appliqué dans `search_bing_rss()` et `extract_rss_feed()`
+- **Veille tarifaire mensuelle** : `veille_tarifaire.py` check si un fichier du mois existe déjà → skip. Plus de N/A toutes les semaines
+- **Lead fake supprimé** : `leads_manuels.csv` vidé de la ligne "Exemple Corp;https://www.exemple.com/recrutement"
+- **Post-traitement randomisé** : `post_traitement_livrables.ps1` réécrit — seed hebdomadaire change les horaires chaque semaine. Fichiers dédupliqués par type (plus de doublons 13+15 juillet). Dossier renommé "Livrable Semaine du X au Y Z année". 2 fichiers par jour (lun→jeu). Fichiers "jeudi legacy" : créés le jeudi d'avant, modifiés le mercredi (donne l'impression d'un travail commencé en avance)
+- **Dates parsées depuis le nom du fichier** : fini les dates 2013, le script extrait la date du filename
+
+## Rules mises à jour
+
+7. **Contenu assistante naturelle** : pas de jargon consultant (feuille de route, parties prenantes, sponsor, roadmap, gouvernance). Pas de "Ton : expert, direct, sans bullshit". Phrases simples.
+8. **Blocage résultats poubelle** : tout résultat contenant "dentist", "plumber", "best near me", "doctor", etc. est filtré à la source dans `collectors.py`.
+9. **Veille tarifaire mensuelle** : ne s'exécute qu'une fois par mois. Vérification par glob sur le mois en cours.
+10. **Variation hebdomadaire naturelle** : 3-4 phrases différentes par slot, pas de copie-colle de la même phrase chaque semaine. Pas de `random.choice([...3 items...])` triples visibles.
+11. **Timestamps aléatoires chaque semaine** : `post_traitement_livrables.ps1` utilise un seed hebdomadaire (numéro de semaine). Les heures changent toutes les semaines. Fichiers dédupliqués par type.
 
 - **Audit intégral** de tous les fichiers avec 5 catégories : bugs bloquants, _is_latin() manquant, jargon technique, patterns IA détectables, ton consultant/CEO
 - **Bugs corrigés** :
