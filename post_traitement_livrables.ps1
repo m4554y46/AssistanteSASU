@@ -94,27 +94,50 @@ if (-not (Test-Path $weeklyDir)) {
     New-Item -ItemType Directory -Path $weeklyDir | Out-Null
 }
 
-# Collect documents from this week only (by filename date)
-$docs = @()
-Get-ChildItem -Path $RapportsDir -Filter "Rapport_Astra_Momentum_*.docx" | Where-Object {
-    $fName = $_.BaseName
-    $match = [regex]::Match($fName, '(\d{4}-\d{2}-\d{2})')
-    if ($match.Success) {
-        $fDate = [DateTime]::ParseExact($match.Groups[1].Value, "yyyy-MM-dd", $null)
-        return $fDate -ge $monday -and $fDate -le $today
-    }
-    return $false
-} | ForEach-Object { $docs += $_ }
+# Collect documents: only the LATEST run (dedupe by file type, keep newest)
+$allDocs = @{}
+$reportMatch = [regex]::Match($today.ToString("yyyy-MM-dd"), '(\d{4}-\d{2}-\d{2})')
+$todayStr = $today.ToString("yyyy-MM-dd")
 
-Get-ChildItem -Path $AgentsOutputDir -Filter "*.docx" | Where-Object {
-    $fName = $_.BaseName
-    $match = [regex]::Match($fName, '(\d{4}-\d{2}-\d{2})')
+# Collect all candidate files with their parsed dates
+$candidates = @()
+Get-ChildItem -Path $RapportsDir -Filter "Rapport_Astra_Momentum_*.docx" | ForEach-Object {
+    $match = [regex]::Match($_.BaseName, '(\d{4}-\d{2}-\d{2})')
     if ($match.Success) {
         $fDate = [DateTime]::ParseExact($match.Groups[1].Value, "yyyy-MM-dd", $null)
-        return $fDate -ge $monday -and $fDate -le $today
+        if ($fDate -ge $monday -and $fDate -le $today) {
+            $candidates += @{ File = $_; FileDate = $fDate; Type = "Rapport" }
+        }
     }
-    return $false
-} | ForEach-Object { $docs += $_ }
+}
+Get-ChildItem -Path $AgentsOutputDir -Filter "*.docx" | ForEach-Object {
+    $match = [regex]::Match($_.BaseName, '(\d{4}-\d{2}-\d{2})')
+    if ($match.Success) {
+        $fDate = [DateTime]::ParseExact($match.Groups[1].Value, "yyyy-MM-dd", $null)
+        if ($fDate -ge $monday -and $fDate -le $today) {
+            # Infer type from filename prefix
+            $type = "Autre"
+            foreach ($entry in $schedule) {
+                if ($_.BaseName -like "$($entry.pattern)*") {
+                    $type = $entry.pattern
+                    break
+                }
+            }
+            $candidates += @{ File = $_; FileDate = $fDate; Type = $type }
+        }
+    }
+}
+
+# Keep only the most recent file of each type
+$latestByType = @{}
+foreach ($c in $candidates) {
+    $key = $c.Type
+    if (-not $latestByType.ContainsKey($key) -or $c.FileDate -gt $latestByType[$key].FileDate) {
+        $latestByType[$key] = $c
+    }
+}
+
+$docs = $latestByType.Values | ForEach-Object { $_.File }
 
 if ($docs.Count -eq 0) {
     Write-Output "Aucun document de la semaine trouve."
