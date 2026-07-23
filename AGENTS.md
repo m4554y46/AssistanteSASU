@@ -32,7 +32,13 @@ Rapports Assistant SASU/
 │
 ├── post_traitement_livrables.ps1 ← Copie + timestamps aléatoires dans Livrables
 ├── lancer_mercredi.bat          ← Lanceur unique mercredi (rapport → agents → post-traitement)
-├── installer_tache_mercredi.ps1 ← Script pour créer la tâche planifiée Windows
+├── installer_tache_mercredi.ps1 ← Script pour créer la tâche planifiée Windows (obsolète)
+├── pull_and_deploy.ps1          ← Git pull + post-traitement (exécuté par tâche Windows)
+├── installer_deploiement_quotidien.ps1 ← Installe tâche Windows (login + 18h)
+├── scripts/
+│   └── fix_github_paths.py      ← Corrige les chemins pour GitHub Actions
+├── .github/workflows/
+│   └── rapport_mercredi.yml     ← GitHub Action hebdo (mercredi 14h)
 ├── .gitignore
 ├── AGENTS.md                    ← CE FICHIER — mémoire de session
 └── *.bat                        ← Scripts de lancement
@@ -64,7 +70,11 @@ Rapports Assistant SASU/
 | `agents/agent_cr_reunion/generate_notes.py` | Génération automatique de notes de réunion réalistes (Bing → marché, écosystème freelance) |
 | `post_traitement_livrables.ps1` | Copie des DOCX dans Livrables + timestamps aléatoires chaque semaine |
 | `lancer_mercredi.bat` | Lanceur unique mercredi : délai aléatoire → rapport → agents → post-traitement |
-| `installer_tache_mercredi.ps1` | Script pour créer la tâche planifiée Windows |
+| `installer_tache_mercredi.ps1` | Script pour créer la tâche planifiée Windows (obsolète) |
+| `pull_and_deploy.ps1` | Git pull + post-traitement (exécuté par tâche Windows) |
+| `installer_deploiement_quotidien.ps1` | Installe tâche Windows (login + 18h) |
+| `scripts/fix_github_paths.py` | Corrige les chemins pour GitHub Actions |
+| `.github/workflows/rapport_mercredi.yml` | GitHub Action hebdo (mercredi 14h) |
 
 ## Commandes
 
@@ -88,11 +98,14 @@ python send_report.py
 # Lancer le cycle complet (rapport + agents + post-traitement)
 lancer_mercredi.bat
 
-# Planifier la tâche Windows (mercredi 14h30)
-pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
+# Récupérer les fichiers générés par GitHub + copie dans Livrables
+pull_and_deploy.ps1
+
+# Planifier la tâche de déploiement automatique (login + 18h)
+powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 ```
 
-## Règles de Conduite (gravées dans le marbre le 2026-07-10)
+## Règles de Conduite (gravées dans le marbre le 2026-07-10, mise à jour 2026-07-23)
 
 1. **Simplicité avant tout.** Pas de refacto, pas d'industrialisation, pas de framework. Chaque modification doit être comprise en 30 secondes par Michael.
 2. **Contrôle total.** Michael doit pouvoir ouvrir, lire, modifier chaque fichier sans outil spécifique. Pas de magie, pas de dépendances cachées.
@@ -207,6 +220,7 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 ## Prochaines étapes (optionnelles, non prioritaires)
 
 - [x] Créer un `lancer_mercredi.bat` unique qui enchaîne rapport → agents → email
+- [x] **Migration GitHub Actions** — plus besoin de PC allumé le mercredi
 
 ## Références
 
@@ -221,3 +235,18 @@ pwsh -ExecutionPolicy Bypass -File installer_tache_mercredi.ps1
 - Email : massayag@gmail.com
 - SMTP : Brevo (smtp-relay.brevo.com:587)
 - Token GitHub : stocké dans `.env` (fichier local, pas versionné) — utilisé pour `git push`
+
+### 2026-07-23 — GitHub Actions + déploiement automatique (zéro action manuelle)
+
+- **Problème** : le mercredi, si le PC est éteint, rien ne tourne. L'ancienne tâche planifiée Windows nécessitait le PC allumé.
+- **Solution GitHub Actions** : `.github/workflows/rapport_mercredi.yml` — génère le rapport + 7 agents sur les serveurs GitHub tous les mercredis à 14h00 (UTC+2). Pas besoin de PC.
+- **Déploiement automatique** : `pull_and_deploy.ps1` fait `git pull` + `post_traitement_livrables.ps1`. Tâche planifiée Windows `ASTRA_DEPLOIEMENT_LIVRABLES` déclenchée :
+  - À chaque ouverture de session (login)
+  - Quotidiennement à 18h00 (fallback si PC déjà allumé)
+- **Ancienne tâche supprimée** : `ASTRA_MOMENTUM_RapportHebdo` (mercredi 14h30)
+- **Fichiers créés** :
+  - `.github/workflows/rapport_mercredi.yml` — workflow GitHub Actions
+  - `scripts/fix_github_paths.py` — corrige les chemins Windows pour le runner Ubuntu
+  - `pull_and_deploy.ps1` — déploiement local (git pull + post-traitement)
+  - `installer_deploiement_quotidien.ps1` — installe la tâche Windows (login + 18h)
+- **Aucune action manuelle requise** : le mercredi à 14h, GitHub génère les fichiers. Au prochain démarrage du PC, la tâche au login pull et copie dans `ASTRA MOMENTUM - Livrables\` avec timestamps.
