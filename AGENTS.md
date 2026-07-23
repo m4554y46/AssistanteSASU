@@ -250,3 +250,10 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
   - `pull_and_deploy.ps1` — déploiement local (git pull + post-traitement)
   - `installer_deploiement_quotidien.ps1` — installe la tâche Windows (login + 18h)
 - **Aucune action manuelle requise** : le mercredi à 14h, GitHub génère les fichiers. Au prochain démarrage du PC, la tâche au login pull et copie dans `ASTRA MOMENTUM - Livrables\` avec timestamps.
+- **Rattrapage des semaines manquantes** : si le PC reste éteint plusieurs semaines, `post_traitement_livrables.ps1` détecte tous les fichiers non traités et crée un dossier par semaine manquante.
+
+### 2026-07-23 (suite) — Correction contenu
+
+- **Ghostwriter** : URLs ajoutées dans les articles de veille, signature "--- ASTRA MOMENTUM" supprimée (le header suffit)
+- **Chasseur** : dédoublonnage des missions (clé = titre 80 premiers chars). Domaines bloqués ajoutés (cabinets-conseil.com, edcparis.edu, consultport.com, linkup-coaching.com, scrum.org). Mots-clés bloqués : "definition", "fiche metier", "coaching", "what is a..."
+- **Rapport hebdo** : si 0 opportunités, la priorité passe en "N/A" au lieu de "Haute"
