@@ -187,9 +187,9 @@ def build_report(config: dict, analyses: list[dict], output_path: Path):
         cells = table.add_row().cells
         vals = [
             a["profil"],
-            f"{a['tjm_moyen']:,.0f} EUR" if a["tjm_moyen"] > 0 else "N/A",
-            f"{a['tjm_min_trouve']:,.0f} EUR" if a["tjm_min_trouve"] > 0 else "N/A",
-            f"{a['tjm_max_trouve']:,.0f} EUR" if a["tjm_max_trouve"] > 0 else "N/A",
+            f"{a['tjm_moyen']:,.0f} EUR" if a["tjm_moyen"] > 0 else "-",
+            f"{a['tjm_min_trouve']:,.0f} EUR" if a["tjm_min_trouve"] > 0 else "-",
+            f"{a['tjm_max_trouve']:,.0f} EUR" if a["tjm_max_trouve"] > 0 else "-",
             str(a["tjms_trouves"]),
             a["recommandation"],
         ]

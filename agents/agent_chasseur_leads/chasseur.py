@@ -157,6 +157,8 @@ def load_manual_missions() -> list[dict]:
         return missions
     with csv_path.open(newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f, delimiter=";"):
+            if not row.get("url", "").strip():
+                continue
             missions.append(row)
     return missions
 
@@ -259,8 +261,10 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
         decision_color = GREEN if "PRIORITE" in m["decision"] else (RGBColor(200, 120, 0) if m["decision"] == "POSTULER" else GRAY)
         para(doc, f"{idx}. {m['title']}", style="Heading 3")
         p = para(doc, after=2)
-        set_run_font(p.add_run(f"Source : {m['source']} | Score : {m['score']}/10 | TJM : {m['tjm']} | "), size=9.5, color=GRAY, bold=True)
-        add_hyperlink(p, "URL", m["url"])
+        set_run_font(p.add_run(f"Source : {m['source']} | Score : {m['score']}/10 | TJM : {m['tjm']}"), size=9.5, color=GRAY, bold=True)
+        if m.get("url"):
+            set_run_font(p.add_run(f" | "), size=9.5, color=GRAY, bold=True)
+            add_hyperlink(p, m["url"], m["url"])
         if m.get("snippet"):
             bullet(doc, f"Description : {m['snippet'][:500]}")
         if m.get("fit_skills"):
@@ -315,17 +319,18 @@ def generate_prospection_pack(config: dict, missions: list[dict], output_dir: Pa
     min_score = prospection_cfg.get("min_score", 5.0)
     profil = config.get("profile", {})
 
-    target_missions = [m for m in missions if m["score"] >= min_score and m.get("company")]
+    target_missions = [m for m in missions if m["score"] >= min_score and m.get("company") and m.get("url")]
 
     leads_path = Path(__file__).resolve().parent / "leads_manuels.csv"
     if leads_path.exists():
         with leads_path.open(newline="", encoding="utf-8-sig") as f:
             for row in csv.DictReader(f, delimiter=";"):
                 company = row.get("entreprise", "").strip()
-                if company:
+                url = row.get("url", "").strip()
+                if company and url:
                     target_missions.append({
                         "title": row.get("contexte", "Lead manuel"),
-                        "url": row.get("url", ""),
+                        "url": url,
                         "snippet": "",
                         "source": row.get("source", ""),
                         "score": 10.0,

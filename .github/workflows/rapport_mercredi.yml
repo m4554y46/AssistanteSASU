@@ -1,0 +1,58 @@
+name: Rapport Mercredi
+
+on:
+  schedule:
+    # 12:00 UTC = 14:00 Paris (CEST). Délai aléatoire 15-45 min intégré dans le script
+    - cron: '0 12 * * 3'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install python-docx requests beautifulsoup4
+
+      - name: Override output paths for runner
+        run: |
+          python -c "
+import json
+# moteur_rapport: enregistrer à la racine du repo
+p = 'moteur_rapport/config.json'
+c = json.load(open(p))
+c['output_dir'] = '${{ github.workspace }}'
+json.dump(c, open(p, 'w'), indent=2)
+print(f'output_dir -> {c[\"output_dir\"]}')
+"
+
+      - name: Generate weekly report
+        run: |
+          cd moteur_rapport
+          python run_weekly_report.py
+
+      - name: Run all agents
+        run: |
+          cd agents
+          python run_agent.py all
+
+      - name: Commit generated files
+        run: |
+          git config user.name "Assistante Virtuelle"
+          git config user.email "assistante@astra-momentum.fr"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Aucun fichier modifié"
+          else
+            git commit -m "Rapport hebdo $(date +'%Y-%m-%d') [skip ci]"
+            git push
+          fi

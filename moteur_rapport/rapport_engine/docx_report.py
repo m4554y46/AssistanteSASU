@@ -122,7 +122,6 @@ def set_run_font(run, name="Calibri", size=None, color=None, bold=None, italic=N
 
 def add_hyperlink(paragraph, text, url):
     if not url:
-        paragraph.add_run(text)
         return
     part = paragraph.part
     rid = part.relate_to(

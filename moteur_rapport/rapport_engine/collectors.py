@@ -143,31 +143,65 @@ def extract_rss_feed(feed_url: str, source_name: str, kind: str, timeout: int) -
     try:
         raw = fetch_url(feed_url, timeout)
         root = ET.fromstring(raw)
-        for node in root.findall(".//item"):
-            title = clean_text(node.findtext("title"))
-            link = clean_text(node.findtext("link"))
-            snippet = clean_text(node.findtext("description"))
-            published = parse_pub_date(node.findtext("pubDate"))
-            if not title or not link:
-                continue
-            domain = host_from_url(link)
-            if any(b in domain for b in BLOCKED_DOMAINS):
-                continue
-            if not _is_latin(title) or (snippet and not _is_latin(snippet)):
-                continue
-            if _has_blocked_content(title) or (snippet and _has_blocked_content(snippet)):
-                continue
-            items.append(
-                SearchItem(
-                    kind=kind,
-                    title=title,
-                    url=link,
-                    snippet=snippet[:500] if snippet else "",
-                    source=source_name,
-                    published=published,
-                    query=source_name,
+        is_atom = root.tag.endswith("feed")
+        if is_atom:
+            ns = {"atom": "http://www.w3.org/2005/Atom"}
+            for node in root.findall("atom:entry", ns):
+                title_el = node.find("atom:title", ns)
+                link_el = node.find("atom:link", ns)
+                summary_el = node.find("atom:summary", ns)
+                content_el = node.find("atom:content", ns)
+                published_el = node.find("atom:published", ns) or node.find("atom:updated", ns)
+                title = clean_text(title_el.text) if title_el is not None and title_el.text else None
+                link = (link_el.get("href") or "").strip() if link_el is not None else None
+                snippet = clean_text((summary_el or content_el).text) if (summary_el is not None or content_el is not None) else ""
+                published = parse_pub_date(published_el.text) if published_el is not None and published_el.text else None
+                if not title or not link:
+                    continue
+                domain = host_from_url(link)
+                if any(b in domain for b in BLOCKED_DOMAINS):
+                    continue
+                if not _is_latin(title) or (snippet and not _is_latin(snippet)):
+                    continue
+                if _has_blocked_content(title) or (snippet and _has_blocked_content(snippet)):
+                    continue
+                items.append(
+                    SearchItem(
+                        kind=kind,
+                        title=title,
+                        url=link,
+                        snippet=snippet[:500] if snippet else "",
+                        source=source_name,
+                        published=published,
+                        query=source_name,
+                    )
                 )
-            )
+        else:
+            for node in root.findall(".//item"):
+                title = clean_text(node.findtext("title"))
+                link = clean_text(node.findtext("link"))
+                snippet = clean_text(node.findtext("description"))
+                published = parse_pub_date(node.findtext("pubDate"))
+                if not title or not link:
+                    continue
+                domain = host_from_url(link)
+                if any(b in domain for b in BLOCKED_DOMAINS):
+                    continue
+                if not _is_latin(title) or (snippet and not _is_latin(snippet)):
+                    continue
+                if _has_blocked_content(title) or (snippet and _has_blocked_content(snippet)):
+                    continue
+                items.append(
+                    SearchItem(
+                        kind=kind,
+                        title=title,
+                        url=link,
+                        snippet=snippet[:500] if snippet else "",
+                        source=source_name,
+                        published=published,
+                        query=source_name,
+                    )
+                )
     except Exception:
         pass
     return items
