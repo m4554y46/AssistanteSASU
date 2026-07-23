@@ -411,11 +411,14 @@ def add_dashboard(doc, articles, opportunities, meta):
     bullet(doc, random.choice(_V["note_retained"]).format(a=len(articles), o=len(opportunities)))
     bullet(doc, random.choice(_V["note_verified"]))
 
+    opp_label = f"Aucune opportunite" if len(opportunities) == 0 else f"{len(opportunities)} opportunites retenues"
+    opp_priority = "N/A" if len(opportunities) == 0 else "Haute"
+
     make_pro_table(doc,
         ["Signal", "Observation", "Action conseillee", "Priorite"],
         [
             ["Veille IA/Product", f"{len(articles)} contenus retenus", "Transformer 1 signal en post LinkedIn", "Haute"],
-            ["Prospection", f"{len(opportunities)} opportunites retenues", "Qualifier les 2 meilleurs fits", "Haute"],
+            ["Prospection", opp_label, "Qualifier les 2 meilleurs fits", opp_priority],
             ["Methodologies", "Concepts selectionnes selon l'actualite et l'utilite commerciale", "Nourrir les rendez-vous clients", "Moyenne"],
         ],
         [1.4, 2.2, 2.1, 0.8],
@@ -577,8 +580,11 @@ def build_report(config: dict, articles: list[dict], opportunities: list[dict], 
         add_article(doc, idx, item)
     add_separator(doc)
     accent_heading(doc, "3. Missions et opportunites")
-    for idx, item in enumerate(opportunities, 1):
-        add_opportunity(doc, idx, item)
+    if not opportunities:
+        bullet(doc, "Aucune opportunite identifiee cette semaine.")
+    else:
+        for idx, item in enumerate(opportunities, 1):
+            add_opportunity(doc, idx, item)
     add_methods(doc, methods)
     add_actions(doc, articles, opportunities)
     add_sources(doc, articles, opportunities, methods, meta)

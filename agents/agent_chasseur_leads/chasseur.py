@@ -39,6 +39,8 @@ BLOCKED_DOMAINS = [
     "boulanger.com", "fnac.com", "amazon", "leboncoin", "ebay",
     "decathlon", "head.com", "hesge", "letudiant",
     "aujourdhui", "linternaute",
+    "cabinets-conseil.com", "edcparis.edu", "consultport.com",
+    "linkup-coaching.com", "scrum.org",
 ]
 
 BLOCKED_ROLES = [
@@ -46,6 +48,17 @@ BLOCKED_ROLES = [
     "charge de recrutement", "ingenieur reseau", "analyste mainframe",
     "integrateur devops", "ingenieur devops",
     "mission locale",
+]
+
+BLOCKED_WORDS = [
+    "definition", "fiche métier", "fiche metier",
+    "coaching", "coach",
+    "qu'est-ce qu'un", "quest-ce quun",
+    "what is a", "what is an", "guide complet",
+    "c'est quoi", "formation", "cours",
+    "trouvez les meilleurs", "plateforme",
+    "comparatif", "comparaison",
+    "outils de", "logiciel de",
 ]
 
 
@@ -66,6 +79,8 @@ def is_blocked(item: SearchResult) -> bool:
         return True
     text = f"{item.title} {item.snippet}".lower()
     if any(role in text for role in BLOCKED_ROLES):
+        return True
+    if any(w in text for w in BLOCKED_WORDS):
         return True
     if not _is_latin(item.title) or (item.snippet and not _is_latin(item.snippet)):
         return True
@@ -218,8 +233,18 @@ def collect_missions(agent_cfg: dict, profil: dict) -> list[dict]:
         })
     print(f"  Missions manuelles: {len(manual)}")
 
-    scored.sort(key=lambda x: (x["score"], x["tjm_value"]), reverse=True)
-    top = scored[:max_missions]
+    # Dedup by title (first 80 chars)
+    seen_titles = set()
+    deduped = []
+    for m in scored:
+        key = m["title"].strip().lower()[:80]
+        if key not in seen_titles:
+            seen_titles.add(key)
+            deduped.append(m)
+    print(f"  Apres deduplication: {len(deduped)}")
+
+    deduped.sort(key=lambda x: (x["score"], x["tjm_value"]), reverse=True)
+    top = deduped[:max_missions]
     print(f"  Missions retenues: {len(top)}")
     return top
 

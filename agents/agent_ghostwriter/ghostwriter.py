@@ -206,7 +206,7 @@ def generer_veille_semaine(company: str) -> dict:
     else:
         lignes = []
         for a in articles:
-            lignes.append(f"- {a.title} ({a.source})")
+            lignes.append(f"- {a.title} ({a.source})\n  {a.url}")
         articles_str = "\n".join(lignes)
         corps = random.choice([
             f"Voici les articles que j'ai releves cette semaine :\n\n{articles_str}",
@@ -219,7 +219,6 @@ def generer_veille_semaine(company: str) -> dict:
         "corps": corps,
         "accroche": titre,
         "type": "Veille hebdomadaire",
-        "signature": "",
     }
 
 
@@ -239,7 +238,6 @@ def generer_retour_experience(mission: dict, company: str) -> dict:
         "corps": body,
         "accroche": f"{mission['titre']} - {mission['secteur']}",
         "type": "Cas client",
-        "signature": f"\n\n---\n{company}",
     }
 
 
@@ -270,7 +268,6 @@ def generer_astuce_pratique(company: str) -> dict:
         "corps": corps,
         "accroche": titre,
         "type": "Conseil pratique",
-        "signature": f"\n\n---\n{company}",
     }
 
 
@@ -291,7 +288,7 @@ def generer_analyse_tendance(company: str) -> dict:
         ])
     else:
         refs = articles[:2]
-        lignes = "\n".join(f"- {r.title} ({r.source})" for r in refs)
+        lignes = "\n".join(f"- {r.title} ({r.source})\n  {r.url}" for r in refs)
         corps = random.choice([
             f"Signaux retenus cette semaine :\n\n{lignes}",
             f"Dans ma veille de la semaine, j'ai note :\n\n{lignes}",
@@ -303,7 +300,6 @@ def generer_analyse_tendance(company: str) -> dict:
         "corps": corps,
         "accroche": titre,
         "type": "Analyse de tendance",
-        "signature": f"\n\n---\n{company}",
     }
 
 
@@ -320,8 +316,6 @@ def build_report(config: dict, contenus: list[dict], output_path: Path):
         p = para(doc, after=2)
         set_run_font(p.add_run(f"Type : {c['type']}"), size=9.5, color=GRAY)
         para(doc, c["corps"], before=4, after=6)
-        if c.get("signature"):
-            set_run_font(doc.add_paragraph().add_run(c["signature"]), size=9, color=GRAY, italic=True)
         doc.add_page_break()
 
     doc.save(output_path)
