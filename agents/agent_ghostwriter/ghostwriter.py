@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import random
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -198,21 +197,13 @@ def generer_veille_semaine(company: str) -> dict:
     titre = f"Veille de la semaine du {_semaine()}"
 
     if not articles:
-        corps = random.choice([
-            "Cette semaine, je n'ai pas trouve d'article qui sorte vraiment du lot sur les sujets IA et Product. Des que j'ai quelque chose d'interessant, je te le partage.",
-            "Pas d'article suffisamment pertinent cette semaine dans ma veille IA/Product. Je continue a surveiller et je te tiens au courant la semaine prochaine.",
-            "Rien de bien marquant cette semaine sur le front de l'IA ou du Product. Je garde un oeil et je t'envoie des que je trouve quelque chose d'utile.",
-        ])
+        corps = "Pas d'article suffisamment pertinent cette semaine dans ma veille IA/Product."
     else:
         lignes = []
         for a in articles:
             lignes.append(f"- {a.title} ({a.source})\n  {a.url}")
         articles_str = "\n".join(lignes)
-        corps = random.choice([
-            f"Voici les articles que j'ai releves cette semaine :\n\n{articles_str}",
-            f"Dans ma veille de la semaine, j'ai note :\n\n{articles_str}",
-            f"Quelques articles glanes cette semaine :\n\n{articles_str}",
-        ])
+        corps = f"Voici les articles que j'ai releves cette semaine :\n\n{articles_str}"
 
     return {
         "titre": titre,
@@ -243,25 +234,20 @@ def generer_retour_experience(mission: dict, company: str) -> dict:
 
 def generer_astuce_pratique(company: str) -> dict:
     articles = _rechercher(THEME_QUERIES["conseil"])
-    titre = random.choice([
-        "Conseil pratique de la semaine",
-        "Petite astuce de la semaine",
-        "Un point a retenir cette semaine",
-    ])
+    titre = "Conseil pratique de la semaine"
 
     if not articles:
-        corps = random.choice([
-            "Un point souvent neglige mais qui fait la difference : la clarte du cadrage en amont. Avant de lancer un projet, posez-vous 3 questions : quel est le probleme, pour qui, et comment saurons-nous que c'est resolu ?",
-            "Un rappel que je vois trop souvent oublie : la regle du 'pourquoi d'abord'. Trop d'equipes se jettent sur la solution sans avoir valide le probleme en amont.",
-            "Quelque chose que je constate regulierement : la difference entre urgence et importance. Prioriser ce qui fait avancer le projet, pas ce qui crie le plus fort.",
-        ])
+        corps = "Un point souvent neglige mais qui fait la difference : la clarte du cadrage en amont. Avant de lancer un projet, posez-vous 3 questions : quel est le probleme, pour qui, et comment saurons-nous que c'est resolu ?"
     else:
         ref = articles[0]
-        corps = random.choice([
-            f"Un point que je vois regulierement sur le terrain, et cet article le resume bien : {ref.title} ({ref.source}).",
-            f"Je suis tombee sur cet article qui illustre bien ce qu'on constate chez nos clients : {ref.title} ({ref.source}).",
-            f"Ca rejoint ce qu'on voit souvent en mission : {ref.title} ({ref.source}).",
-        ])
+        corps = f"Un point que je vois regulierement sur le terrain, et cet article le resume bien : {ref.title} ({ref.source})."
+
+    return {
+        "titre": titre,
+        "corps": corps,
+        "accroche": titre,
+        "type": "Conseil pratique",
+    }
 
     return {
         "titre": titre,
@@ -272,28 +258,16 @@ def generer_astuce_pratique(company: str) -> dict:
 
 
 def generer_analyse_tendance(company: str) -> dict:
-    queries = random.choice([THEME_QUERIES["transformation"], THEME_QUERIES["freelance"]])
+    queries = THEME_QUERIES["transformation"]
     articles = _rechercher(queries)
-    titre = random.choice([
-        "Tendance de la semaine",
-        "Ce qui bouge cette semaine",
-        "Signal de la semaine",
-    ])
+    titre = "Tendance de la semaine"
 
     if not articles:
-        corps = random.choice([
-            "Pas de tendance marquante cette semaine dans le secteur. Je continue la veille et te partage des que quelque chose sort du lot.",
-            "Rien de notable cette semaine dans la transformation digitale. Je te ferai suivre des que j'ai quelque chose d'interessant.",
-            "Semaine calme sur le front des tendances. Je garde un oeil et je reviens vers toi si je trouve un signal pertinent.",
-        ])
+        corps = "Pas de tendance marquante cette semaine dans le secteur. Je continue la veille."
     else:
         refs = articles[:2]
         lignes = "\n".join(f"- {r.title} ({r.source})\n  {r.url}" for r in refs)
-        corps = random.choice([
-            f"Signaux retenus cette semaine :\n\n{lignes}",
-            f"Dans ma veille de la semaine, j'ai note :\n\n{lignes}",
-            f"Quelques tendances glanees :\n\n{lignes}",
-        ])
+        corps = f"Signaux retenus cette semaine :\n\n{lignes}"
 
     return {
         "titre": titre,
@@ -338,7 +312,7 @@ def main() -> int:
     contenus.append(generer_veille_semaine(company))
 
     print("  2/4 Cas client...")
-    contenus.append(generer_retour_experience(random.choice(MISSIONS_REELLES), company))
+    contenus.append(generer_retour_experience(MISSIONS_REELLES[-1], company))
 
     print("  3/4 Astuce pratique...")
     contenus.append(generer_astuce_pratique(company))

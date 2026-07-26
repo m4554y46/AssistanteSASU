@@ -1,6 +1,6 @@
 # AssistanteSASU — Session Memory
 
-Dernière mise à jour : 2026-07-15
+Dernière mise à jour : 2026-07-26
 
 ## Description
 
@@ -105,7 +105,7 @@ pull_and_deploy.ps1
 powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 ```
 
-## Règles de Conduite (gravées dans le marbre le 2026-07-10, mise à jour 2026-07-23)
+## Règles de Conduite (gravées dans le marbre le 2026-07-10, mise à jour 2026-07-26)
 
 1. **Simplicité avant tout.** Pas de refacto, pas d'industrialisation, pas de framework. Chaque modification doit être comprise en 30 secondes par Michael.
 2. **Contrôle total.** Michael doit pouvoir ouvrir, lire, modifier chaque fichier sans outil spécifique. Pas de magie, pas de dépendances cachées.
@@ -113,6 +113,14 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 4. **Ne jamais réécrire from scratch.** Toute modification est une édition ciblée.
 5. **Ne jamais inventer.** Pas de bluff, pas de "je pense que". Si tu ne sais pas, dis-le.
 6. **Richesse du DOCX = intouchable.** `docx_report.py`, `scoring.py`, `collectors.py` ne sont pas simplifiés — ce sont les fichiers qui produisent la valeur.
+7. **Contenu assistante naturelle** : pas de jargon consultant (feuille de route, parties prenantes, sponsor, roadmap, gouvernance). Pas de "Ton : expert, direct, sans bullshit". Phrases simples.
+8. **Blocage résultats poubelle** : tout résultat contenant "dentist", "plumber", "best near me", "doctor", etc. est filtré à la source dans `collectors.py`.
+9. **Veille tarifaire mensuelle** : ne s'exécute qu'une fois par mois. Vérification par glob sur le mois en cours.
+10. **Variation hebdomadaire naturelle** : 3-4 phrases différentes par slot, pas de copie-colle de la même phrase chaque semaine. Pas de `random.choice([...3 items...])` triples visibles.
+11. **Timestamps aléatoires chaque semaine** : `post_traitement_livrables.ps1` utilise un seed hebdomadaire (numéro de semaine). Les heures changent toutes les semaines. Fichiers dédupliqués par type.
+12. **Zéro valeur bidon.** Si pas de données réelles, on ne fabrique pas. On dit "aucune donnée" ou on skip. Pas de `random.choice` simulant une analyse personnalisée.
+13. **Push git proposé après chaque modification.** Demander confirmation avant de push.
+14. **Session log dans AGENTS.md.** Toute modification structurelle ou bug fix est enregistrée dans Live Session Log pour ne jamais perdre d'amélioration continue.
 
 ## Live Session Log
 
@@ -257,3 +265,18 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 - **Ghostwriter** : URLs ajoutées dans les articles de veille, signature "--- ASTRA MOMENTUM" supprimée (le header suffit)
 - **Chasseur** : dédoublonnage des missions (clé = titre 80 premiers chars). Domaines bloqués ajoutés (cabinets-conseil.com, edcparis.edu, consultport.com, linkup-coaching.com, scrum.org). Mots-clés bloqués : "definition", "fiche metier", "coaching", "what is a..."
 - **Rapport hebdo** : si 0 opportunités, la priorité passe en "N/A" au lieu de "Haute"
+
+### 2026-07-26 — Chasse aux valeurs bidon + refonte TokenForge Watch + agents désactivés
+
+- **Principes nouveaux** : règles 12-14 ajoutées. Zéro donnée inventée présentée comme réelle. Push git proposé après chaque modif. Session log obligatoire dans AGENTS.md.
+- **generate_notes.py** : réécrit. Ne génère plus de réunions fictives (participants, durée, décisions inventés). Message clair : déposer un fichier .txt manuel.
+- **cr_reunion.py** : plus d'appel automatique à generate_notes. Skip propre si pas de notes.
+- **docx_report.py** : 0 `random.choice` restant. Supprimés : "pertinence", "vigilance", "angle", "action_recs", "li_post", "note_intro", "note_retained", "note_verified", "fallback_snippet", "fallback_opp". Section "Methodologies" supprimée. Proposition de post LinkedIn supprimée.
+- **ghostwriter.py** : 0 `random.choice` restant. Titres fixes, mission fixe (la dernière de MISSIONS_REELLES), textes de repli uniques.
+- **scoring.py** : score de base articles 4.8→2.0, tokenforge 4.0→2.0, plancher 3.0→0.5, bonus GitHub 0.8→0.4.
+- **run_agent.py** : agents `tableau` et `pipeline` désactivés (skip avec message), fichiers conservés pour réactivation future.
+- **TokenForge Watch** refondue en revue de presse :
+  - 10 nouvelles queries dans config.json : regolo.ai, openrouter.ai, litellm, RTK, tokenizer benchmarks, cache reduction, API gateways
+  - Structure A. Marché et actualités des prix / B. Routeurs, compresseurs et outils FinOps / C. Analyse et actions pour TokenForge
+  - Analyse dynamique : comptage réel des routeurs, compresseurs, sources FinOps trouvés dans les résultats
+- **AGENTS.md** : règles 7-14 intégrées dans la section Règles de Conduite (étaient dispersées dans les logs).

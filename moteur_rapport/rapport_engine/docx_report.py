@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import random
 from datetime import date
 from pathlib import Path
 
@@ -26,83 +25,9 @@ BORDER_GRAY = "BFBFBF"
 ACCENT_BG = "005B96"
 
 _V = {
-    "exec_summary": [
-        "Cette semaine, j'ai prepare pour toi une selection d'articles et d'opportunites que j'ai trouves pertinents pour ASTRA MOMENTUM. J'ai verifie chaque source avant de les inclure.",
-        "Voici les infos et les pistes que j'ai degagees cette semaine. J'ai tout verifie pour gagner du temps.",
-        "J'ai rassemble dans ce rapport les articles et missions que j'ai selectionnes pour toi cette semaine. Chaque lien a ete controle.",
-    ],
-    "note_intro": [
-        "Cette semaine, j'ai explore {a} pistes de veille et {o} axes de prospection.",
-        "J'ai consulte {a} sources de veille et {o} canaux de prospection cette semaine.",
-        "Cette semaine, j'ai parcouru {a} sujets de veille et {o} directions de prospection.",
-    ],
-    "note_retained": [
-        "Apres relecture, j'ai retenu {a} articles et {o} opportunites qui me semblent les plus interessants pour toi.",
-        "Apres tri, j'ai garde {a} articles et {o} opportunites qui meritent un coup d'oeil.",
-        "J'ai conserve {a} articles de veille et {o} opportunites apres un premier passage.",
-    ],
-    "note_verified": [
-        "J'ai verifie chaque lien et ecarte ce qui n'avait pas d'interet pour nous.",
-        "J'ai ecarte les sources trop generiques ou sans rapport avec le positionnement.",
-        "Chaque contenu a ete relu rapidement avant d'etre inclus ici.",
-    ],
-    "subtitle": [
-        "Veille, prospection et bonnes pratiques de la semaine",
-        "Articles, missions et ressources utiles pour la semaine",
-        "Ma synthese hebdomadaire : veille, prospection et recommandations",
-    ],
-    "veille_intro": [
-        "Voici les articles et ressources qui m'ont paru les plus utiles cette semaine.",
-        "J'ai retenu les contenus qui collent le mieux a ton activite et a tes cibles.",
-        "Une selection d'articles qui peuvent t'interesser pour la semaine a venir.",
-    ],
-    "pertinence": [
-        "Pertinence : peut servir dans une conversation client ou pour un post sur LinkedIn.",
-        "Pertinence : utile pour preparer un echange avec un client ou prospect.",
-        "Pertinence : de quoi alimenter une prise de parole ou un argumentaire.",
-    ],
-    "vigilance": [
-        "Points a verifier : le TJM, le statut freelance, le remote et l'autonomie attendue.",
-        "A verifier avant de postuler : TJM, statut, possibilite de remote et autonomie.",
-        "Points a confirmer : fourchette de prix, modalites de travail et perimetre de la mission.",
-    ],
-    "angle": [
-        "Comment se positionner : mettre en avant l'experience en cadrage de projet, priorisation et coordination d'equipe.",
-        "Approche conseillee : valoriser l'experience en gestion de projet, pilotage et accompagnement au changement.",
-        "Proposition : insister sur la capacite a organiser le travail, prioriser et coordonner les equipes.",
-    ],
-    "action_recs": [
-        [
-            "Qualifier en priorite : {opp}.",
-            "Utiliser l'article '{art}' pour un post LinkedIn cette semaine.",
-            "Retravailler l'offre de conseil pour la rendre plus claire et plus courte.",
-        ],
-        [
-            "Priorite de la semaine : suivre {opp}.",
-            "Publier un post LinkedIn autour de '{art}' pour renforcer la visibilite.",
-            "Simplifier l'offre de conseil pour qu'elle soit plus percutante en entretien.",
-        ],
-        [
-            "En tete de liste : {opp} a regarder en priorite.",
-            "S'inspirer de '{art}' pour un post LinkedIn cette semaine.",
-            "Affiner l'offre de conseil produit/IA pour la rendre plus operationnelle.",
-        ],
-    ],
-    "li_post": [
-        "Proposition de post LinkedIn sur le sujet du jour : 'On me demande souvent par ou commencer avec l'IA. Ma reponse est toujours la meme : pas par l'outil, mais par le probleme. Sans un bon cadrage, meme le meilleur outil ne sert a rien. La valeur vient de la priorisation et de l'organisation. Le reste n'est que technique.' A ajuster selon ton style.",
-        "Voici une ebauche de post : 'Le vrai sujet IA en 2026 n'est plus quel outil utiliser. C'est quel processus transformer et comment mesurer le gain. Les entreprises qui reussissent sont celles qui ont mis l'organisation avant la technologie.' Tu peux bien sur la modifier a ta sauce.",
-        "Un draft de post LinkedIn si tu veux : 'Les outils IA ne creent pas de valeur tout seuls. Ils deviennent utiles quand on les relie a un vrai besoin metier. Le sujet aujourd'hui n'est plus de tester des outils, mais de choisir les bons cas d'usage et d'organiser l'adoption.' Dis-moi si tu veux que je le retravaille.",
-    ],
-    "fallback_snippet": [
-        "Contenu en lien avec les thematiques produits et IA.",
-        "Article interessant dans le cadre de la veille de la semaine.",
-        "Signal utile pour le positionnement produit et IA.",
-    ],
-    "fallback_opp": [
-        "Opportunite identifiee via les canaux de recherche habituels.",
-        "Mission reperee lors de la prospection de la semaine.",
-        "Annonce trouvee sur les plateformes freelance.",
-    ],
+    "exec_summary": "Cette semaine, j'ai prepare pour toi une selection d'articles et d'opportunites trouves pour ASTRA MOMENTUM.",
+    "subtitle": "Veille, prospection et ressources de la semaine",
+    "veille_intro": "Voici les articles et ressources retenus cette semaine.",
 }
 
 
@@ -406,10 +331,7 @@ def setup_doc() -> Document:
 
 def add_dashboard(doc, articles, opportunities, meta):
     accent_heading(doc, "1. Tableau de bord")
-    para(doc, "Note de l'autrice", style="Heading 2")
-    bullet(doc, random.choice(_V["note_intro"]).format(a=meta['article_queries'], o=meta['opportunity_queries']))
-    bullet(doc, random.choice(_V["note_retained"]).format(a=len(articles), o=len(opportunities)))
-    bullet(doc, random.choice(_V["note_verified"]))
+    bullet(doc, f"{len(articles)} articles et {len(opportunities)} opportunites retenus cette semaine.")
 
     opp_label = f"Aucune opportunite" if len(opportunities) == 0 else f"{len(opportunities)} opportunites retenues"
     opp_priority = "N/A" if len(opportunities) == 0 else "Haute"
@@ -419,7 +341,6 @@ def add_dashboard(doc, articles, opportunities, meta):
         [
             ["Veille IA/Product", f"{len(articles)} contenus retenus", "Transformer 1 signal en post LinkedIn", "Haute"],
             ["Prospection", opp_label, "Qualifier les 2 meilleurs fits", opp_priority],
-            ["Methodologies", "Concepts selectionnes selon l'actualite et l'utilite commerciale", "Nourrir les rendez-vous clients", "Moyenne"],
         ],
         [1.4, 2.2, 2.1, 0.8],
     )
@@ -431,9 +352,8 @@ def add_article(doc, idx, item):
     set_run_font(p.add_run(f"Source : {item['source']}"), size=9.5, color=GRAY, bold=True)
     p2 = para(doc, after=4)
     add_hyperlink(p2, item["url"], item["url"])
-    resume = first_sentence(item.get("snippet", ""), random.choice(_V["fallback_snippet"]))
+    resume = first_sentence(item.get("snippet", ""), "Aucun extrait disponible.")
     bullet(doc, f"En bref : {resume}")
-    bullet(doc, random.choice(_V["pertinence"]))
 
 
 def add_opportunity(doc, idx, item):
@@ -442,10 +362,8 @@ def add_opportunity(doc, idx, item):
     set_run_font(p.add_run(f"Plateforme : {item['source']}"), size=9.5, color=GRAY, bold=True)
     p2 = para(doc, after=4)
     add_hyperlink(p2, item["url"], item["url"])
-    resume = first_sentence(item.get("snippet", ""), random.choice(_V["fallback_opp"]))
+    resume = first_sentence(item.get("snippet", ""), "Aucun descriptif disponible.")
     bullet(doc, f"Descriptif : {resume}")
-    bullet(doc, random.choice(_V["vigilance"]))
-    bullet(doc, random.choice(_V["angle"]))
 
 
 def add_methods(doc, methods):
@@ -466,15 +384,8 @@ def add_actions(doc, articles, opportunities):
     para(doc, "Priorites pour la semaine suivante", style="Heading 2")
     top_opp = opportunities[0]["title"] if opportunities else "la meilleure opportunite identifiee"
     top_article = articles[0]["title"] if articles else "le signal IA/Product le plus fort"
-    for text in random.choice(_V["action_recs"]):
-        bullet(doc, text.format(opp=top_opp, art=top_article))
-    para(doc, "Proposition de post LinkedIn", style="Heading 2")
-    para(
-        doc,
-        random.choice(_V["li_post"]),
-        italic=True,
-        color=GRAY,
-    )
+    bullet(doc, f"Qualifier en priorite : {top_opp}.")
+    bullet(doc, f"Utiliser l'article '{top_article}' pour un post LinkedIn cette semaine.")
 
 
 def add_sources(doc, articles, opportunities, methods, meta):
@@ -506,55 +417,66 @@ def add_tokenforge_watch(doc, items: list[dict]):
     if not items:
         return
     add_separator(doc)
-    accent_heading(doc, "7. TokenForge Watch - cout des tokens et outils pratiques")
+    accent_heading(doc, "7. TokenForge Watch - Revue de presse des couts IA")
     para(doc,
-         "Outils et articles pour reduire le cout des tokens et mieux gerer la conso IA.",
+         "Actualites, outils et mouvements de marche sur la reduction des factures IA en entreprise.",
          before=4, after=8, color=GRAY, size=9.5, italic=True)
 
-    github_items = [i for i in items if i.get("kind") == "github" or "github.com" in i.get("url", "")]
-    articles_items = [i for i in items if i not in github_items]
+    github_repos = [i for i in items if i.get("kind") == "github" or "github.com" in i.get("url", "")]
+    articles_news = [i for i in items if i not in github_repos]
 
-    if github_items:
-        accent_heading(doc, "A. Outils et ressources utiles", level=2)
+    if articles_news:
+        accent_heading(doc, "A. Marche et actualites des prix", level=2)
+        for a in articles_news[:5]:
+            title = a.get("title", "")[:120]
+            snippet = a.get("snippet", "")[:250]
+            bullet(doc, title, size=10)
+            p = para(doc, after=2)
+            set_run_font(p.add_run(snippet + " "), size=9, color=GRAY)
+            if a.get("url"):
+                add_hyperlink(p, a["url"], a["url"])
+
+    if github_repos:
+        accent_heading(doc, "B. Routeurs, compresseurs et outils FinOps", level=2)
         make_pro_table(doc,
-            ["Projet", "Description", "Score", "Lien"],
+            ["Outil", "Description", "Pertinence TokenForge", "Lien"],
             [
                 [
                     _repo_name(g),
-                    g.get("snippet", "")[:120],
+                    g.get("snippet", "")[:150],
                     f"{g['score']}/10",
                     g.get("url", ""),
                 ]
-                for g in github_items[:6]
+                for g in github_repos[:6]
             ],
-            [1.8, 2.8, 0.6, 1.2],
+            [1.8, 2.5, 0.8, 1.3],
         )
-        for g in github_items[:6]:
+        for g in github_repos[:6]:
             p = para(doc, after=2)
             set_run_font(p.add_run(f"{_repo_name(g)} : "), size=9, color=NAVY, bold=True)
             add_hyperlink(p, g.get("url", ""), g.get("url", ""))
 
-    if articles_items:
-        accent_heading(doc, "B. Articles et actualites", level=2)
-        for a in articles_items[:4]:
-            bullet(doc, f"{a.get('title', '')[:100]}", size=9.5)
-            p = para(doc, after=2)
-            add_hyperlink(p, a.get("url", ""), a.get("url", ""))
-
-    accent_heading(doc, "C. A creuser pour TokenForge", level=2)
-    top = items[0] if items else None
-    if top:
-        bullet(doc, f"[Prioritaire] {_repo_name(top)}: {top.get('snippet', '')[:200]}")
-    if len(items) > 1:
-        bullet(doc, f"[Interessant] {_repo_name(items[1])}: {items[1].get('snippet', '')[:200]}")
-    bullet(doc, "Penser a regarder les sites et articles ci-dessus pour voir si on peut les utiliser dans TokenForge.")
+    accent_heading(doc, "C. Analyse et actions pour TokenForge", level=2)
+    vendors_news = [i for i in articles_news if any(v in (i.get("title","") + i.get("snippet","")).lower() for v in ["openai", "anthropic", "google", "mistral", "pricing", "tarif", "price"])]
+    if vendors_news:
+        bullet(doc, "Mouvement sur le marche des API : les fournisseurs ajustent leurs grilles. A suivre pour ajuster les recommandations TokenForge.")
+    routers = [g for g in github_repos if any(r in (_repo_name(g)+g.get("snippet","")).lower() for r in ["router", "gateway", "litellm", "proxy", "route"])]
+    if routers:
+        bullet(doc, f"{len(routers)} outil(s) de routage/commutation identifie(s) - regarder si un(e) peut etre integree dans TokenForge pour basculer sur le provider le moins cher en temps reel.")
+    compressors = [g for g in github_repos if any(c in (_repo_name(g)+g.get("snippet","")).lower() for c in ["compress", "token", "rtk", "cache"])]
+    if compressors:
+        bullet(doc, f"{len(compressors)} outil(s) de compression/caching identifie(s) - tester pour reduire les tokens avant envoi a l API.")
+    budget = [i for i in items if any(b in (i.get("title","")+i.get("snippet","")).lower() for b in ["finops", "budget", "cost", "facture"])]
+    if budget:
+        bullet(doc, f"{len(budget)} source(s) sur le FinOps IA - alimente la partie conseil de TokenForge (tableau de bord couts, alertes, plafonds).")
+    bullet(doc, "Prochaine etape : monter un petit comparatif des providers (OpenAI vs Anthropic vs Mistral vs Google) avec les prix token 2026 pour les clients TokenForge.")
 
 
 def build_report(config: dict, articles: list[dict], opportunities: list[dict], methods: list[dict], meta: dict, output_path: Path, tokenforge_items: list[dict] | None = None) -> Path:
     doc = setup_doc()
     today = date.today().isoformat()
     para(doc, "RAPPORT HEBDOMADAIRE ", size=23, color=NAVY, bold=True, after=4)
-    para(doc, random.choice(_V["subtitle"]), size=13.5, color=GRAY, after=14)
+    para(doc, _V["subtitle"], size=13.5, color=GRAY, after=14)
     for label, value in [
         ("Destinataire", f"{config['recipient']} - President SASU"),
         ("Autrice", config["author"]),
@@ -567,13 +489,13 @@ def build_report(config: dict, articles: list[dict], opportunities: list[dict], 
 
     add_separator(doc, before=10, after=10)
 
-    add_callout(doc, random.choice(_V["exec_summary"]), title="Lecture executive")
+    add_callout(doc, _V["exec_summary"], title="Lecture executive")
 
     add_dashboard(doc, articles, opportunities, meta)
     add_separator(doc)
     accent_heading(doc, "2. Veille de la semaine")
     para(doc,
-         random.choice(_V["veille_intro"]),
+         _V["veille_intro"],
          before=4, after=8, color=GRAY, size=9.5, italic=True)
 
     for idx, item in enumerate(articles, 1):

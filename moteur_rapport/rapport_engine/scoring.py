@@ -60,13 +60,13 @@ def score_item(item: SearchItem, positive: list[str], negative: list[str]) -> di
     text = text_of(item)
     pos = keyword_hits(text, positive)
     neg = keyword_hits(text, negative)
-    raw = 4.8 + min(pos, 8) * 0.45 + source_quality(item.source) + date_bonus(item.published)
+    raw = 2.0 + min(pos, 8) * 0.45 + source_quality(item.source) + date_bonus(item.published)
     if item.verified:
         raw += 0.4
     raw -= min(neg, 4) * 0.65
     if item.kind == "opportunity":
         raw += opportunity_specific_adjustment(item, text)
-    score = max(3.0, min(9.6, round(raw, 1)))
+    score = max(0.5, min(9.6, round(raw, 1)))
     return {
         **asdict(item),
         "score": score,
@@ -170,9 +170,9 @@ def extract_tokenforge_items(items: list[SearchItem], positive: list[str], limit
         source = source_quality(item.source)
         freshness = date_bonus(item.published)
         # Base: 4.0 + hits + source + freshness, capped at 9.5
-        raw = 4.0 + min(hits, 10) * 0.6 + source + freshness
+        raw = 2.0 + min(hits, 10) * 0.6 + source + freshness
         if item.kind == "github":
-            raw += 0.8  # GitHub = outil directement exploitable
+            raw += 0.4
         if item.verified:
             raw += 0.3
         # Pricing news bonus
@@ -183,7 +183,7 @@ def extract_tokenforge_items(items: list[SearchItem], positive: list[str], limit
         core_kw = ["compression", "token", "proxy", "caching", "optimization", "finops"]
         if any(kw in text for kw in core_kw):
             raw += 0.5
-        score = max(3.0, min(9.5, round(raw, 1)))
+        score = max(0.5, min(9.5, round(raw, 1)))
         scored.append({
             **asdict(item),
             "score": score,

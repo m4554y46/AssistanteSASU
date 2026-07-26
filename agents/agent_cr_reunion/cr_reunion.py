@@ -296,17 +296,8 @@ def main() -> int:
     notes = list_notes()
 
     if not notes:
-        print("  Aucune note manuelle trouvée. Génération automatique...")
-        try:
-            from .generate_notes import main as gen_main
-            gen_main()
-            notes = list_notes()
-        except Exception as e:
-            print(f"  [ERR] Génération automatique échouée : {e}")
-            return 1
-
-    if not notes:
-        print("  Aucune note à traiter.")
+        print("  Aucune note manuelle trouvée. Aucun CR généré (aucune réunion cette semaine).")
+        print("  Deposer un fichier .txt dans agents/agent_cr_reunion/notes/ pour generer un CR.")
         return 0
 
     output_dir = ensure_output_dir(config)

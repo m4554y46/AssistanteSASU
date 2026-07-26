@@ -16,6 +16,10 @@ AGENTS = {
     "tarif": ("agent_veille_tarifaire.veille_tarifaire", "Veille tarifaire"),
 }
 
+# Ces agents sont conservés mais ne génèrent plus de contenu (plus de valeur réelle).
+# Réactiver quand l'activité le justifiera.
+_DISABLED_AGENTS = {"pipeline", "tableau"}
+
 
 def usage():
     print("Usage: run_agent.py [agent_name|all|list]")
@@ -37,6 +41,9 @@ def main() -> int:
 
     if cmd == "all":
         for key, (mod_path, desc) in AGENTS.items():
+            if key in _DISABLED_AGENTS:
+                print(f"\n  [{key}] Desactive (plus de valeur) - fichier conserve pour reactivation future")
+                continue
             print(f"\n{'='*60}")
             print(f"  Lancement : {desc}")
             print(f"{'='*60}")
@@ -47,6 +54,10 @@ def main() -> int:
                     print(f"  [!] Agent {desc} termine avec code {rc}")
             except Exception as e:
                 print(f"  [ERR] {desc} : {e}")
+        return 0
+
+    if cmd in _DISABLED_AGENTS:
+        print(f"Agent [{cmd}] desactive - plus de valeur pour le moment. Fichier conserve.")
         return 0
 
     if cmd in AGENTS:
