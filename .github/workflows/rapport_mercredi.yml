@@ -39,9 +39,14 @@ jobs:
         run: |
           git config user.name "Assistante Virtuelle"
           git config user.email "assistante@astra-momentum.fr"
+          # Restaurer les configs modifiees pour le runner (a ne pas committer)
+          git checkout -- moteur_rapport/config.json agents/config.json 2>/dev/null || true
+          # Forcer l'ajout des fichiers generes (exclus par .gitignore)
+          git add -f Rapport_Astra_Momentum_*.docx Rapport_Astra_Momentum_*_runlog.json 2>/dev/null || true
+          git add -f agents/output/*.docx agents/output/*_log.json 2>/dev/null || true
           git add -A
           if git diff --staged --quiet; then
-            echo "Aucun fichier modifié"
+            echo "Aucun fichier modifie"
           else
             git commit -m "Rapport hebdo $(date +'%Y-%m-%d') [skip ci]"
             git push

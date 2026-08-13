@@ -1,6 +1,6 @@
 # AssistanteSASU — Session Memory
 
-Dernière mise à jour : 2026-07-26
+Dernière mise à jour : 2026-08-13
 
 ## Description
 
@@ -280,3 +280,14 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
   - Structure A. Marché et actualités des prix / B. Routeurs, compresseurs et outils FinOps / C. Analyse et actions pour TokenForge
   - Analyse dynamique : comptage réel des routeurs, compresseurs, sources FinOps trouvés dans les résultats
 - **AGENTS.md** : règles 7-14 intégrées dans la section Règles de Conduite (étaient dispersées dans les logs).
+
+### 2026-08-13 — Fix déploiement GitHub Actions : les DOCX n'étaient jamais poussés sur git
+
+- **Bug constaté** : aucun dossier livrable créé sur le PC depuis ~2 semaines, bien que le workflow GitHub tourne chaque mercredi.
+- **Cause racine** : `.gitignore` exclut `Rapport_Astra_Momentum_*.docx`, `agents/output/*.docx` et `agents/output/*_log.json` → le `git add -A` du workflow ne stagait jamais les DOCX générés → `git pull` local ne ramenait rien → `post_traitement_livrables.ps1` n'avait rien à copier.
+- **Preuve** : commit `21cbd45` « Rapport hebdo 2026-07-23 [skip ci] » ne contient que `config.json` (83 insertions, 22 suppressions), aucun DOCX.
+- **Faux positif écarté** : le dossier « Livrable Semaine du 20 juillet au 24 juillet 2026 » contient bien les fichiers du 23-07 (vérifié avec `-Force`), et « 13-17 juillet » contient Veille_Tarifaire_2026-07-15. Le problème est bien le push des nouvelles semaines, pas les anciennes.
+- **Correctifs apportés** :
+  - `.github/workflows/rapport_mercredi.yml` : avant le commit, `git checkout --` restauré pour les configs (évite de committer les chemins Linux du runner) + `git add -f` forcé sur `Rapport_Astra_Momentum_*.docx`, `*_runlog.json`, `agents/output/*.docx`, `agents/output/*_log.json` pour forcer le commit des fichiers ignorés.
+  - `scripts/fix_github_paths.py` : corrige désormais AUSSI `agents/config.json` (`output_dir` → `$GITHUB_WORKSPACE/agents/output`). Avant, le chemin Windows invalide cassait les agents sur le runner Ubuntu.
+  - `moteur_rapport/config.json` : `output_dir` restauré au chemin Windows local (il avait été pollué avec le chemin Linux `/home/runner/work/...` par le workflow précédent).
