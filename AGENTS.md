@@ -293,3 +293,18 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
   - `moteur_rapport/config.json` : `output_dir` restauré au chemin Windows local (il avait été pollué avec le chemin Linux `/home/runner/work/...` par le workflow précédent).
 - **Rattrapage des semaines manquantes** (27-31 juillet, 03-07 août 2026) : les fichiers de ces semaines n'ont jamais été poussés sur git (cause racine ci-dessus) et sont donc perdus. Cycle complet relancé localement le 13/08 (rapport + chasseur + newsletter + veille tarifaire), copies backdatées créées, puis `post_traitement_livrables.ps1` a recréé les 3 dossiers Livrables manquants (27-31/07, 03-07/08, 10-14/08). Fichiers du 13/08 poussés en force (`git add -f`) dans le commit `66e5439` — valide le comportement du workflow corrigé.
 - **Dispatch GitHub Actions via API impossible** : le token fine-grained renvoie 403 (pas de permission `actions: write`). Pour tester : Run workflow manuel depuis l'onglet Actions sur GitHub.
+
+## État actuel au 2026-08-13 (à consulter au prochain démarrage)
+
+**Où on en est :**
+- Bug déploiement corrigé et poussé (`.github/workflows/rapport_mercredi.yml` + `scripts/fix_github_paths.py` + `moteur_rapport/config.json`). Dernier commit : `1017a3c`.
+- Rattrapage fait : les 3 dossiers Livrables manquants (27-31/07, 03-07/08, 10-14/08) sont recréés dans `ASTRA MOMENTUM - Livrables\`. Fichiers du 13/08 poussés en force dans `66e5439` — valide le comportement `git add -f` du workflow.
+- Le pipeline « mercredi 14h → GitHub génère → git pull auto → Livrables » est censé être autonome.
+
+**Action en attente (à rappeler à Michael) :** vérifier que le fix fonctionne en déclenchant manuellement le workflow depuis GitHub → Actions → « Rapport Mercredi » → **Run workflow** (branche master). Si le run crée un commit contenant des .docx, tout est validé. Le token local ne permet pas le dispatch (403).
+
+**Checklist de vérification au prochain démarrage :**
+- `git pull` en cours ? (tâche `ASTRA_DEPLOIEMENT_LIVRABLES` au login + 18h)
+- Le commit hebdo contient-il des .docx ? (`git log --oneline -5`)
+- Un dossier Livrables est-il créé pour la nouvelle semaine ? (`Get-ChildItem "ASTRA MOMENTUM - Livrables"`)
+- Si un dossier manque : vérifier d'abord si les .docx sont bien dans le repo (cause racine = .gitignore), recommencer le cycle localement sans réécrire from scratch.
