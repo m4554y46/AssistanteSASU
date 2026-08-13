@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "generated_at": "2026-08-13T13:54:26.835406+00:00",
+    "article_queries": 14,
+    "opportunity_queries": 16,
+    "raw_articles": 159,
+    "raw_opportunities": 86,
+    "errors": []
+  },
+  "articles": [
+    {
+      "kind": "article",
+      "title": "Build To Learn FAQ",
+      "url": "https://www.svpg.com/build-to-learn-faq/",
+      "snippet": "In our last article, we argued that especially in the age of AI, we are all builders, but that there is a very meaningful difference between building to learn (known as product discovery) versus building to earn (known as product delivery). Moreover, we argued that as the cost of product delivery continues to drop, the... The post Build To Learn FAQ appeared first on Silicon Valley Product Group .",
+      "source": "SVPG",
+      "published": "2026-04-27",
+      "query": "SVPG",
+      "verified": false,
+      "verification_note": "",
+      "score": 5.2,
+      "keyword_hits": 5,
+      "negative_hits": 0
+    },
+    {
+      "kind": "article",
+      "title": "Building AI for Women's Health: How Hertility Combined Bayesian Diagnosis and Scan Automation",
+      "url": "https://www.producttalk.org/building-ai-for-womens-health-how-hertility-combined-bayesian-diagnosis-and-scan-automation/",
+      "snippet": "Listen to this episode on: Spotify | Apple Podcasts How do you build trustworthy AI diagnostic tools in one of medicine's most historically under-researched areas? In this episode of Just Now Possible , Teresa Torres talks with Tulsi Patel (Director of Product and Technology), Lorna Brightmore (Head of",
+      "source": "Product Talk",
+      "published": "2026-07-23",
+      "query": "Product Talk",
+      "verified": false,
+      "verification_note": "",
+      "score": 5.1,
+      "keyword_hits": 4,
+      "negative_hits": 0
+    },
+    {
+      "kind": "article",
+      "title": "Fragments: August 4",
+      "url": "https://martinfowler.com/fragments/2026-08-04.html",
+      "snippet": "There’s been a fair bit of publicity of the Open AI “rogue agent” that hacked into Hugging Face . This prompted Anthropic to check what their models were up to and, to my complete lack of surprise, discovered three incidents where models had gained unauthorized access to data in other organizations. Simon Wilison concluded : It’s abundantly clear now that running evals of cyberattack potential in models is a spectacularly risky business. Every AI lab needs to pay attention to this. Keeping a clo",
+      "source": "Martin Fowler",
+      "published": "2026-08-04T08:08:00-04:00",
+      "query": "Martin Fowler",
+      "verified": false,
+      "verification_note": "",
+      "score": 5.0,
+      "keyword_hits": 3,
+      "negative_hits": 0
+    },
+    {
+      "kind": "article",
+      "title": "Accueil - Agents-Immo.Fr",
+      "url": "https://www.agents-immo.fr/",
+      "snippet": "La Compagnie des Agents est un réseau national d’agents commerciaux indépendants à taille humaine. Notre nombre est volontairement limité afin de conserver cette proximité, la disponibilité et la qualité de travail.",
+      "source": "agents-immo.fr",
+      "published": "mar., 11 août 2026 23:20:00 GMT",
+      "query": "agents IA entreprise product management agile 2026",
+      "verified": true,
+      "verification_note": "HTTP 200",
+      "score": 4.9,
+      "keyword_hits": 3,
+      "negative_hits": 0
+    },
+    {
+      "kind": "article",
+      "title": "AI agents | Claude by Anthropic",
+      "url": "https://claude.com/solutions/agents",
+      "snippet": "Build powerful AI agents that reason through complex problems and execute tasks autonomously with reliable results.",
+      "source": "claude.com",
+      "published": "jeu., 13 août 2026 07:33:00 GMT",
+      "query": "agents IA entreprise product management agile 2026",
+      "verified": true,
+      "verification_note": "HTTP 200",
+      "score": 4.9,
+      "keyword_hits": 3,
+      "negative_hits": 0
+    },
+    {
+      "kind": "article",
+      "title": "Building Reliable Agentic AI Systems",
+      "url": "https://martinfowler.com/articles/reliable-llm-bayer.html",
+      "snippet": "One of the most interesting projects my colleagues have done with LLMs has been building a system with Bayer to allow pharmaceutical researchers to query decades of information about studies buried in PDF reports. Sarang Sanjay Kulkarni describes its evolution from keyword-based search to an intelligent research assistant capable of answering complex questions and drafting regulatory documents. more…",
+      "source": "Martin Fowler",
+      "published": "2026-06-16T13:11:00+01:00",
+      "query": "Martin Fowler",
+      "verified": false,
+      "verification_note": "",
+      "score": 4.7,
+      "keyword_hits": 4,
+      "negative_hits": 0
+    },
+    {
+      "kind": "article",
+      "title": "The Orchestrator's Tax",
+      "url": "https://martinfowler.com/articles/orchestrator-tax.html",
+      "snippet": "Subagents get justified by time saved and parallel execution, but Rahul Garg explains that's not what matters most. Every token in the orchestrator's context is competing for its attention, and the real value of a subagent is what it keeps out of that context. Subagents should be treated as a tool for protecting the orchestrator's working memory, offloading reasoning it doesn't need to hold onto. Doing this well means giving the orchestrator explicit ground rules for when and how to delegate. mo",
+      "source": "Martin Fowler",
+      "published": "2026-07-28T09:10:00-04:00",
+      "query": "Martin Fowler",
+      "verified": false,
+      "verification_note": "",
+      "score": 4.7,
+      "keyword_hits": 3,
+      "negative_hits": 0
+    }
+  ],
+  "opportunities": [],
+  "methods": [
+    {
+      "name": "Team Topologies",
+      "url": "https://teamtopologies.com/",
+      "definition": "Approche d'organisation des equipes tech/produit autour des flux de valeur, plateformes et charge cognitive.",
+      "business_value": "Aide a identifier pourquoi le delivery ralentit malgre les rituels agiles.",
+      "client_use": "Revue d'organisation, dependances, plateformes internes, friction entre equipes.",
+      "commercial_use": "Nourrir des diagnostics delivery et transformation digitale."
+    },
+    {
+      "name": "Shape Up",
+      "url": "https://basecamp.com/shapeup",
+      "definition": "Methode Basecamp pour cadrer, parier et livrer des cycles produits avec un appetit de temps clair.",
+      "business_value": "Aide les organisations a sortir des backlogs infinis et a mieux cadrer les paris produit.",
+      "client_use": "Cadrage de problemes, scopes variables, cycles de delivery courts.",
+      "commercial_use": "Proposer un format de cadrage executive avant sprint ou pilote IA."
+    },
+    {
+      "name": "Freelance SASU - Optimisation fiscale et sociale",
+      "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069565/LEGISCTA000006191753/",
+      "definition": "Cadre legal et fiscal de la SASU : responsabilite limitee au capital, cotisations sociales sur salaire, dividendes, TVA franchise en deça de 37 500EUR de CA.",
+      "business_value": "Permet de conseiller des dirigeants de PME sur le statut SASU vs EI vs EURL et d'identifier les leviers d'optimisation.",
+      "client_use": "Clients dirigeants de PME/ETI en freelance ou portage. Sujet recurrent dans les echanges coachings.",
+      "commercial_use": "Argumentaire pour missions de conseil strategique aupres de dirigeants de PME."
+    },
+    {
+      "name": "Scrum Guide - Product Goal",
+      "url": "https://scrumguides.org/scrum-guide.html",
+      "definition": "Reference officielle Scrum recentrant l'equipe sur Product Goal, Sprint Goal et Definition of Done.",
+      "business_value": "Permet de distinguer agilité utile et ceremonies sans impact.",
+      "client_use": "Audit agile, clarification du role PO, evaluation de la valeur livree.",
+      "commercial_use": "Argumentaire pour offres de remise a plat delivery/product."
+    }
+  ],
+  "tokenforge_items": [
+    {
+      "kind": "github",
+      "title": "GitHub - rtk-ai/rtk: CLI proxy that reduces LLM token consumption by 60 ...",
+      "url": "https://github.com/rtk-ai/rtk",
+      "snippet": "Run RTK from Command Prompt, PowerShell, or Windows Terminal — do not double-click the .exe (it will flash and close). The full hook system works natively on Windows (and in WSL).",
+      "source": "github.com",
+      "published": "jeu., 13 août 2026 02:11:00 GMT",
+      "query": "site:github.com RTK Rust Token Killer token reduction LLM proxy",
+      "verified": false,
+      "verification_note": "",
+      "score": 8.2,
+      "keyword_hits": 7
+    },
+    {
+      "kind": "github",
+      "title": "Releases · rtk-ai/rtk - GitHub",
+      "url": "https://github.com/rtk-ai/rtk/releases",
+      "snippet": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies - Releases · rtk-ai/rtk",
+      "source": "github.com",
+      "published": "jeu., 13 août 2026 09:13:00 GMT",
+      "query": "site:github.com RTK Rust Token Killer token reduction LLM proxy",
+      "verified": false,
+      "verification_note": "",
+      "score": 7.6,
+      "keyword_hits": 6
+    },
+    {
+      "kind": "github",
+      "title": "RTK — Rust Token Killer",
+      "url": "https://www.rtk-ai.app/",
+      "snippet": "RTK is an open-source CLI tool that compresses command outputs before they reach the AI context window. It reduces token usage by 60-90% with zero configuration changes, enabling longer AI coding sessions and lower API costs.",
+      "source": "rtk-ai.app",
+      "published": "jeu., 13 août 2026 10:17:00 GMT",
+      "query": "site:github.com RTK Rust Token Killer token reduction LLM proxy",
+      "verified": false,
+      "verification_note": "",
+      "score": 6.5,
+      "keyword_hits": 4
+    },
+    {
+      "kind": "github",
+      "title": "Que veut dire Token ? Le guide complet pour comprendre les usages, les ...",
+      "url": "https://kablo.fr/que-veut-dire-token/",
+      "snippet": "On parlera de token informatique lorsqu’il s’agit de mots de passe, de clés ou de jetons authentifiants. Dans le domaine de la cryptographie et des crypto-monnaies, on invoquera des tokens qui symbolisent des actifs numériques échangeables.",
+      "source": "kablo.fr",
+      "published": "jeu., 13 août 2026 03:08:00 GMT",
+      "query": "site:github.com token caching agent reusable skills",
+      "verified": false,
+      "verification_note": "",
+      "score": 5.2,
+      "keyword_hits": 2
+    },
+    {
+      "kind": "github",
+      "title": "Releases · BerriAI/litellm - GitHub",
+      "url": "https://github.com/BerriAI/litellm/releases",
+      "snippet": "The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM] - Releases · BerriAI/litellm",
+      "source": "github.com",
+      "published": "jeu., 13 août 2026 09:34:00 GMT",
+      "query": "site:github.com litellm router LLM gateway cost",
+      "verified": false,
+      "verification_note": "",
+      "score": 5.2,
+      "keyword_hits": 2
+    },
+    {
+      "kind": "github",
+      "title": "Token : le guide complet sur ces actifs numériques en crypto",
+      "url": "https://blockchainfrance.net/decouvrir-la-blockchain/comprendre-les-tokens/",
+      "snippet": "Un token est un actif numérique qui facilite les échanges sur une blockchain. Il peut permettre d’acquérir un produit ou des produits financiers.",
+      "source": "blockchainfrance.net",
+      "published": "jeu., 13 août 2026 11:36:00 GMT",
+      "query": "site:github.com token caching agent reusable skills",
+      "verified": false,
+      "verification_note": "",
+      "score": 4.8,
+      "keyword_hits": 2
+    },
+    {
+      "kind": "github",
+      "title": "LiteLLM — Open-Source AI Gateway & LLM Proxy",
+      "url": "https://www.litellm.ai/",
+      "snippet": "LiteLLM is the open-source AI gateway that puts your full AI stack behind one OpenAI-compatible key. Track and cap LLM spend, route to the right model, and self-host anywhere — even air-gapped. 140+ providers, 1,892 models.",
+      "source": "litellm.ai",
+      "published": "jeu., 13 août 2026 09:34:00 GMT",
+      "query": "site:github.com litellm router LLM gateway cost",
+      "verified": false,
+      "verification_note": "",
+      "score": 4.8,
+      "keyword_hits": 2
+    },
+    {
+      "kind": "github",
+      "title": "LiteLLM Providers & Models",
+      "url": "https://models.litellm.ai/",
+      "snippet": "The most comprehensive AI model catalog. Pricing, context windows, and features for 2600+ models across 140+ providers.",
+      "source": "models.litellm.ai",
+      "published": "mer., 12 août 2026 20:20:00 GMT",
+      "query": "site:github.com litellm router LLM gateway cost",
+      "verified": false,
+      "verification_note": "",
+      "score": 4.8,
+      "keyword_hits": 2
+    }
+  ],
+  "output": "C:\\Users\\micas\\OneDrive\\Bureau\\Rapports Assistant SASU\\Rapport_Astra_Momentum_2026-08-13.docx"
+}
