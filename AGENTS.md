@@ -294,17 +294,50 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 - **Rattrapage des semaines manquantes** (27-31 juillet, 03-07 août 2026) : les fichiers de ces semaines n'ont jamais été poussés sur git (cause racine ci-dessus) et sont donc perdus. Cycle complet relancé localement le 13/08 (rapport + chasseur + newsletter + veille tarifaire), copies backdatées créées, puis `post_traitement_livrables.ps1` a recréé les 3 dossiers Livrables manquants (27-31/07, 03-07/08, 10-14/08). Fichiers du 13/08 poussés en force (`git add -f`) dans le commit `66e5439` — valide le comportement du workflow corrigé.
 - **Dispatch GitHub Actions via API impossible** : le token fine-grained renvoie 403 (pas de permission `actions: write`). Pour tester : Run workflow manuel depuis l'onglet Actions sur GitHub.
 
+### 2026-08-13 (suite) — Chasseur réaliste : contenu d'assistante humaine, plus de snippets bruts
+
+- **Problème signalé par Michael** : le DOCX « Chasseur de Missions » était immédiatement identifiable comme généré par IA (snippets coupés en plein milieu, « non-specific » en anglais, slogans publicitaires Keejob/Product Hunt passés en descriptions, « Fit competences : worldwide »).
+- **Free-Work a changé sa structure** : les anciennes URLs catégories `/fr/tech-it/<role>/job-mission` renvoient 404. Les URLs actuelles sont `/fr/tech-it/jobs/<role>`. Config mise à jour avec 4 catégories qui marchent (chef-de-projet, product-owner, head-of-product, digital-transformation). `product-manager` et `consultant` instables/peu pertinentes → retirées.
+- **Extraction Free-Work réécrite autour du JSON-LD `JobPosting`** (`_load_job_posting_ld()` dans `core/web.py`) : title, description, entreprise, localisation, TJM (uniquement si `unitText: DAY`, sinon « non communiqué » — un CDI à 40K/an ne doit pas être affiché comme un TJM). Durée extraite des regex mais limitée aux formes courtes (`6 mois`, `3 mois renouvelable`).
+- **`clean_text()`** décode désormais les séquences `\uXXXX` (le HTML des pages Free-Work est encodé en escapes dans le JSON) puis supprime les tags → fini les `\u003c/p>\u003cli>` dans le DOCX.
+- **Nettoyage des contenus dans `chasseur.py`** :
+  - `_clean_title()` : retire les préfixes « Entreprise – Mission freelance 123/ », les codes département, les localisations répétées, le suffixe « | Free-work ».
+  - `_clean_description()` : ne garde que les phrases complètes (fini les bouts de phrases tronqués), supprime les slogans (liste `SLUG_PHRASES` : « Découvrez 9 offres... », « Trouvez votre prochain poste », « best new products »...).
+  - `is_blocked()` : `BLOCKED_ROLES` et `BLOCKED_WORDS` ne s'appliquent **plus que sur le titre** (une description légitime de PO peut mentionner « production », « formation », « React »). `SLUG_PHRASES` reste sur titre+snippet.
+- **Scoring resserré** : un résultat doit avoir un vrai rôle (`role_keywords`) ou être Free-Work direct + secteur concordant. « Fit competences » n'affiche que les vrais rôles, plus les mots génériques. Rôles bloqués élargis (developpeur, data, devops, telecom, infrastructure, RH/paie, conformité, risques...).
+- **Recommandations humaines** : plus de « Je te suggère d'élargir les critères ». Selon le cas : « plusieurs pistes pertinentes à explorer » / « rien de pertinent publié cette semaine, je continue de surveiller ».
+- **Bing queries** restreintes aux `site:free-work.com` / `site:linkedin.com/jobs` / welcometothejungle / malt (les requêtes génériques ramenaient les agrégateurs).
+- **Résultat** : 27 missions Free-Work scrapées → 17 dédupliquées → 10 retenues, toutes des rôles produit/gestion de projet (Product Owner PIM, PO Services Numériques, ITSM Technical PO, Chef de Projet IT, Manager de programme...). Zéro HTML, zéro slogan, TJM honnête.
+- **À noter** : `SearchResult` a maintenant des champs `location`, `duration`, `tjm` structurés (utilisés par le chasseur ; les autres agents utilisant `core.web` restent compatibles).
+
 ## État actuel au 2026-08-13 (à consulter au prochain démarrage)
 
 **Où on en est :**
 - Bug déploiement corrigé et poussé (`.github/workflows/rapport_mercredi.yml` + `scripts/fix_github_paths.py` + `moteur_rapport/config.json`). Dernier commit : `1017a3c`.
 - Rattrapage fait : les 3 dossiers Livrables manquants (27-31/07, 03-07/08, 10-14/08) sont recréés dans `ASTRA MOMENTUM - Livrables\`. Fichiers du 13/08 poussés en force dans `66e5439` — valide le comportement `git add -f` du workflow.
 - Le pipeline « mercredi 14h → GitHub génère → git pull auto → Livrables » est censé être autonome.
+- **Chasseur refondu** (contenu humain, JSON-LD Free-Work, filtres par rôle, zéro snippet brut) — documenté ci-dessus. Le DOCX généré le 13/08 est propre.
 
-**Action en attente (à rappeler à Michael) :** vérifier que le fix fonctionne en déclenchant manuellement le workflow depuis GitHub → Actions → « Rapport Mercredi » → **Run workflow** (branche master). Si le run crée un commit contenant des .docx, tout est validé. Le token local ne permet pas le dispatch (403).
+**Action en attente (à rappeler à Michael) :** vérifier que le fix fonctionne en déclenchant manuellement le workflow depuis GitHub → Actions → « Rapport Mercredi » → **Run workflow** (branche master). Si le run crée un commit contenant des .docx, tout est validé. Le token local ne permet pas le dispatch (403). Le run manuel du 13/08 (après le fix) est passé au vert mais n'a rien commité car les fichiers du 13/08 existaient déjà — normal.
 
 **Checklist de vérification au prochain démarrage :**
 - `git pull` en cours ? (tâche `ASTRA_DEPLOIEMENT_LIVRABLES` au login + 18h)
 - Le commit hebdo contient-il des .docx ? (`git log --oneline -5`)
 - Un dossier Livrables est-il créé pour la nouvelle semaine ? (`Get-ChildItem "ASTRA MOMENTUM - Livrables"`)
 - Si un dossier manque : vérifier d'abord si les .docx sont bien dans le repo (cause racine = .gitignore), recommencer le cycle localement sans réécrire from scratch.
+
+### 2026-08-13 (fin de session) — Standards de réalisme appliqués à TOUS les documents + audit complet
+
+- **Demande de Michael** : « l'illusion d'un vrai travail doit être PARFAITE PARTOUT ». Appliquer au rapport hebdo, à la newsletter, à la veille tarifaire et au CR les mêmes standards que le chasseur. Puis audit fouillé : le bug git des 2 semaines est inadmissible, le code doit être nickel chrome avant push.
+- **Newsletter (`ghostwriter.py`)** : liste blanche `TRUSTED_DOMAINS` (svpg, producttalk, martinfowler, medium, openai, anthropic, hbr...) — un article n'est retenu que s'il vient d'un domaine de confiance. `BLOCKED_DOMAINS` étendu (lalanguefrancaise, compagnie-fiduciaire, agentprovocateur, meta, play.google, transformation.co.uk/gouv.fr...), `BLOCKED_WORDS` étendu (cross dressing, transgender, lingerie, university, qu'est-ce que...). Articles rendus avec liens cliquables. Si rien de pertinent : message honnête « Pas d'article suffisamment pertinent cette semaine » (règle 12).
+- **Veille tarifaire** : seuil d'échantillon `seuil_echantillon: 3` dans `analyser()` — plus de conclusion sur un seul TJM. Un TJM unique ne représente pas le marché. Message honnête : « Pas assez de TJM publies pour tirer une conclusion fiable ». Section 4 corrigée pour n'afficher « Aucune alerte » que si des données fiables existent.
+- **TJM Free-Work** : le JSON-LD `JobPosting` ne contient **plus** de baseSalary/TJM. Le TJM vit dans l'état Nuxt (`__NUXT__`, minDailySalary/maxDailySalary indexés — fragile). La description texte ne le contient pas non plus. Décision : on affiche « non communiqué » plutôt que de fabriquer (règle 12). Veille tarifaire = données insuffisantes honnêtes.
+- **Rapport hebdo (`docx_report.py`)** :
+  - `first_sentence()` : retire les préfixes « Listen to this episode on: », « Spotify | Apple Podcasts », « In our last article » (séparés en 3 `re.sub` car l'alternance dans un seul `^...` ne re-matcle pas après le premier retrait), remplace les em dashes, tronque proprement.
+  - Titres normalisés avec `_norm_title()` (em dashes → tirets) dans articles, opportunités, priorités, TokenForge.
+  - Plus de labels « En bref : », « Descriptif : », « Definition : ». `add_actions` sans suggestion post LinkedIn. Section « Sources et URLs verifiables » supprimée. Tableau « Pertinence TokenForge X/10 » supprimé.
+  - **TokenForge Watch** : filtre `TOKENFORGE_BLOCKED` dans `scoring.py` (définitions, « qu'est-ce que », tutoriaux, **blockchain/crypto/NFT** — un « token blockchain » n'est pas un token IA). Domaine `ai-explorer.io` bloqué.
+  - Domaine `mairie-*` bloqué (une page d'emploi publique de mairie passait dans la veille).
+- **Résultats des tests (13/08)** : rapport hebdo (146 articles bruts → 7 retenus, 5 opportunités, 8 TokenForge) **zéro em dash, zéro Spotify, zéro mairie**. Newsletter honnête « Pas d'article suffisamment pertinent cette semaine ». Chasseur 27 missions → 10 retenues toutes PO/produit. Veille tarifaire honnête « Pas assez de donnees ». CR/propositions : rien généré (pas de notes/briefs) — correct.
+- **Audit fouillé final** : 0 `random.choice` triple dans tout le codebase, 2 em dashes restants uniquement dans une regex de `chasseur.py` (intentionnel, pour matcher le caractère). Les deux configs (`moteur_rapport/config.json`, `agents/config.json`) ont des chemins Windows locaux propres (pas pollués Linux). `fix_github_paths.py` + workflow validés (restauration configs + `git add -f`).
+- **Modifs prêtes à push** : AGENTS.md, 3 fichiers moteur (collectors, scoring, docx_report), 3 agents (chasseur, ghostwriter, veille_tarifaire), 2 configs, 3 DOCX générés + runlog. Commit NON encore créé — attendre confirmation de Michael (règle 13).

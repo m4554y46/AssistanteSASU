@@ -40,17 +40,10 @@
     "timeout_seconds": 15,
     "results_per_query": 10,
     "freework_pages": [
-      "https://www.free-work.com/fr/tech-it/directeur-de-projet-it/job-mission",
-      "https://www.free-work.com/fr/tech-it/product-manager/job-mission",
-      "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
-      "https://www.free-work.com/fr/tech-it/head-of-product/job-mission",
-      "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
-      "https://www.free-work.com/fr/tech-it/consultant-ia/job-mission",
-      "https://www.free-work.com/fr/tech-it/program-manager/job-mission",
-      "https://www.free-work.com/fr/tech-it/digital-transformation/job-mission",
-      "https://www.free-work.com/fr/tech-it/consultant/job-mission",
-      "https://www.free-work.com/fr/tech-it/coach-agile/job-mission",
-      "https://www.free-work.com/fr/tech-it/formation/job-mission"
+      "https://www.free-work.com/fr/tech-it/jobs/chef-de-projet",
+      "https://www.free-work.com/fr/tech-it/jobs/product-owner",
+      "https://www.free-work.com/fr/tech-it/jobs/head-of-product",
+      "https://www.free-work.com/fr/tech-it/jobs/digital-transformation"
     ],
     "bing_queries": [
       "site:free-work.com mission directeur projet digital freelance",
@@ -63,14 +56,10 @@
       "site:linkedin.com/jobs/view product owner IA freelance",
       "site:welcometothejungle.com/fr/jobs product manager freelance",
       "site:welcometothejungle.com/fr/jobs product owner freelance",
-      "mission directeur projet transformation digitale TJM 700",
-      "consultant optimisation tokens IA entreprise freelance mission",
       "site:free-work.com mission optimisation cout IA tokens freelance",
-      "reduction cout tokens IA entreprise consultant product manager",
-      "mission courte conseil organisation produit freelance",
-      "coaching IA atelier formation entreprise consultant",
-      "formation product manager chef de projet IA atelier",
-      "mission conseil transformation digitale court duree freelance",
+      "site:free-work.com mission transformation digitale freelance",
+      "site:free-work.com mission consulting digital freelance",
+      "site:linkedin.com/jobs/view consultant transformation digitale freelance",
       "site:malt.fr consultant produit coaching organisation freelance"
     ],
     "keywords_positive": [
@@ -146,6 +135,7 @@
     "enabled": true,
     "timeout_seconds": 12,
     "results_per_query": 8,
+    "seuil_echantillon": 3,
     "queries": [
       "site:free-work.com tjm directeur projet IT freelance",
       "site:free-work.com tjm head of product freelance",
@@ -153,12 +143,12 @@
       "site:free-work.com tjm consultant transformation digitale freelance"
     ],
     "freework_pages": [
-      "https://www.free-work.com/fr/tech-it/product-manager/job-mission",
-      "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
-      "https://www.free-work.com/fr/tech-it/directeur-de-projet-it/job-mission",
-      "https://www.free-work.com/fr/tech-it/consultant-ia/job-mission",
-      "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
-      "https://www.free-work.com/fr/tech-it/scrum-master/job-mission"
+      "https://www.free-work.com/fr/tech-it/jobs/product-manager",
+      "https://www.free-work.com/fr/tech-it/jobs/product-owner",
+      "https://www.free-work.com/fr/tech-it/jobs/chef-de-projet",
+      "https://www.free-work.com/fr/tech-it/jobs/head-of-product",
+      "https://www.free-work.com/fr/tech-it/jobs/digital-transformation",
+      "https://www.free-work.com/fr/tech-it/jobs/scrum-master"
     ]
   },
   "sasu": {

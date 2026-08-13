@@ -160,10 +160,20 @@ def rank_items(items: list[SearchItem], positive: list[str], negative: list[str]
     return scored[:limit]
 
 
+TOKENFORGE_BLOCKED = [
+    "definition", "quest-ce quun llm", "qu'est-ce qu'un llm", "fonctionnement",
+    "c'est quoi", "what is an llm", "what is a llm", "explained for beginners",
+    "guide for beginners", "tutorial", "exemples",
+    "blockchain", "actif numérique", "crypto", "nft",
+]
+
+
 def extract_tokenforge_items(items: list[SearchItem], positive: list[str], limit: int) -> list[dict]:
     scored = []
     for item in items:
         text = text_of(item)
+        if any(b in text for b in TOKENFORGE_BLOCKED):
+            continue
         hits = keyword_hits(text, positive)
         if hits < 1:
             continue

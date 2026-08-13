@@ -106,19 +106,20 @@ def analyser(profils_data: dict, config: dict) -> list[dict]:
     sasu = config.get("sasu", {})
     tjm_cible = int(sasu.get("tjm_cible", 650))
     tjm_min = int(sasu.get("tjm_min", 550))
+    seuil_echantillon = int(config.get("veille_tarifaire", {}).get("seuil_echantillon", 3))
 
     analyses = []
     for nom, data in profils_data.items():
         tjms = data["tjms"]
-        if not tjms:
+        if not tjms or len(tjms) < seuil_echantillon:
             analyses.append({
                 "profil": nom,
                 "resultats": len(data["results"]),
-                "tjms_trouves": 0,
+                "tjms_trouves": len(tjms),
                 "tjm_moyen": 0,
                 "tjm_min_trouve": 0,
                 "tjm_max_trouve": 0,
-                "recommandation": "Donnees insuffisantes pour ce profil",
+                "recommandation": "Pas assez de TJM publies pour tirer une conclusion fiable",
                 "alerte": False,
             })
             continue
@@ -221,11 +222,14 @@ def build_report(config: dict, analyses: list[dict], output_path: Path):
     add_separator(doc)
     accent_heading(doc, "4. Actions recommandees")
     alerts = [a for a in analyses if a["alerte"]]
+    has_data = [a for a in analyses if a["tjms_trouves"] > 0 and a["tjm_moyen"] > 0]
     if alerts:
         for a in alerts:
             bullet(doc, f"ALERTE : {a['profil']} - {a['recommandation']}", size=10)
+    elif has_data:
+        bullet(doc, "Aucune alerte tarifaire ce mois-ci. Le positionnement est coherent avec le marche.")
     else:
-        bullet(doc, "Aucune alerte tarifaire cette semaine. Le positionnement est coherent avec le marche.")
+        bullet(doc, "Ce mois-ci, pas assez de donnees publiees pour comparer les TJM du marche. Je continue la veille et je referai le point le mois prochain.")
 
     doc.save(output_path)
     return output_path

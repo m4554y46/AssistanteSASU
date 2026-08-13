@@ -29,9 +29,9 @@
       "marche tokens IA explosion croissance projection 2026"
     ],
     "opportunity_queries": [
-      "site:free-work.com/fr/tech-it/product-owner/job-mission product owner IA freelance France",
-      "site:free-work.com/fr/tech/product-owner/job-mission product owner IA freelance France",
-      "site:free-work.com/fr/tech-it/assistant-chef-de-projet/job-mission chef de projet IA freelance France",
+      "site:free-work.com/fr/tech-it/jobs/product-owner product owner IA freelance France",
+      "site:free-work.com/fr/tech-it/jobs/product-manager product manager IA freelance France",
+      "site:free-work.com/fr/tech-it/jobs/chef-de-projet chef de projet IA freelance France",
       "site:free-work.com/fr/tech-it/jobs/ia-generative freelance chef de projet product owner IA",
       "site:linkedin.com/jobs/view product owner IA freelance France",
       "site:linkedin.com/jobs/view product manager IA freelance France",
@@ -43,17 +43,17 @@
       "consultant produit mission courte audit organisation 2026",
       "formation product manager chef de projet IA atelier 2026",
       "site:malt.fr mission conseil produit digital transformation",
-      "site:free-work.com/fr/tech-it/consultant/job-mission freelance transformation digitale",
-      "site:free-work.com/fr/tech-it/coach-agile/job-mission product owner agile"
+      "site:free-work.com/fr/tech-it/jobs/head-of-product freelance transformation digitale",
+      "site:free-work.com/fr/tech-it/jobs/scrum-master product owner agile"
     ],
     "freework_pages": [
       "https://www.free-work.com/fr/tech-it/jobs/ia-generative",
-      "https://www.free-work.com/fr/tech-it/product-owner/job-mission",
-      "https://www.free-work.com/fr/tech/product-owner/job-mission",
-      "https://www.free-work.com/fr/tech-it/assistant-chef-de-projet/job-mission",
-      "https://www.free-work.com/fr/tech-it/consultant/job-mission",
-      "https://www.free-work.com/fr/tech-it/coach-agile/job-mission",
-      "https://www.free-work.com/fr/tech-it/formation/job-mission"
+      "https://www.free-work.com/fr/tech-it/jobs/product-owner",
+      "https://www.free-work.com/fr/tech-it/jobs/product-manager",
+      "https://www.free-work.com/fr/tech-it/jobs/chef-de-projet",
+      "https://www.free-work.com/fr/tech-it/jobs/head-of-product",
+      "https://www.free-work.com/fr/tech-it/jobs/digital-transformation",
+      "https://www.free-work.com/fr/tech-it/jobs/scrum-master"
     ],
     "tokenforge_queries": [
       "site:github.com LLM token compression proxy cost reduction",

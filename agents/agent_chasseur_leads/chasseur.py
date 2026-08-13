@@ -41,13 +41,28 @@ BLOCKED_DOMAINS = [
     "aujourdhui", "linternaute",
     "cabinets-conseil.com", "edcparis.edu", "consultport.com",
     "linkup-coaching.com", "scrum.org",
+    "producthunt", "keejob", "optioncarriere", "acc.tn", "lci.com.tn",
+    "indeed", "glassdoor", "monster", "kijiji", "emploitic", "tanitjobs",
+    "kejobb", "paysage-tunisie",
 ]
 
 BLOCKED_ROLES = [
     "cobol", "mainframe", "as400", "rust", "developpeur back",
     "charge de recrutement", "ingenieur reseau", "analyste mainframe",
-    "integrateur devops", "ingenieur devops",
-    "mission locale",
+    "integrateur devops", "ingenieur devops", "mission locale",
+    "software engineer", "data scientist", "data engineer", "llm engineer",
+    "tech lead", "full stack", "fullstack", "front end", "frontend",
+    "back end", "backend", "developpeur", "developpement", "ingenieur",
+    "java", "angular", "react", "node.js", "python", "sap", "erp developer",
+    "devops", "sysadmin", "administrateur systeme", "testeur", "qa engineer",
+    "designer", "graphiste", "ux designer", "art director",
+    "data analyst", "analyste donnees", "dba", "développeur",
+    "analyste metier", "analyste programmeur", "concepteur", "integrateur",
+    "gestionnaire de service", "admin", "administrateur", "expert technique",
+    "business analyst", "architecte",
+    "telecom", "infrastructure", "production", "cybersecurite", "securite it",
+    "compliance", "conformite", "audit", "risques it", "grc", "risque operationnel",
+    "paie", "rh ", "ressources humaines", "recrutement", "drh",
 ]
 
 BLOCKED_WORDS = [
@@ -74,13 +89,90 @@ def _is_latin(text: str) -> bool:
     return True
 
 
+# Slogans et appels publicitaires qui ne sont jamais une vraie description de mission
+SLUG_PHRASES = [
+    "decouvrez", "trouvez votre prochain poste", "postulez facilement",
+    "les meilleurs", "offres d'emploi", "tous les postes a pourvoir",
+    "en une seule recherche", "consultez nos", "consulte nos",
+    "the best new products", "every day", "everyone's talking about",
+    "curation of the best", "browse", "sign up", "join now",
+    "meilleures offres d'emploi", "de nouvelles offres", "offres du jour",
+    "utilisez votre reseau professionnel",
+]
+
+
+def _clean_description(raw: str, max_len: int = 320) -> str:
+    """Nettoie un snippet : supprime les slogans, ne garde que des phrases
+    completes (fini les bouts de phrases tronques en plein milieu)."""
+    if not raw:
+        return ""
+    text = raw.strip()
+    if not text:
+        return ""
+
+    # Suppression des slogans / contenus publicitaires
+    lower = text.lower()
+    for phrase in SLUG_PHRASES:
+        if phrase in lower:
+            return ""
+
+    # Decoupage en phrases : on ne garde que celles qui se terminent
+    # par une ponctuation reelle (point, point d'exclamation, points de
+    # suspension) et pas un point interne comme dans "Node.js".
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    kept = []
+    for sent in sentences:
+        s = sent.strip()
+        if not s:
+            continue
+        if not re.search(r"[.!?]\s*$", s):
+            break
+        kept.append(s)
+    text = " ".join(kept)
+    if len(text) < 25:
+        return ""
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) > max_len:
+        text = text[:max_len].rstrip() + "…"
+    return text
+
+
+def _clean_title(raw: str, max_len: int = 120) -> str:
+    """Nettoie un titre : enleve les prefixes 'Mission freelance 103025/',
+    les codes departement, les localisations repetees et le nom de la
+    plateforme en fin de chaine."""
+    if not raw:
+        return ""
+    text = raw.strip()
+    # Prefixe "Entreprise – Mission freelance <id>/" ou "Entreprise – Mission freelance "
+    text = re.sub(r"^.*?[-–]\s*Mission\s*freelance\s*(\d*/)?", "", text)
+    # Suffixe " | Free-work", " | Free-Work"
+    text = re.sub(r"\s*[|]\s*free-?work.*$", "", text, flags=re.I)
+    # Codes departement (63), region (63)
+    text = re.sub(r"\s*\(\d{1,3}\)", "", text)
+    # Dedoublonne les mots consecutifs identiques (Clermont-Ferrand Clermont-Ferrand)
+    text = re.sub(r"\b(\w+(?:-\w+)*)\s+\1\b", r"\1", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) > max_len:
+        text = text[:max_len].rstrip() + "…"
+    return text
+
+
 def is_blocked(item: SearchResult) -> bool:
     if any(d in item.source.lower() for d in BLOCKED_DOMAINS):
         return True
-    text = f"{item.title} {item.snippet}".lower()
-    if any(role in text for role in BLOCKED_ROLES):
+    title_lower = item.title.lower()
+    # Roles bloques : on regarde le TITRE du poste uniquement, pas la
+    # description (sinon "Product Owner" avec mention "production" dans
+    # le texte serait rejete a tort).
+    if any(role in title_lower for role in BLOCKED_ROLES):
         return True
-    if any(w in text for w in BLOCKED_WORDS):
+    # Mots "contenu" (formation, cours...) : titre uniquement, car une
+    # vraie description de mission peut legitiment les mentionner.
+    if any(w in title_lower for w in BLOCKED_WORDS):
+        return True
+    text = f"{item.title} {item.snippet}".lower()
+    if any(phrase in text for phrase in SLUG_PHRASES):
         return True
     if not _is_latin(item.title) or (item.snippet and not _is_latin(item.snippet)):
         return True
@@ -91,24 +183,35 @@ def calculer_score_mission(item: SearchResult, profil: dict) -> dict | None:
     text = f"{item.title} {item.snippet} {item.source}".lower()
     url = item.url.lower()
 
-    positive = [
-        "directeur de projet", "head of product", "product manager", "product owner",
-        "product management", "transformation digitale", "transformation numérique",
-        "mobile", "omnicanal", "retail", "luxe", "logistique", "ecommerce",
-        "strategie produit", "roadmap", "delivery", "agile", "scrum",
-        "management", "pilotage", "maîtrise d'ouvrage", "assistance maîtrise d'ouvrage",
-        "AMOA", "MOA", "program manager", "consultant",
-        "international", "worldwide", "ERP", "PIM", "CRM",
-        "conseil", "audit", "accompagnement", "transformation",
+    # Vrais roles : ceux qui correspondent au profil de Michael. Seuls ceux-la
+    # donnent un "fit competences" presentable a un humain.
+    role_keywords = [
+        "directeur de projet", "chef de projet", "head of product",
+        "product manager", "product owner", "product management",
+        "program manager", "delivery manager", "maîtrise d'ouvrage",
+        "assistance maîtrise d'ouvrage", "product lead", "chief product",
+        "consultant", "consulting", "strategy", "strategie", "transformation",
+        "scrum master", "coach agile", "agile coach", "manager de programme",
     ]
+    # Signaux faibles : confirment qu'on est bien sur une mission (pas la qualifient)
+    mission_signals = ["freelance", "mission", "tjm", "job-mission", "consultant"]
+
     industries = [ind.lower() for ind in profil.get("industries", [])]
 
-    pos_hits = [kw for kw in positive if kw in text]
+    role_hits = [kw for kw in role_keywords if kw in text]
     industry_hits = [ind for ind in industries if ind in text]
+    has_mission_signal = any(sig in text for sig in mission_signals)
 
-    # Must have at least 1 positive hit or a direct role match
-    has_role = any(role in text for role in ["directeur de projet", "head of product", "product manager", "product owner", "program manager", "maîtrise d'ouvrage", "delivery manager"])
-    if not pos_hits and not has_role:
+    is_freework_direct = "free-work.com" in item.source and "/job-mission/" in url
+
+    # Un vrai resultat doit avoir un role cible, ou etre une page Free-Work directe
+    # (mission certaine par construction) - mais meme la, on exige un role ou un secteur.
+    if not role_hits:
+        if not (is_freework_direct and industry_hits):
+            return None
+
+    # Les pages type "annuaire/portail emploi" ne sont jamais des missions
+    if not is_freework_direct and not re.search(r"/job|/mission|/emploi|/offre", url):
         return None
 
     tjm_match = re.search(r"tjm[:\s]*(\d{3,4})|minDailySalary[:\"]+(\d{3,4})|maxDailySalary[:\"]+(\d{3,4})", text, re.I)
@@ -116,10 +219,15 @@ def calculer_score_mission(item: SearchResult, profil: dict) -> dict | None:
     for g in tjm_match.groups() if tjm_match else []:
         if g:
             tjm_extracted = max(tjm_extracted, int(g))
+    # Le TJM peut venir du champ structure Free-Work
+    if item.tjm:
+        tjm_extracted = max(tjm_extracted, item.tjm)
 
     raw_score = 3.0
-    raw_score += min(len(pos_hits) * 0.7, 3.5)
+    raw_score += min(len(role_hits) * 0.9, 3.2)
     raw_score += min(len(industry_hits) * 0.6, 1.8)
+    if has_mission_signal:
+        raw_score += 0.3
 
     if "free-work.com" in item.source and "/job-mission/" in url:
         raw_score += 0.8
@@ -136,7 +244,7 @@ def calculer_score_mission(item: SearchResult, profil: dict) -> dict | None:
         raw_score += 0.3
         tjm_label = f"{tjm_extracted}EUR (moyen)"
     else:
-        tjm_label = f"{tjm_extracted}EUR" if tjm_extracted > 0 else "non specific"
+        tjm_label = f"{tjm_extracted}EUR" if tjm_extracted > 0 else "non communiqué"
 
     score = max(0.5, min(9.5, round(raw_score, 1)))
 
@@ -149,7 +257,8 @@ def calculer_score_mission(item: SearchResult, profil: dict) -> dict | None:
     else:
         decision = "SURVEILLER"
 
-    fit_skills = pos_hits[:5]
+    # Fit competences : uniquement les vrais roles, pas les mots generiques
+    fit_skills = role_hits[:5]
     return {
         "title": item.title,
         "url": item.url,
@@ -162,6 +271,8 @@ def calculer_score_mission(item: SearchResult, profil: dict) -> dict | None:
         "decision": decision,
         "industry_match": industry_hits,
         "company": item.company,
+        "location": item.location,
+        "duration": item.duration,
     }
 
 
@@ -224,12 +335,14 @@ def collect_missions(agent_cfg: dict, profil: dict) -> list[dict]:
             "snippet": m.get("description", m.get("contexte", "")),
             "source": m.get("source", "manuel"),
             "score": 8.0,
-            "tjm": f"{tjm_val}EUR" if tjm_val > 0 else "non specific",
+            "tjm": f"{tjm_val}EUR" if tjm_val > 0 else "non communiqué",
             "tjm_value": tjm_val,
             "fit_skills": [],
             "decision": "POSTULER - Cible identifiee manuellement",
             "industry_match": [],
             "company": m.get("entreprise", "").strip(),
+            "location": m.get("localisation", "").strip(),
+            "duration": m.get("duree", "").strip(),
         })
     print(f"  Missions manuelles: {len(manual)}")
 
@@ -284,14 +397,31 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
     accent_heading(doc, "2. Missions qualifiees")
     for idx, m in enumerate(missions, 1):
         decision_color = GREEN if "PRIORITE" in m["decision"] else (RGBColor(200, 120, 0) if m["decision"] == "POSTULER" else GRAY)
-        para(doc, f"{idx}. {m['title']}", style="Heading 3")
+        para(doc, f"{idx}. {_clean_title(m['title'])}", style="Heading 3")
+
+        meta_parts = [f"Source : {m['source']}", f"Score : {m['score']}/10", f"TJM : {m['tjm']}"]
         p = para(doc, after=2)
-        set_run_font(p.add_run(f"Source : {m['source']} | Score : {m['score']}/10 | TJM : {m['tjm']}"), size=9.5, color=GRAY, bold=True)
+        set_run_font(p.add_run(" | ".join(meta_parts)), size=9.5, color=GRAY, bold=True)
+
         if m.get("url"):
-            set_run_font(p.add_run(f" | "), size=9.5, color=GRAY, bold=True)
+            p = para(doc, after=2)
+            set_run_font(p.add_run("Lien : "), size=9.5, color=GRAY)
             add_hyperlink(p, m["url"], m["url"])
-        if m.get("snippet"):
-            bullet(doc, f"Description : {m['snippet'][:500]}")
+
+        detail_lines = []
+        if m.get("company"):
+            detail_lines.append(f"Entreprise : {m['company']}")
+        if m.get("location"):
+            detail_lines.append(f"Localisation : {m['location']}")
+        if m.get("duration"):
+            detail_lines.append(f"Duree : {m['duration']}")
+        for line in detail_lines:
+            bullet(doc, line)
+
+        desc = _clean_description(m.get("snippet"))
+        if desc:
+            bullet(doc, f"Description : {desc}")
+
         if m.get("fit_skills"):
             bullet(doc, f"Fit competences : {', '.join(m['fit_skills'])}")
         if m.get("industry_match"):
@@ -305,16 +435,19 @@ def build_report(config: dict, missions: list[dict], output_path: Path):
     if bulletin:
         para(doc, "Missions a cibler cette semaine :", style="Heading 2")
         for m in bulletin[:3]:
-            bullet(doc, f"{m['title']} - {m['source']} (TJM: {m['tjm']})")
+            bullet(doc, f"{_clean_title(m['title'])} - {m['source']} (TJM: {m['tjm']})")
     else:
         bullet(doc, "Aucune mission prioritaire detectee ce cycle.")
 
     if premium:
         bullet(doc, f"TJM moyen des missions premium : {sum(m['tjm_value'] for m in premium)/len(premium):,.0f} EUR")
-    if premium:
-        bullet(doc, f"Votre TJM cible ({tjm_cible} EUR) tient la route par rapport au marche actuel.")
+        bullet(doc, f"Ton TJM cible ({tjm_cible} EUR) reste coherent avec le marche actuel.")
+    elif missions:
+        bullet(doc, "Cette semaine, aucune mission avec un TJM annonce dans la fourchette visee, mais plusieurs pistes pertinentes a explorer.")
+        bullet(doc, "Je continue de surveiller les nouvelles publications la semaine prochaine.")
     else:
-        bullet(doc, "Je te suggere d'elargir les criteres de recherche pour trouver plus de missions.")
+        bullet(doc, "Cette semaine, rien de pertinent n'a ete publie sur les plateformes surveillees.")
+        bullet(doc, "Je continue de surveiller les nouvelles publications la semaine prochaine.")
 
     add_separator(doc)
     accent_heading(doc, "4. Profil valorise")
@@ -359,7 +492,7 @@ def generate_prospection_pack(config: dict, missions: list[dict], output_dir: Pa
                         "snippet": "",
                         "source": row.get("source", ""),
                         "score": 10.0,
-                        "tjm": "non specific",
+                        "tjm": "non communiqué",
                         "tjm_value": 0,
                         "fit_skills": [],
                         "decision": "CONTACTER - Lead identifie manuellement",

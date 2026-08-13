@@ -31,6 +31,8 @@ BLOCKED_DOMAINS = [
     "synonymo", "aujourdhui",
     "opencare.com", "doctor.webmd.com", "deltadental.com", "seattlemet.com",
     "zocdoc.com", "healthgrades.com", "ratemds.com",
+    "agents-immo.fr", "agentprovocateur.com", "transformation.co.uk",
+    "ai-explorer.io", "mairie-", "annuaire-mairie",
 ]
 
 BLOCKED_CONTENT = [

@@ -30,6 +30,8 @@ BLOCKED_DOMAINS = [
     "cambridge", "merriam", "oxford", "collins",
     "allocine", "mozzartbet", "bet365", "parionssport", "poker",
     "synonymo", "aujourdhui",
+    "producthunt", "keejob", "optioncarriere", "acc.tn", "lci.com.tn",
+    "indeed", "glassdoor", "monster", "kijiji",
 ]
 
 
@@ -42,6 +44,9 @@ class SearchResult:
     published: str | None = None
     query: str | None = None
     company: str | None = None
+    location: str | None = None
+    duration: str | None = None
+    tjm: int | None = None
 
 
 def _is_latin(text: str) -> bool:
@@ -60,6 +65,8 @@ def clean_text(value: str | None) -> str:
     if not value:
         return ""
     value = html.unescape(value)
+    # Decode les sequences \uXXXX presentes dans le JSON-LD des pages Free-Work
+    value = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), value)
     value = re.sub(r"<[^>]*>?", " ", value)
     value = re.sub(r"\s+", " ", value).strip()
     return value
@@ -195,6 +202,13 @@ def extract_freework_tjm(page: str) -> int | None:
                     return int(max_sal)
                 if min_sal and isinstance(min_sal, (int, float)):
                     return int(min_sal)
+                # baseSalary = {"value": 590, "unitText": "DAY"}
+                base = data.get("baseSalary", {})
+                if isinstance(base, dict):
+                    val = base.get("value") or (base.get("value", {}) or {}).get("value")
+                    unit = base.get("unitText")
+                    if val and isinstance(val, (int, float)) and unit and "DAY" in str(unit).upper():
+                        return int(val)
         except json.JSONDecodeError:
             pass
 
@@ -216,16 +230,23 @@ def extract_freework_tjm(page: str) -> int | None:
 
 
 def extract_freework_duration(page: str) -> str | None:
-    match = re.search(r"Durée\s*[:\s]*([^\n<]+)", page, flags=re.I)
+    match = re.search(r"Dur[ée]e\s*[:\s]*([^\n<]{1,40})", page, flags=re.I)
     if match:
-        return match.group(1).strip()
+        value = match.group(1).strip()
+        # Ne garde que les formes courtes et propres (3 mois, 12 mois, 6 semaines...)
+        m = re.search(r"^\d+\s*(mois|jours|semaines|semaine|jour|an|ans)(\s+renouvelable)?", value, re.I)
+        if m:
+            return m.group(0)
+        return None
     return None
 
 
 def extract_freework_location(page: str) -> str | None:
-    match = re.search(r"(?:Localisation|Lieu)\s*[:\s]*([^\n<]+)", page, flags=re.I)
+    match = re.search(r"(?:Localisation|Lieu)\s*[:\s]*([^\n<]{1,60})", page, flags=re.I)
     if match:
-        return match.group(1).strip()
+        value = match.group(1).strip()
+        if value and len(value) > 2:
+            return value
     return None
 
 
@@ -244,6 +265,20 @@ def extract_freework_company(page: str) -> str | None:
     match = re.search(r"-\s*(.+?)\s*\|", extract_page_title(page, ""))
     if match:
         return match.group(1).strip()
+    return None
+
+
+def _load_job_posting_ld(page: str) -> dict | None:
+    """Extrait le JSON-LD de type JobPosting d'une page Free-Work.
+    C'est la source la plus fiable : toutes les infos y sont structurees et propres."""
+    ld_matches = re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', page, re.I | re.S)
+    for ld_str in ld_matches:
+        try:
+            data = json.loads(ld_str)
+            if isinstance(data, dict) and data.get("@type") == "JobPosting":
+                return data
+        except json.JSONDecodeError:
+            continue
     return None
 
 
@@ -266,24 +301,42 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 50) -
         fallback = title_from_slug(url)
         try:
             page = fetch_url(url, timeout).decode("utf-8", "ignore")
+        except Exception:
+            continue
+        # Source fiable : JSON-LD JobPosting
+        ld = _load_job_posting_ld(page)
+        # La duree ("3 mois", "12 mois") n'est pas fiable dans le JSON-LD
+        # (index Nuxt), on l'extrait du texte affiche dans les deux cas.
+        clean_page = clean_text(page)
+        duree = extract_freework_duration(clean_page)
+        location_regex = extract_freework_location(clean_page)
+        if ld:
+            title = clean_text(ld.get("title") or fallback)
+            snippet = clean_text(ld.get("description") or "")
+            company = clean_text((ld.get("hiringOrganization") or {}).get("name") or "")
+            base = ld.get("baseSalary") or {}
+            if isinstance(base, dict):
+                val = base.get("value") or {}
+                if isinstance(val, dict):
+                    val = val.get("value")
+                unit = base.get("unitText") or ""
+                tjm = int(val) if isinstance(val, (int, float)) and "DAY" in str(unit).upper() else None
+            else:
+                tjm = None
+            loc = ld.get("jobLocation") or {}
+            address = loc.get("address") or {}
+            location = clean_text(address.get("addressLocality") or "") or location_regex
+            duree = duree
+        else:
             title = extract_page_title(page, fallback)
             snippet = extract_meta_description(page)
             tjm = extract_freework_tjm(page)
-            duree = extract_freework_duration(page)
-            location = extract_freework_location(page)
+            location = location_regex
             company = extract_freework_company(page)
-            extra = ""
-            if tjm:
-                extra += f" | TJM: {tjm}EUR"
-            if duree:
-                extra += f" | Duree: {duree}"
-            if location:
-                extra += f" | Localisation: {location}"
-            snippet += extra
-        except Exception:
-            title = fallback
-            snippet = "Offre Free-Work"
-            company = None
+            snippet = clean_text(snippet)
+            duree = clean_text(duree) if duree else None
+            location = clean_text(location) if location else None
+            company = clean_text(company) if company else None
         if not _is_latin(title) or (snippet and not _is_latin(snippet)):
             continue
         items.append(
@@ -294,6 +347,9 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 50) -
                 source="free-work.com",
                 query="Free-Work direct",
                 company=company,
+                location=location,
+                duration=duree,
+                tjm=tjm,
             )
         )
         time.sleep(0.3)

@@ -7,6 +7,7 @@ from typing import Any
 from core.common import (
     accent_heading,
     add_callout,
+    add_hyperlink,
     add_separator,
     bullet,
     ensure_output_dir,
@@ -100,14 +101,17 @@ BLOCKED_DOMAINS = [
     "decathlon", "booking", "tripadvisor",
     "larousse", "lerobert", "dictionnaire", "wiktionary", "cnrtl",
     "linternaute", "wikihow", "wikipedia",
+    "lalanguefrancaise", "compagnie-fiduciaire", "agentprovocateur",
     "fiverr", "freelance.com", "upwork", "peopleperhour",
-    "facebook", "instagram", "twitter", "x.com", "tiktok",
+    "facebook", "instagram", "meta.com", "play.google.com",
+    "twitter", "x.com", "tiktok",
     "youtube", "leboncoin",
     "wordreference", "linguee", "reverso",
     "cambridge", "merriam", "oxford", "collins",
     "allocine", "mozzartbet", "bet365", "parionssport", "poker",
     "synonymo",
-    "aujourdhui",
+    "aujourdhui", "transformation.co.uk",
+    "transformation.gouv.fr", "blog-expertise.fr", "ideascale.com",
 ]
 
 BLOCKED_WORDS = [
@@ -121,6 +125,26 @@ BLOCKED_WORDS = [
     "dentist", "dentiste", "dental", "tooth", "plumber",
     "avocat", "lawyer", "notaire", "medecin", "doctor",
     "restaurant", "immobilier", "real estate",
+    "cross dressing", "transgender", "lingerie", "swimwear", "hosiery",
+    "university", "universite", "université", "harvard", "primerbank",
+    "principes", "types", "types d'audit", "quest ce que", "qu'est-ce que",
+    "ecole", "school", "faculte", "faculté",
+]
+
+# Liste blanche : seuls les articles de ces sources sont retenus dans la
+# newsletter. Les resultats Bing hors de ces domaines sont presque toujours
+# hors sujet (agregateurs, definitions, sites commerciaux).
+TRUSTED_DOMAINS = [
+    "svpg.com", "producttalk.org", "martinfowler.com", "agilealliance.org",
+    "medium.com", "productcoalition", "mindtheproduct",
+    "openai.com", "anthropic.com", "ai.googleblog.com", "blog.google",
+    "deepmind.google", "mistral.ai", "huggingface.co", "hbr.org",
+    "mckinsey.com", "bcg.com", "theverge.com", "techcrunch.com",
+    "venturebeat.com", "stripe.com", "basecamp.com", "teamtopologies.com",
+    "github.blog", "github.com", "docs.github.com", "towardsdatascience.com",
+    "atlassian.com", "scaledagileframework.com", "productplan.com",
+    "intercom.com", "productcoaching.com", "lennyrachitsky.com",
+    "firstround.com", "a16z.com", "sequoiacap.com",
 ]
 
 THEME_QUERIES = {
@@ -172,6 +196,8 @@ def _filtrer(items: list[SearchResult]) -> list[SearchResult]:
         text = f"{title} {snippet}"
         if any(d in source for d in BLOCKED_DOMAINS):
             continue
+        if not any(t in source for t in TRUSTED_DOMAINS):
+            continue
         if any(w in text for w in BLOCKED_WORDS):
             continue
         if not _is_latin(item.title) or (item.snippet and not _is_latin(item.snippet)):
@@ -198,18 +224,17 @@ def generer_veille_semaine(company: str) -> dict:
 
     if not articles:
         corps = "Pas d'article suffisamment pertinent cette semaine dans ma veille IA/Product."
+        items = []
     else:
-        lignes = []
-        for a in articles:
-            lignes.append(f"- {a.title} ({a.source})\n  {a.url}")
-        articles_str = "\n".join(lignes)
-        corps = f"Voici les articles que j'ai releves cette semaine :\n\n{articles_str}"
+        items = [{"title": a.title, "url": a.url, "source": a.source} for a in articles]
+        corps = "Voici les articles que j'ai releves cette semaine :"
 
     return {
         "titre": titre,
         "corps": corps,
         "accroche": titre,
         "type": "Veille hebdomadaire",
+        "articles": items,
     }
 
 
@@ -264,16 +289,17 @@ def generer_analyse_tendance(company: str) -> dict:
 
     if not articles:
         corps = "Pas de tendance marquante cette semaine dans le secteur. Je continue la veille."
+        items = []
     else:
-        refs = articles[:2]
-        lignes = "\n".join(f"- {r.title} ({r.source})\n  {r.url}" for r in refs)
-        corps = f"Signaux retenus cette semaine :\n\n{lignes}"
+        items = [{"title": a.title, "url": a.url, "source": a.source} for a in articles[:2]]
+        corps = "Signaux retenus cette semaine :"
 
     return {
         "titre": titre,
         "corps": corps,
         "accroche": titre,
         "type": "Analyse de tendance",
+        "articles": items,
     }
 
 
@@ -287,9 +313,13 @@ def build_report(config: dict, contenus: list[dict], output_path: Path):
 
     for idx, c in enumerate(contenus, 1):
         para(doc, f"{idx}. {c['titre']}", style="Heading 3")
-        p = para(doc, after=2)
-        set_run_font(p.add_run(f"Type : {c['type']}"), size=9.5, color=GRAY)
         para(doc, c["corps"], before=4, after=6)
+        for art in c.get("articles", []):
+            p = para(doc, after=2)
+            set_run_font(p.add_run(f"- {art['title']} "), size=10.5)
+            add_hyperlink(p, art["url"], art["url"])
+            p2 = para(doc, after=6)
+            set_run_font(p2.add_run(f"   Source : {art['source']}"), size=9.5, color=GRAY)
         doc.add_page_break()
 
     doc.save(output_path)

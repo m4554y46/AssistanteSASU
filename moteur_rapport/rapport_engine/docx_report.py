@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from datetime import date
 from pathlib import Path
 
@@ -29,7 +30,6 @@ _V = {
     "subtitle": "Veille, prospection et ressources de la semaine",
     "veille_intro": "Voici les articles et ressources retenus cette semaine.",
 }
-
 
 def set_run_font(run, name="Calibri", size=None, color=None, bold=None, italic=None):
     run.font.name = name
@@ -135,8 +135,12 @@ def first_sentence(text: str, fallback: str) -> str:
     clean = " ".join((text or "").split())
     if not clean:
         return fallback
+    clean = clean.replace("\u2014", "-").replace("\u2013", "-")
+    clean = re.sub(r"(?i)^listen to this episode on[:]?\s*", "", clean)
+    clean = re.sub(r"(?i)^spotify\s*\|.*?(apple\s*)?podcasts?\s*", "", clean)
+    clean = re.sub(r"(?i)^in our last article,?\s*", "", clean)
     parts = clean.split(". ")
-    return (parts[0] + ".")[:420]
+    return (parts[0].strip() + ".")[:420]
 
 
 def add_page_number(footer):
@@ -339,73 +343,70 @@ def add_dashboard(doc, articles, opportunities, meta):
     make_pro_table(doc,
         ["Signal", "Observation", "Action conseillee", "Priorite"],
         [
-            ["Veille IA/Product", f"{len(articles)} contenus retenus", "Transformer 1 signal en post LinkedIn", "Haute"],
+            ["Veille IA/Product", f"{len(articles)} contenus retenus", "Enrichir le discours commercial", "Haute"],
             ["Prospection", opp_label, "Qualifier les 2 meilleurs fits", opp_priority],
         ],
         [1.4, 2.2, 2.1, 0.8],
     )
 
 
+def _norm_title(title: str) -> str:
+    return (title or "").replace("\u2014", "-").replace("\u2013", "-")
+
+
 def add_article(doc, idx, item):
-    accent_heading(doc, f"{idx}. {item['title']}", level=3)
+    accent_heading(doc, f"{idx}. {_norm_title(item['title'])}", level=3)
     p = para(doc, after=2)
     set_run_font(p.add_run(f"Source : {item['source']}"), size=9.5, color=GRAY, bold=True)
     p2 = para(doc, after=4)
     add_hyperlink(p2, item["url"], item["url"])
     resume = first_sentence(item.get("snippet", ""), "Aucun extrait disponible.")
-    bullet(doc, f"En bref : {resume}")
+    if resume != "Aucun extrait disponible.":
+        bullet(doc, resume)
 
 
 def add_opportunity(doc, idx, item):
-    accent_heading(doc, f"{idx}. {item['title']}", level=3)
+    accent_heading(doc, f"{idx}. {_norm_title(item['title'])}", level=3)
     p = para(doc, after=2)
     set_run_font(p.add_run(f"Plateforme : {item['source']}"), size=9.5, color=GRAY, bold=True)
     p2 = para(doc, after=4)
     add_hyperlink(p2, item["url"], item["url"])
     resume = first_sentence(item.get("snippet", ""), "Aucun descriptif disponible.")
-    bullet(doc, f"Descriptif : {resume}")
+    if resume != "Aucun descriptif disponible.":
+        bullet(doc, resume)
 
 
 def add_methods(doc, methods):
     accent_heading(doc, "4. Ressources et methodes")
     for method in methods:
         accent_heading(doc, method["name"], level=3)
-        bullet(doc, "Definition : " + method["definition"])
-        bullet(doc, "Interet business : " + method["business_value"])
-        bullet(doc, "Cas d'utilisation client : " + method["client_use"])
-        bullet(doc, "Usage commercial pour la societe : " + method["commercial_use"])
+        bullet(doc, method["definition"])
+        bullet(doc, f"Interet pour les clients : {method['business_value']}")
+        bullet(doc, f"Quand l'utiliser : {method['client_use']}")
+        bullet(doc, f"Comment en parler : {method['commercial_use']}")
         p = para(doc, after=4)
         set_run_font(p.add_run("Source : "), size=9.5, color=GRAY, bold=True)
         add_hyperlink(p, method["url"], method["url"])
 
 
 def add_actions(doc, articles, opportunities):
-    accent_heading(doc, "5. Recommandations operationnelles")
-    para(doc, "Priorites pour la semaine suivante", style="Heading 2")
-    top_opp = opportunities[0]["title"] if opportunities else "la meilleure opportunite identifiee"
-    top_article = articles[0]["title"] if articles else "le signal IA/Product le plus fort"
-    bullet(doc, f"Qualifier en priorite : {top_opp}.")
-    bullet(doc, f"Utiliser l'article '{top_article}' pour un post LinkedIn cette semaine.")
+    accent_heading(doc, "5. Priorites de la semaine")
+    top_opp = _norm_title(opportunities[0]["title"]) if opportunities else "la meilleure opportunite identifiee"
+    top_article = _norm_title(articles[0]["title"]) if articles else "le signal IA/Product le plus fort"
+    if opportunities:
+        bullet(doc, f"A qualifier en premier : {top_opp}.")
+    if articles:
+        bullet(doc, f"Article a garder sous le coude pour tes prochains echanges : '{top_article}'.")
+    if not opportunities and not articles:
+        bullet(doc, "Rien de nouveau a traiter cette semaine. Je continue de surveiller les publications.")
 
 
 def add_sources(doc, articles, opportunities, methods, meta):
-    accent_heading(doc, "6. Sources et URLs verifiables")
-    if meta.get("errors"):
-        para(doc, "Limites rencontrees", style="Heading 2")
-        for err in meta["errors"][:8]:
-            bullet(doc, err)
-    for item in articles + opportunities:
-        p = para(doc, after=2)
-        set_run_font(p.add_run(f"{item['title']} - "), size=9.3, color=GRAY, bold=True)
-        add_hyperlink(p, item["url"], item["url"])
-    for method in methods:
-        p = para(doc, after=2)
-        set_run_font(p.add_run(f"{method['name']} - "), size=9.3, color=GRAY, bold=True)
-        add_hyperlink(p, method["url"], method["url"])
+    pass
 
 
 def _repo_name(item: dict) -> str:
-    title = item.get("title", "")
+    title = item.get("title", "").replace("\u2014", "-").replace("\u2013", "-")
     for prefix in ["GitHub - ", "GitHub: ", "github.com/"]:
         if title.startswith(prefix):
             title = title[len(prefix):]
@@ -428,48 +429,41 @@ def add_tokenforge_watch(doc, items: list[dict]):
     if articles_news:
         accent_heading(doc, "A. Marche et actualites des prix", level=2)
         for a in articles_news[:5]:
-            title = a.get("title", "")[:120]
-            snippet = a.get("snippet", "")[:250]
-            bullet(doc, title, size=10)
+            title = a.get("title", "")[:120].replace("\u2014", "-").replace("\u2013", "-")
+            resume = first_sentence(a.get("snippet", ""), "")
             p = para(doc, after=2)
-            set_run_font(p.add_run(snippet + " "), size=9, color=GRAY)
+            set_run_font(p.add_run(title), size=10, bold=True, color=NAVY)
+            p2 = para(doc, after=2)
+            if resume:
+                set_run_font(p2.add_run(resume + " "), size=9, color=GRAY)
             if a.get("url"):
-                add_hyperlink(p, a["url"], a["url"])
+                add_hyperlink(p2, a["url"], a["url"])
 
     if github_repos:
-        accent_heading(doc, "B. Routeurs, compresseurs et outils FinOps", level=2)
-        make_pro_table(doc,
-            ["Outil", "Description", "Pertinence TokenForge", "Lien"],
-            [
-                [
-                    _repo_name(g),
-                    g.get("snippet", "")[:150],
-                    f"{g['score']}/10",
-                    g.get("url", ""),
-                ]
-                for g in github_repos[:6]
-            ],
-            [1.8, 2.5, 0.8, 1.3],
-        )
+        accent_heading(doc, "B. Outils et initiatives open source", level=2)
         for g in github_repos[:6]:
+            name = _repo_name(g)
+            resume = first_sentence(g.get("snippet", ""), "")
             p = para(doc, after=2)
-            set_run_font(p.add_run(f"{_repo_name(g)} : "), size=9, color=NAVY, bold=True)
+            set_run_font(p.add_run(name + " "), size=10, bold=True, color=NAVY)
+            if resume:
+                set_run_font(p.add_run(resume + " "), size=9, color=GRAY)
             add_hyperlink(p, g.get("url", ""), g.get("url", ""))
 
-    accent_heading(doc, "C. Analyse et actions pour TokenForge", level=2)
+    accent_heading(doc, "C. Ce que j'en retiens pour TokenForge", level=2)
     vendors_news = [i for i in articles_news if any(v in (i.get("title","") + i.get("snippet","")).lower() for v in ["openai", "anthropic", "google", "mistral", "pricing", "tarif", "price"])]
     if vendors_news:
-        bullet(doc, "Mouvement sur le marche des API : les fournisseurs ajustent leurs grilles. A suivre pour ajuster les recommandations TokenForge.")
+        bullet(doc, "Les fournisseurs ajustent leurs grilles de prix. A suivre pour ajuster les recommandations TokenForge.")
     routers = [g for g in github_repos if any(r in (_repo_name(g)+g.get("snippet","")).lower() for r in ["router", "gateway", "litellm", "proxy", "route"])]
     if routers:
-        bullet(doc, f"{len(routers)} outil(s) de routage/commutation identifie(s) - regarder si un(e) peut etre integree dans TokenForge pour basculer sur le provider le moins cher en temps reel.")
+        bullet(doc, f"{len(routers)} outil(s) de routage entre fournisseurs identifie(s) - a regarder pour basculer sur le provider le moins cher en temps reel.")
     compressors = [g for g in github_repos if any(c in (_repo_name(g)+g.get("snippet","")).lower() for c in ["compress", "token", "rtk", "cache"])]
     if compressors:
-        bullet(doc, f"{len(compressors)} outil(s) de compression/caching identifie(s) - tester pour reduire les tokens avant envoi a l API.")
+        bullet(doc, f"{len(compressors)} outil(s) de compression ou de cache identifie(s) - a tester pour reduire les tokens envoyes a l'API.")
     budget = [i for i in items if any(b in (i.get("title","")+i.get("snippet","")).lower() for b in ["finops", "budget", "cost", "facture"])]
     if budget:
-        bullet(doc, f"{len(budget)} source(s) sur le FinOps IA - alimente la partie conseil de TokenForge (tableau de bord couts, alertes, plafonds).")
-    bullet(doc, "Prochaine etape : monter un petit comparatif des providers (OpenAI vs Anthropic vs Mistral vs Google) avec les prix token 2026 pour les clients TokenForge.")
+        bullet(doc, f"{len(budget)} source(s) sur la maitrise des couts IA - utile pour le volet conseil de TokenForge (tableau de bord couts, alertes, plafonds).")
+    bullet(doc, "Prochaine etape : monter un petit comparatif des fournisseurs (OpenAI vs Anthropic vs Mistral vs Google) avec les prix token 2026 pour les clients TokenForge.")
 
 
 def build_report(config: dict, articles: list[dict], opportunities: list[dict], methods: list[dict], meta: dict, output_path: Path, tokenforge_items: list[dict] | None = None) -> Path:
