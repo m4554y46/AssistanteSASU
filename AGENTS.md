@@ -121,6 +121,13 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 
 ## Live Session Log
 
+### 2026-08-20 (suite) — Dates des dossiers Livrables alignées sur leur contenu + anti-doublon
+
+- **Problème signalé par Michael** : les dossiers Livrables affichaient des dates de création/modification incohérentes (plusieurs datés du 23/07 et 13/08 — les jours du « rattrapage »), pas la semaine qu'ils contiennent. D'où l'impression que des semaines manquaient (notamment 7-17 août).
+- **`Fix-FolderDates()` ajouté dans `post_traitement_livrables.ps1`** : chaque dossier Livrable est daté selon son contenu — CreationTime = date la plus ancienne de ses fichiers, LastWriteTime = la plus récente. Appliqué automatiquement : (1) à chaque nouveau dossier créé, (2) à tous les dossiers existants à chaque exécution.
+- **Anti-doublon** : la détection « déjà traité » ignorait les dossiers portant un suffixe comme « (seminaire) » → le script recréait des doublons. Corrigé : la vérification utilise désormais un `-like "Livrable Semaine du ... *"` (pattern avec suffixe optionnel). 2 doublons créés pendant les tests supprimés.
+- **Vérifs** : relance du script sur les vrais dossiers → 0 nouveau dossier, 10 dossiers, dates cohérentes (ex. « 10 aout au 14 aout » → créé 06/08, modifié 12/08). Commit `4e4669a` poussé.
+
 ### 2026-08-20 — Audit complet : métadonnées DOCX détectables, secret SMTP purgé, déploiement robuste
 
 - **Résolution du dossier manquant du 20/08** : GitHub Actions avait bien poussé le commit `805e1c2` (Rapport, Chasseur, Newsletter, Prospection du 19/08), mais la tâche `ASTRA_DEPLOIEMENT_LIVRABLES` du 19/08 22:18 avait échoué (BSOD du PC à ce moment-là, erreur 0x800710E0). Le `git pull` local n'avait donc jamais eu lieu. Dossier « Livrable Semaine du 17 au 21 août 2026 » recréé manuellement via `post_traitement_livrables.ps1`.
