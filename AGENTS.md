@@ -133,6 +133,7 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 - **Corrections mineures** : code mort ghostwriter.py (bloc `return` dupliqué lignes 277-282 supprimé) ; seed aléatoire `GetHashCode()` remplacé par un hash déterministe stable dans `post_traitement_livrables.ps1` (GetHashCode peut varier entre runtimes) ; bug latent `($weeks.Keys | Sort-Object)[-1]` qui indexait dans une chaîne quand une seule semaine → `@(...)` forcé.
 - **Vérifs** : `py_compile` OK sur collectors.py, docx_report.py, ghostwriter.py ; `clean_opportunity_title()` testé (5 cas) ; dashboard testé (0/1/3 opportunités) ; `post_traitement_livrables.ps1` testé sur fichiers réels (timestamps fichiers + métadonnées internes cohérents, app.xml OK).
 - **À faire avant push** : régénérer la clé Brevo (Michael), réinstaller la tâche Windows, puis **force push** de la branche réécrite (historique purgé) — les commits locaux ont changé de hash (head actuel `445eafb`).
+- **STATUT 2026-08-20 (après-midi)** : force push effectué (head distant `5a89477`), tâche Windows `ASTRA_DEPLOIEMENT_LIVRABLES` réinstallée par Michael (3 triggers : login + démarrage + 18h, activée, prochaine exécution 18:00). Reste optionnel : rotation de la clé Brevo (Michael décide — le repo est privé, plus d'envoi email, le secret a été purgé de l'historique).
 
 ### 2026-07-12 — Style DOCX pro + filtrage anti-langues étrangères + livrables propres
 
