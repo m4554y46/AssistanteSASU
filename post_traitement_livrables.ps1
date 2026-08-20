@@ -88,6 +88,22 @@ function Get-DayTimestamps($dayKey, $count, $rng) {
     return $offsets
 }
 
+# Aligne les horodatages d'un dossier sur les fichiers qu'il contient :
+#   CreationTime  = date de creation la plus ancienne des fichiers
+#   LastWriteTime = date de modification la plus recente des fichiers
+# Sans cela, un dossier cree plus tard (rattrapage) affiche la date de sa
+# creation physique au lieu de la semaine qu'il represente.
+function Fix-FolderDates($dir) {
+    $files = @(Get-ChildItem $dir -Filter "*.docx" -ErrorAction SilentlyContinue)
+    if ($files.Count -eq 0) { return }
+    $minCreated = ($files | Sort-Object CreationTime | Select-Object -First 1).CreationTime
+    $maxModified = ($files | Sort-Object LastWriteTime -Descending | Select-Object -First 1).LastWriteTime
+    Set-ItemProperty -Path $dir -Name CreationTime -Value $minCreated
+    Set-ItemProperty -Path $dir -Name LastWriteTime -Value $maxModified
+    Set-ItemProperty -Path $dir -Name LastAccessTime -Value $maxModified
+    Write-Output "  [dossier] dates alignees sur son contenu : $([System.IO.Path]::GetFileName($dir))"
+}
+
 function Process-Week($monday, $files) {
     $friday = $monday.AddDays(4)
     $previousThursday = $monday.AddDays(-4)
@@ -103,7 +119,10 @@ function Process-Week($monday, $files) {
     $folderName = "Livrable Semaine du $($monday.Day) $($mois[$monday.Month]) au $($friday.Day) $($mois[$friday.Month]) $($monday.Year)"
     $weeklyDir = Join-Path $LivrablesRoot $folderName
 
-    if (Test-Path $weeklyDir) {
+    # Deja traite ? (un suffixe comme "(seminaire)" peut exister)
+    $existing = Get-ChildItem $LivrablesRoot -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "Livrable Semaine du $($monday.Day) $($mois[$monday.Month]) au $($friday.Day) $($mois[$friday.Month]) $($monday.Year)*" }
+    if ($existing) {
         return $null  # Already processed
     }
 
@@ -206,6 +225,8 @@ function Process-Week($monday, $files) {
         }
     }
 
+    Fix-FolderDates $weeklyDir
+
     return @{ Docs = $docs.Count; Folder = $folderName }
 }
 
@@ -269,6 +290,15 @@ foreach ($weekKey in ($weeks.Keys | Sort-Object)) {
         Write-Output "  -> $($result.Folder) : $($result.Docs) documents"
     } else {
         Write-Output "  Deja present : Livrable Semaine du $($monday.Day) $($mois[$monday.Month]) $($monday.Year)"
+    }
+}
+
+# Repare les horodatages des dossiers deja existants (creees plus tard lors
+# d'un rattrapage, ils affichaient leur date de creation physique)
+Write-Output "=== Alignement des dates des dossiers existants ==="
+Get-ChildItem $LivrablesRoot -Directory | ForEach-Object {
+    if (Get-ChildItem $_.FullName -Filter "*.docx" -ErrorAction SilentlyContinue) {
+        Fix-FolderDates $_.FullName
     }
 }
 
