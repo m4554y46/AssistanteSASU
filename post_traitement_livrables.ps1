@@ -187,21 +187,21 @@ function Process-Week($monday, $files) {
         if ($entry -and $entry.legacy) {
             $wed = $monday.AddDays(2)
             $lwt = [DateTime]::new($wed.Year, $wed.Month, $wed.Day, $dateTime.Hour, $dateTime.Minute, 0)
-            Set-ItemProperty -Path $destPath -Name LastWriteTime -Value $lwt
-            Set-ItemProperty -Path $destPath -Name LastAccessTime -Value $lwt
             $createHour = $rng.Next(9, 16)
             $createMin = $rng.Next(0, 59)
             $created = [DateTime]::new($previousThursday.Year, $previousThursday.Month, $previousThursday.Day, $createHour, $createMin, 0)
-            Set-ItemProperty -Path $destPath -Name CreationTime -Value $created
             Set-DocxMetadata $destPath $created $lwt
+            Set-ItemProperty -Path $destPath -Name LastWriteTime -Value $lwt
+            Set-ItemProperty -Path $destPath -Name LastAccessTime -Value $lwt
+            Set-ItemProperty -Path $destPath -Name CreationTime -Value $created
             Write-Output "  $($doc.Name) -> Jeu $($previousThursday.ToString('dd/MM')) (cree) / $($lwt.ToString('ddd dd/MM HH:mm')) (modifie)"
         } else {
             $createdMin = $rng.Next(2, 5)
             $created = $dateTime.AddMinutes(-$createdMin)
+            Set-DocxMetadata $destPath $created $dateTime
             Set-ItemProperty -Path $destPath -Name CreationTime -Value $created
             Set-ItemProperty -Path $destPath -Name LastWriteTime -Value $dateTime
             Set-ItemProperty -Path $destPath -Name LastAccessTime -Value $dateTime
-            Set-DocxMetadata $destPath $created $dateTime
             Write-Output "  $($doc.Name) -> $($dateTime.ToString('ddd dd/MM HH:mm'))"
         }
     }
@@ -275,7 +275,7 @@ foreach ($weekKey in ($weeks.Keys | Sort-Object)) {
 Write-Output "=== Termine : $totalFolders dossiers, $totalProcessed documents ==="
 
 # Open the latest week folder
-$latestWeek = ($weeks.Keys | Sort-Object)[-1]
+$latestWeek = @($weeks.Keys | Sort-Object)[-1]
 if ($latestWeek) {
     $m = $weeks[$latestWeek].Monday
     $folderName = "Livrable Semaine du $($m.Day) $($mois[$m.Month]) au $($m.AddDays(4).Day) $($mois[$m.AddDays(4).Month]) $($m.Year)"
