@@ -17,3 +17,4 @@ agents/output/*_log.json
 agents/output/prospection_tracking.csv
 agents/agent_cr_reunion/notes/processed/
 Livrable Semaine */
+deploiement.log

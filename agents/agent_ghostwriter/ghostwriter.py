@@ -274,13 +274,6 @@ def generer_astuce_pratique(company: str) -> dict:
         "type": "Conseil pratique",
     }
 
-    return {
-        "titre": titre,
-        "corps": corps,
-        "accroche": titre,
-        "type": "Conseil pratique",
-    }
-
 
 def generer_analyse_tendance(company: str) -> dict:
     queries = THEME_QUERIES["transformation"]

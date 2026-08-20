@@ -324,6 +324,29 @@ def extract_page_title(page: str, fallback: str) -> str:
     return fallback
 
 
+def clean_opportunity_title(raw: str, max_len: int = 110) -> str:
+    """Nettoie un titre d'opportunite Free-Work : enleve les prefixes
+    'Offre d'emploi', les mentions (H/F), les codes departement et le nom
+    de la plateforme. Copie du principe du chasseur (_clean_title)."""
+    if not raw:
+        return ""
+    text = raw.strip()
+    # Prefixes "Entreprise - Offre d'emploi ..." / "Offre d'emploi ..."
+    text = re.sub(r"^.*?[-–]\s*Offre\s+d'emploi\s*", "", text)
+    text = re.sub(r"^Offre\s+d'emploi\s*", "", text)
+    # Mentions (H/F), (F/H), (H/F/R), (CDI), (Remote), etc.
+    text = re.sub(r"\s*\([^)]*H/F[^)]*\)", "", text, flags=re.I)
+    text = re.sub(r"\s*\([^)]*F/H[^)]*\)", "", text, flags=re.I)
+    # Codes departement (59), (75), etc. - mais pas le nom de la ville entre parenthèses seul
+    text = re.sub(r"\s*\(\d{1,3}\)", "", text)
+    # Suffixe " | Free-work" (double securite)
+    text = re.sub(r"\s*[|]\s*free-?work.*$", "", text, flags=re.I)
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) > max_len:
+        text = text[:max_len].rstrip() + "…"
+    return text
+
+
 def extract_published(page: str) -> str | None:
     match = re.search(r"Publi[ée]e?\s+le\s+(\d{2}/\d{2}/\d{4})", page, flags=re.I)
     if not match:
@@ -352,6 +375,7 @@ def collect_freework_jobs(pages: list[str], timeout: int, max_links: int = 40) -
         try:
             page = fetch_url(url, timeout).decode("utf-8", "ignore")
             title = extract_page_title(page, fallback)
+            title = clean_opportunity_title(title)
             snippet = extract_meta_description(page)
             published = extract_published(page)
             verified = True

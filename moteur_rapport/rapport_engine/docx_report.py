@@ -339,12 +339,13 @@ def add_dashboard(doc, articles, opportunities, meta):
 
     opp_label = f"Aucune opportunite" if len(opportunities) == 0 else f"{len(opportunities)} opportunites retenues"
     opp_priority = "N/A" if len(opportunities) == 0 else "Haute"
+    opp_action = "Poursuivre la veille" if len(opportunities) == 0 else f"Qualifier les {min(len(opportunities), 5)} meilleures pistes"
 
     make_pro_table(doc,
         ["Signal", "Observation", "Action conseillee", "Priorite"],
         [
             ["Veille IA/Product", f"{len(articles)} contenus retenus", "Enrichir le discours commercial", "Haute"],
-            ["Prospection", opp_label, "Qualifier les 2 meilleurs fits", opp_priority],
+            ["Prospection", opp_label, opp_action, opp_priority],
         ],
         [1.4, 2.2, 2.1, 0.8],
     )
