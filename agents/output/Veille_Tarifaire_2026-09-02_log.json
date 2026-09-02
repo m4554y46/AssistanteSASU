@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-09-02T15:44:58.076394+00:00",
+  "analyses": [
+    {
+      "profil": "Product Owner",
+      "resultats": 57,
+      "tjms_trouves": 1,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Pas assez de TJM publies pour tirer une conclusion fiable",
+      "alerte": false
+    },
+    {
+      "profil": "Product Manager",
+      "resultats": 10,
+      "tjms_trouves": 0,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Pas assez de TJM publies pour tirer une conclusion fiable",
+      "alerte": false
+    },
+    {
+      "profil": "Chef de projet IT",
+      "resultats": 2,
+      "tjms_trouves": 0,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Pas assez de TJM publies pour tirer une conclusion fiable",
+      "alerte": false
+    },
+    {
+      "profil": "Consultant IA / Data",
+      "resultats": 30,
+      "tjms_trouves": 1,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Pas assez de TJM publies pour tirer une conclusion fiable",
+      "alerte": false
+    },
+    {
+      "profil": "Scrum Master / Agile Coach",
+      "resultats": 17,
+      "tjms_trouves": 1,
+      "tjm_moyen": 0,
+      "tjm_min_trouve": 0,
+      "tjm_max_trouve": 0,
+      "recommandation": "Pas assez de TJM publies pour tirer une conclusion fiable",
+      "alerte": false
+    }
+  ]
+}
