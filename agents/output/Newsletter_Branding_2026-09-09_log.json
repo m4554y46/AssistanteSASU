@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-09T15:39:46.622647+00:00",
+  "contenus": [
+    {
+      "titre": "Veille de la semaine du 9 septembre 2026",
+      "corps": "Pas d'article suffisamment pertinent cette semaine dans ma veille IA/Product.",
+      "accroche": "Veille de la semaine du 9 septembre 2026",
+      "type": "Veille hebdomadaire",
+      "articles": []
+    },
+    {
+      "titre": "Cas client : Accompagnement produit post-LBO",
+      "corps": "Contexte\nMichael est intervenu en tant que Product Manager freelance pour accompagner un groupe hotelier en pleine restructuration apres un LBO, avec des objectifs de croissance et de rentabilite.\n\nNotre intervention\nMission confiee : Product Manager (freelance)\nSecteur : Hotellerie / Services\n\nCe que nous avons fait :\n- Refonte du site web et de l'application mobile pour augmenter le taux de conversion\n- Mise en place et integration d'un PIM (Product Information Management)\n- Deploiement de solutions de reservation en ligne pour les clients directs\n- Management d'une equipe de Product Owners et de designers\n\nResultats\nAugmentation du taux de reservation directe, reduction des couts d'acquisition, plateforme digitale unifiee.",
+      "accroche": "Accompagnement produit post-LBO - Hotellerie / Services",
+      "type": "Cas client"
+    },
+    {
+      "titre": "Conseil pratique de la semaine",
+      "corps": "Un point souvent neglige mais qui fait la difference : la clarte du cadrage en amont. Avant de lancer un projet, posez-vous 3 questions : quel est le probleme, pour qui, et comment saurons-nous que c'est resolu ?",
+      "accroche": "Conseil pratique de la semaine",
+      "type": "Conseil pratique"
+    },
+    {
+      "titre": "Tendance de la semaine",
+      "corps": "Pas de tendance marquante cette semaine dans le secteur. Je continue la veille.",
+      "accroche": "Tendance de la semaine",
+      "type": "Analyse de tendance",
+      "articles": []
+    }
+  ]
+}
