@@ -1,0 +1,186 @@
+{
+  "generated_at": "2026-09-16T15:51:00.947971+00:00",
+  "missions_count": 10,
+  "missions": [
+    {
+      "title": "Consultant GO / Kubernetes",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant/consultant-go-kubernetes",
+      "snippet": "À propos de Sparrow Sparrow est une plateforme d’ IA et d’Analytics entièrement développée et exploitée en interne . Notre équipe développe un environnement technologique de pointe s’appuyant sur les dernières technologies open source , afin de proposer des solutions robustes et capables de monter en charge. En intégrant des technologies de Machine Learning (ML), d’Intelligence Artificielle (IA), d’IA générative (GenAI) et d’IA agentique , Sparrow permet aux équipes métiers et aux analystes d’innover et de créer de la valeur à partir des données dans l’ensemble de l’organisation. Notre mission est de fournir une plateforme fluide permettant d’accélérer la prise de décision grâce à l’IA . Elle permet notamment à des agents autonomes d’exécuter des tâches, de raisonner sur des jeux de données complexes et d’interagir dynamiquement avec les systèmes de l’entreprise, tout en garantissant scalabilité, sécurité, conformité et facilité d’utilisation . À propos du poste – Platform Engineer En tant que Platform Engineer au sein de l’équipe Sparrow de BNP Paribas Personal Finance, vous serez au cœur de la mission visant à accélérer l’utilisation du Machine Learning et la valorisation des données à grande échelle . Vous participerez à la construction et à la maintenance d’une plateforme ML & Data robuste , permettant aux Data Scientists et Data Analysts de se concentrer sur leur priorité : exploiter la valeur des données . Vous travaillerez au sein d’une Squad multidisciplinaire comprenant notamment un Product Owner, un Lead, des développeurs Front-end/Back-end et des DevOps. Vous serez notamment chargé(e) de : Concevoir, implémenter et maintenir le backend cloud de Sparrow , orchestré par des opérateurs Kubernetes développés en Golang . Utiliser des outils et bibliothèques open source standards : Argo, MLflow, VS Code , etc. Faire évoluer l’ architecture de la plateforme afin de répondre aux nouveaux besoins en Machine Learning, analyse et traitement de données. Maintenir et améliorer les pipelines CI/CD , les workflows de développement et les pratiques de sécurité. Participer à la gestion des incidents et au support de la plateforme , afin de garantir sa haute disponibilité et sa fiabilité. Impact auprès des différentes parties prenantes Pour les Data Scientists et Data Analysts : vous contribuerez à créer un environnement efficace et simple d’utilisation afin d’accélérer leur travail et de leur permettre de se concentrer sur la création de valeur plutôt que sur les problématiques d’infrastructure. Pour les équipes Engineering : vous fournirez des capacités de plateforme robustes ainsi que des bonnes pratiques permettant de développer efficacement des fonctionnalités à grande échelle. Pour les métiers : vous assurerez une haute disponibilité des composants et ressources , notamment des modèles utilisés en production. Pour l’organisation : vous contribuerez au maintien d’un haut niveau de sécurité et d’efficacité opérationnelle . Ce poste se situe donc à l’intersection du Cloud Computing, de l’infrastructure Machine Learning et du Software Engineering . Stack technique Langages : Golang ; Python est un plus Infrastructure : Kubernetes (IKS), Cert Manager, HashiCorp Vault, Full TLS Conteneurisation : Docker, BuildKit OS : Linux CI/CD : GitLab, GitLab CI, Artifactory Déploiement : ArgoCD, Helm, Kustomize Cache : Redis Sentinel Observabilité / Monitoring : Elasticsearch, Grafana, Beats, Kibana, APM, Prometheus Stockage : MinIO, Block Storage Automatisation : Ansible Profil recherchéCompétences et expériences requises Expérience significative en tant que Software Engineer ou Cloud Engineer ; le poste correspond à un niveau intermédiaire . Forte attention portée à la qualité et aux processus d’ingénierie logicielle . L’équipe exploite elle-même les solutions qu’elle développe et accorde une importance particulière à leur fiabilité. Expérience en Golang ; Python constitue un plus. Bonne maîtrise de Kubernetes On-Premise , l’ensemble des services et workloads fonctionnant sur Kubernetes au sein de plusieurs clusters. Bonnes capacités de communication écrite et orale . Niveau d’anglais correct, à l’écrit comme à l’oral. Orientation utilisateur et solution . Bonnes capacités analytiques et organisationnelles . Compétences appréciées Expérience sur des sujets liés au Machine Learning ou à l’Intelligence Artificielle . Expérience avec les technologies Cloud . Conditions de travail Le poste est basé dans un environnement Flex Office à Levallois-Perret ou Mérignac . Le télétravail régulier fait partie intégrante du mode de fonctionnement de l’équipe.",
+      "source": "free-work.com",
+      "score": 6.5,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "consultant"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "CAT-AMANIA",
+      "location": "Levallois-Perret",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Senior H/F",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-senior-h-f-28",
+      "snippet": "Chaque moment compte. Surtout ceux que vous vivez à fond. Bienvenue chez Consort Group. Consort Group, accompagne depuis plus de 30 ans les entreprises dans la valorisation de leurs données et infrastructures. Elle s'appuie sur deux leaders, Consortis et Consortia, et place l’humain et la responsabilité sociétale au cœur de ses valeurs. C’est votre future équipe Créée en 2010, l’agence Ouest rassemble aujourd’hui près de 230 collaborateurs. Elle s’est fortement orientée vers les expertises en intégration applicative et en testing, en s’appuyant sur ses Centres de Services. Le tout dans un esprit de convivialité et de proximité, au service des régions de Nantes, Rennes et Angers. Product Owner Senior H/F C’est votre mission Vous êtes passionné·e par la gestion de produit, l’agilité à l’échelle et la création de valeur métier ? Ce poste est fait pour vous. En tant que Product Owner Senior , vous êtes responsable du pilotage de la feuille de route fonctionnelle et de la maximisation de la valeur produit au sein d'une équipe stratégique. Côté build : Recueillir, challenger et cadrer les besoins métiers complexes. Analyser la valeur métier et réaliser le découpage fonctionnel des fonctionnalités. Rédiger et maintenir les Initiatives, Epics et User Stories. Piloter les estimations et les chiffrages fonctionnels. Préparer et animer les PI Planning et les instances produit. Garantir la qualité des spécifications fonctionnelles et des critères de recette. Côté run : Gérer, prioriser et maintenir un backlog produit aligné avec les objectifs stratégiques. Assurer le suivi de l'adéquation entre l'avancement fonctionnel et le budget alloué. Arbitrer le périmètre fonctionnel en veillant au respect des contraintes budgétaires. Participer aux synchronisations inter-équipes et inter-PO afin de gérer les dépendances. Collaborer étroitement avec les équipes de développement, QA, UX/UI, architectes, Chefs de Projet et Directeurs de Projet. Garantir la valeur métier délivrée et la qualité du delivery. C’est votre parcours Vous avez au moins 7 ans d’expérience en tant que Product Owner ou dans un rôle similaire au sein d’environnements Agile à forts enjeux. Vous aimez transformer des besoins complexes en solutions concrètes tout en gardant la maîtrise des priorités et des budgets. Vous recherchez un environnement où votre capacité de décision et votre vision produit ont un impact direct sur la réussite des projets. C’est votre expertise : Product Ownership et gestion de backlog Méthodologies Agile / Scrum / Agile à l'échelle Rédaction d'Epics, Features et User Stories Priorisation et arbitrage de la valeur métier Pilotage budgétaire et suivi de portefeuille projets Animation de PI Planning et instances de gouvernance Environnement JAVA Environnement AS400 Référentiel de données Semarchy C’est votre manière de faire équipe : Excellente communication avec les parties prenantes métiers et techniques. Forte capacité d'arbitrage et de négociation. Sens de l'organisation et rigueur dans la gestion du périmètre. Esprit collaboratif et capacité à fédérer des équipes pluridisciplinaires. Vision transverse et gestion des dépendances inter-équipes. C’est notre engagement Chez Consort Group, vous êtes un·e expert·e qu’on accompagne pour que chaque mission devienne une étape qui compte. Un onboarding attentif et humain Une vraie proximité managériale Des formations accessibles en continu Des engagements concrets : inclusion, égalité, solidarité Un package RH complet : mutuelle, carte TR, CSE, prévoyance Une culture du feedback et des projets qui font sens C’est clair Le process de recrutement : Un premier échange téléphonique avec notre team recrutement Un entretien RH ainsi qu’un échange métier avec un.e ingénieur.e d’affaires Un test ou un échange technique avec un.e de nos expert.es Un dernier point avec votre futur.e manager ou responsable de mission Et si on se reconnaît : on démarre ensemble C’est bon à savoir Lieu : Carquefou Contrat : CDI Télétravail : 2 jours/semaine Salaire : De 50 K€ à 60 K€ brut annuel (selon expérience) Famille métier : Produit / Product Management / Agilité Ce que vous ferez ici, vous ne le ferez nulle part ailleurs. Ce moment, c’est le vôtre.",
+      "source": "free-work.com",
+      "score": 6.5,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "product management"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "CONSORT GROUP",
+      "location": "Saint-Herblain",
+      "duration": null
+    },
+    {
+      "title": "Consultant finance reporting IFRS 9 risque de credit",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant/consultant-finance-reporting-ifrs-9-risque-de-credit",
+      "snippet": "Dans le cadre d’un programme de transformation portant sur le processus de calcul et de reporting des provisions au titre du risque de crédit IFRS 9, nous recherchons un consultant expérimenté en finance, comptabilité et reporting financier. La mission intervient au sein d’une équipe Finance en charge de la coordination des travaux relatifs au risque de crédit, aux provisions IFRS 9 et à leur reporting. L’objectif principal de la mission est de contribuer à la redéfinition du plan de travail et des principaux contrôles à mettre en œuvre au sein des filières Finance et Risk afin de renforcer la qualité et la fiabilité du calcul des provisions ainsi que de leur reporting. Principales responsabilités : Analyser les processus existants relatifs au calcul et au reporting des provisions IFRS 9 ; Identifier et prioriser les contrôles nécessaires au sein des filières Finance et Risk ; Construire et formaliser un plan de travail et un dispositif de contrôles prioritaires ; Challenger les processus et contrôles existants et identifier les axes d’amélioration ; Coordonner les travaux avec les différentes parties prenantes Finance et Risk ; Préparer et animer les ateliers de travail ; Formaliser les analyses, recommandations et livrables associés. Une expérience significative dans un environnement bancaire ou financier réglementé est requise. Une expérience directement liée au provisionnement du risque de crédit, à IFRS 9 ou à des travaux associant les fonctions Finance et Risk sera particulièrement appréciée.",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "consultant",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "Mon Consultant Indépendant",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Product Owner - SAAS - Paris",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-saas-paris",
+      "snippet": "Contexte du poste : Dans le cadre de l'évolution de notre plateforme SaaS de gestion de la relation client, nous recherchons un Product Owner pour rejoindre notre équipe Produit. Notre ambition est de construire une nouvelle génération de plateforme intégrant les dernières innovations en Intelligence Artificielle afin de proposer une expérience toujours plus performante à nos clients. Vous rejoindrez une équipe Produit à taille humaine composée d'un CTPO, garant de la vision produit, d'un Product Manager expert de notre métier et d'équipes de développement agiles. Vous aurez un rôle clé dans la conception, la priorisation et la livraison des évolutions fonctionnelles de notre plateforme. Les avantages : Jusqu'à 2 jours de télétravail par semaine. Tickets Restaurant. Prise en charge des transports. Excellente mutuelle. Un environnement agile favorisant l'autonomie et les initiatives. Une équipe Produit expérimentée et passionnée. Rémunération attractive selon votre expérience. Pourquoi nous rejoindre ? Rejoindre une entreprise française reconnue, spécialisée dans les solutions SaaS de gestion de la relation client. Participer à l'évolution d'une plateforme utilisée par plus de 500 marques et traitant plusieurs millions d'interactions clients chaque année. Contribuer au développement de nouvelles fonctionnalités intégrant les dernières innovations en Intelligence Artificielle . Intégrer une équipe Produit à taille humaine où chaque idée est écoutée et peut avoir un impact concret sur le produit. Travailler en étroite collaboration avec des équipes Produit et Développement passionnées, dans un environnement agile favorisant les échanges et les initiatives. Évoluer sur un poste offrant une réelle autonomie, avec un rôle clé dans les orientations fonctionnelles et stratégiques de la plateforme. Relever des défis techniques et fonctionnels variés au sein d'un environnement en constante évolution.",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product manager",
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "Talents Finance",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Cloud Product Owner",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/ingenieur-devops-cloud/cloud-product-owner",
+      "snippet": "Contexte Dans le cadre du développement et de l'adoption de sa plateforme Cloud, notre client recherche un Cloud Product Owner . Véritable garant du produit Cloud, vous êtes responsable de la création de valeur, de l'expérience utilisateur et de l'adoption des services Cloud au sein de l'entreprise. Vous travaillez à l'intersection des équipes techniques, des métiers et des utilisateurs afin de définir la vision produit, piloter la roadmap et maximiser l'usage des services Cloud. MissionsDéfinition de la stratégie produit Cloud Construire et porter la vision produit de la plateforme Cloud. Définir et maintenir la roadmap en cohérence avec les besoins métiers et les objectifs de l'entreprise. Prioriser les évolutions selon leur valeur ajoutée et leur impact utilisateur. Assurer l'alignement entre les enjeux techniques, financiers et métiers. Pilotage du backlog et des évolutions Recueillir et formaliser les besoins des utilisateurs et des équipes clientes. Rédiger les User Stories et définir les critères d'acceptation. Arbitrer les priorités en tenant compte de la valeur, du coût et de la complexité. Assurer le suivi du delivery et des versions de la plateforme. Amélioration de l'expérience utilisateur Développer une approche centrée utilisateur pour les équipes Dev et Métiers. Simplifier les parcours utilisateurs et favoriser les mécanismes de self-service. Identifier les points de friction et proposer des améliorations continues. Réduire le time-to-market des services Cloud. Gestion de l'offre de services Cloud Structurer et faire évoluer un catalogue de services Cloud. Concevoir des offres standardisées autour des capacités Cloud (Compute, Stockage, Réseau, Outils d'automatisation, etc.). Accompagner le packaging et la mise à disposition des services. Adoption et création de valeur Promouvoir l'utilisation de la plateforme et des services Cloud. Définir et suivre les indicateurs d'adoption, d'usage et de satisfaction. Mesurer la valeur créée et le retour sur investissement des initiatives. Mettre en place des actions d'accompagnement au changement.",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "ALLEGIS GROUP",
+      "location": "Saint-Denis",
+      "duration": null
+    },
+    {
+      "title": "Consultant(e) AMOA — recette métier & conduite du changement — assurance de personne (H/F)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant-moa-amoa/consultant-e-amoa-recette-metier-conduite-du-changement-assurance-de-personne-h-f",
+      "snippet": "Contexte de la mission : Dans le cadre d'un programme de convergence SI, le client recherche un renfort pour appuyer le pilotage de la recette métier et préparer/réaliser la conduite du changement sur un ensemble d'écarts fonctionnels identifiés. Activités confiées : Pilotage et préparation de la recette métier en coordination avec l'IT (outils, instances, suivi, jeux de données) Définition et formalisation de la stratégie de recette métier sur plusieurs sujets en parallèle Pilotage des campagnes de tests avec les métiers (ateliers, relevés d'anomalies, réunions GO/NO GO, rédaction de PV, KPIs) Animation des instances liées aux recettes métier Préparation des supports de conduite du changement (PPT, vidéos, ateliers, formations) avec les équipes projet et métier Formation des utilisateurs métier si besoin Présentation des supports lors des différentes instances de gouvernance Atouts appréciés : Expérience préalable au sein d'un grand groupe bancaire mutualiste Pratique de l'outil Xray (gestion de campagnes de tests) — une première expérience suffit Démarrage souhaité : Semaine du 28/09/2026 Durée prévisionnelle Fin du programme en Mai 2027",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "consultant"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "Mon Consultant Indépendant",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "CONSULTANT IA GEN",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant/consultant-ia-gen",
+      "snippet": "Contexte de la mission Nous recherchons un AI Engineer disposant de 5 à 7 ans d’expérience , avec de solides compétences en Python, LangChain et IA agentique, ainsi qu’une expertise du cloud Azure. Il interviendra sur la conception, le développement et l’industrialisation de solutions d’intelligence artificielle. Missions principales Concevoir et développer des applications IA en Python. Développer des agents IA avec LangChain : orchestration, utilisation d’outils et intégration aux systèmes existants. Mettre en place des workflows agentiques adaptés aux besoins métiers. Intégrer et déployer les solutions dans un environnement cloud Azure. Évaluer et améliorer la fiabilité, la performance et la qualité des réponses des agents. Collaborer avec les équipes métiers et techniques, et documenter les solutions développées. Compétences requises Solide maîtrise de Python et des bonnes pratiques de développement logiciel. Expérience concrète de LangChain pour la conception d’applications intégrant des LLM. Maîtrise des concepts d’ IA agentique : orchestration d’agents, gestion du contexte et appels d’outils. Expertise du cloud Azure , notamment pour l’intégration et le déploiement de solutions IA. Capacité à traduire un besoin métier en solution technique exploitable en production. Compétences complémentaires appréciées Connaissance de LangGraph et d’Azure OpenAI. Expérience des architectures RAG et des bases de données vectorielles. Pratique du CI/CD, de la conteneurisation et du monitoring d’applications IA. Profil recherché Vous justifiez de 5 à 7 ans d’expérience professionnelle en développement logiciel, Data ou IA , avec une expérience significative sur des projets d’IA générative et agentique. Autonome et rigoureux, vous appréciez le travail en équipe et savez expliquer vos choix techniques. Contexte de la mission Nous recherchons un AI Engineer disposant de 5 à 7 ans d’expérience , avec de solides compétences en Python, LangChain et IA agentique, ainsi qu’une expertise du cloud Azure. Il interviendra sur la conception, le développement et l’industrialisation de solutions d’intelligence artificielle. Missions principales Concevoir et développer des applications IA en Python. Développer des agents IA avec LangChain : orchestration, utilisation d’outils et intégration aux systèmes existants. Mettre en place des workflows agentiques adaptés aux besoins métiers. Intégrer et déployer les solutions dans un environnement cloud Azure. Évaluer et améliorer la fiabilité, la performance et la qualité des réponses des agents. Collaborer avec les équipes métiers et techniques, et documenter les solutions développées. Compétences requises Solide maîtrise de Python et des bonnes pratiques de développement logiciel. Expérience concrète de LangChain pour la conception d’applications intégrant des LLM. Maîtrise des concepts d’ IA agentique : orchestration d’agents, gestion du contexte et appels d’outils. Expertise du cloud Azure , notamment pour l’intégration et le déploiement de solutions IA. Capacité à traduire un besoin métier en solution technique exploitable en production. Compétences complémentaires appréciées Connaissance de LangGraph et d’Azure OpenAI. Expérience des architectures RAG et des bases de données vectorielles. Pratique du CI/CD, de la conteneurisation et du monitoring d’applications IA. Profil recherché Vous justifiez de 5 à 7 ans d’expérience professionnelle en développement logiciel, Data ou IA , avec une expérience significative sur des projets d’IA générative et agentique. Autonome et rigoureux, vous appréciez le travail en équipe et savez expliquer vos choix techniques.",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "consultant"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "DATA CONSEIL",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Product Owner",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-1371",
+      "snippet": "Votre mission Afin de renforcer une équipe, nous recherchons un Product Owner expérimenté, pour prendre en charge la mission suivante : Participer activement à la validation fonctionnelle et aux scénarios de bout en bout. Prendre en responsabilité un ou plusieurs lots fonctionnels de la plateforme digitale destinée aux clients et assurer la continuité entre : la compréhension du besoin métier ; l'animation des parties prenantes ; la formalisation des décisions ; la préparation du backlog ; la validation fonctionnelle ; la préparation de la mise en production.",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "GRLCI",
+      "location": "Boulogne-Billancourt",
+      "duration": null
+    },
+    {
+      "title": "Product Owner (H-F)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-h-f-1264",
+      "snippet": "Vos missions ? En tant que Product Owner (H/F) vous êtes en charge des missions suivantes: -Recueillir et formaliser les besoins métier -Réaliser les inventaires et mappings de contenus -Identifier les contenus à migrer, transformer, archiver ou recréer -Préparer les recommandations nécessaires au cadrage et à l'estimation des projets -Animer des ateliers avec les équipes métier et les différents contributeurs -Assurer le suivi des risques, dépendances, décisions et actions -Coordonner les échanges avec les équipes contenu, déploiement et réalisation",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "Amiltone",
+      "location": "Villeurbanne",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Observabilité / Dynatrace",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-observabilite-dynatrace",
+      "snippet": "Dans le cadre du renforcement de nos équipes, nous recherchons un(e) Product Owner spécialisé(e) en Observabilité / APM , avec une forte expertise autour de Dynatrace . Vos missions En tant que Product Owner Observabilité , vous serez responsable du pilotage et de l’évolution des solutions de supervision et d’observabilité du SI. À ce titre, vos principales missions seront de : Porter la vision produit et définir la roadmap autour des solutions d’ observabilité et d’APM (Application Performance Management) ; Recueillir, analyser et prioriser les besoins des équipes techniques et métiers ; Construire, maintenir et prioriser le Product Backlog ; Rédiger les User Stories et définir les critères d’acceptation ; Piloter les évolutions et accompagner leur mise en œuvre avec les différentes équipes ; Assurer le suivi des projets et des demandes à l’aide de Jira et Confluence ; Développer et promouvoir une véritable logique d’observabilité , reposant sur les trois piliers : Logs Métriques Traces Participer à la définition des standards de monitoring, dashboards, alerting et suivi de performance ; Contribuer à l’amélioration de la visibilité sur la performance, la disponibilité et la fiabilité des applications ; Accompagner les équipes dans l’adoption et l’exploitation des outils d’observabilité ; Assurer une veille technologique et proposer des axes d’amélioration continue.",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "WE +",
+      "location": "Paris",
+      "duration": null
+    }
+  ]
+}
