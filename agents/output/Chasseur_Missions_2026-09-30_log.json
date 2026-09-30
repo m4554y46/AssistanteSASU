@@ -1,0 +1,192 @@
+{
+  "generated_at": "2026-09-30T17:19:51.687411+00:00",
+  "missions_count": 10,
+  "missions": [
+    {
+      "title": "AI Product Lead",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/lead-developer/ai-product-lead",
+      "snippet": "Dans le cadre d’une mission freelance, vous prendrez en main le pilotage d’un portefeuille de produits d’intelligence artificielle déjà mature, avec 29 cas d’usage en production. Vous serez le point de contact principal du domaine IA et interviendrez en autonomie pour coordonner les échanges entre les équipes métiers, les utilisateurs, les clients et les équipes techniques. Votre rôle consistera à définir les priorités, construire et suivre la roadmap, gérer le backlog et accompagner les évolutions produit. Vous animerez les ateliers et réunions de cadrage, recueillerez les retours utilisateurs et les traduirez en actions d’amélioration. Vous suivrez également la performance, l’adoption et la qualité des produits, tout en optimisant les prompts d’agents IA dans un environnement de type Microsoft Copilot Studio. Une bonne compréhension des architectures RAG et des workflows multi-agents est attendue pour dialoguer efficacement avec les équipes d’ingénierie. Rémunération et avantages TJM : 780 €/jour Mission freelance à temps plein, en mode hybride 2 jours de télétravail par semaine, 3 jours sur site à Puteaux Mission longue, démarrage idéalement en octobre 2026 Déplacements ponctuels, environ 1 fois par trimestre",
+      "source": "free-work.com",
+      "score": 7.0,
+      "tjm": "780EUR (PREMIUM)",
+      "tjm_value": 780,
+      "fit_skills": [
+        "product lead"
+      ],
+      "decision": "POSTULER EN PRIORITE",
+      "industry_match": [],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Puteaux",
+      "duration": null
+    },
+    {
+      "title": "Intégrateur Linux",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/administrateur-systeme-linux/integrateur-linux-10",
+      "snippet": "Hexagone Digitale recherche un Intégrateur Linux confirmé pour renforcer l'équipe d'intégration et d'exploitation d'un client du secteur public. Le consultant rejoindra la cellule chargée d'intégrer, déployer et maintenir en conditions opérationnelles les applications métier du client, de l'environnement de recette jusqu'à la mise en production. Il interviendra dans un cadre ITIL, en lien avec les équipes de développement (MOE), d'exploitation et la maîtrise d'ouvrage. Missions principales Intégration et déploiement Intégrer les nouvelles versions applicatives (montées de version majeures et mineures) sur les environnements hors production puis en production Préparer et réaliser les livraisons et les mises en production (MEP), avec validation technique auprès du chef de projet Rédiger et maintenir les rôles et playbooks Ansible d'installation et de configuration Contribuer à la chaîne CI/CD (Jenkins, Git) et à la conteneurisation des applications (Docker) Administration et exploitation Administrer les serveurs Linux (Red Hat, Debian, Ubuntu, CentOS) : installation, configuration, mises à jour, sécurisation Gérer les environnements hors production (recette, pré-production) Superviser les environnements et traiter les alertes (Nagios, Splunk) Piloter les traitements ordonnancés (Control-M, $Universe, VTom) Support et gestion des changements Traiter les incidents de niveau 2 et participer à l'analyse des causes Porter les demandes de changement en CAB (ServiceNow) Valider les versions livrées par les équipes de développement (tests techniques, contrôles de bases de données) Rédiger la documentation technique, les procédures d'installation et d'exploitation",
+      "source": "free-work.com",
+      "score": 6.8,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "maîtrise d'ouvrage",
+        "consultant"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "Hexagone Digitale",
+      "location": "Île-de-France",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Monétique",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/expert-e-monetique/product-owner-monetique-12",
+      "snippet": "Contexte : Le consultant interviendra dans le cadre de la gestion d'un produit lié au paiement, en mode Agile Safe, avec une collaboration étroite avec le Product Manager. Missions : Piloter un produit monétique. Suivre les fournisseurs pour ce produit (fournisseurs anonymisés). Piloter la squad interne, prioriser les sujets en fonction du capacitaire Travailler en collaboration avec le Product Manager Outils & Environnement : Paiement Protocoles monétiques Fonctionnement en mode Agile Safe Anglais nécessaire",
+      "source": "free-work.com",
+      "score": 6.8,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product manager",
+        "product owner",
+        "consultant"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "VISIAN",
+      "location": "Lille",
+      "duration": null
+    },
+    {
+      "title": "Delivery Manager (F/H)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/gestionnaire-prestation-services/delivery-manager-f-h-12",
+      "snippet": "En tant que Delivery Manager, vous prenez la responsabilité du domaine Continuité Business, qui rassemble environ 25 personnes : ingénieurs logiciels, spécialistes de la qualité et Scrum Masters. Vous pilotez le delivery et la production de votre périmètre, en lien étroit avec les Product Managers, afin d’aligner les priorités, les arbitrages et les risques, et de sécuriser les enjeux stratégiques. Vous adaptez l’organisation aux besoins produit et techniques, pilotez le staffing et instaurez un cadre favorisant l’autonomie, la responsabilisation, le feedback et l’amélioration continue. Avec les équipes et les architectes référents, vous construisez et pilotez la feuille de route technique, tout en veillant à l’application des standards de qualité, de sécurité, d’observabilité et d’exploitation. Vous contribuez à la stratégie technique et à la capacité d’innovation, favorisez la coopération entre les parties prenantes et participez aux initiatives transverses de la Factory. Le poste est basé à Saint-Denis, avec une organisation hybride.",
+      "source": "free-work.com",
+      "score": 6.5,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product manager",
+        "delivery manager",
+        "scrum master"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Saint-Denis",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Gestion des stocks",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/chef-de-projet-it-supply-chain-back-office",
+      "snippet": "Nous recherchons pour notre client, un(e) Chef de Projet IT Supply Chain & Back-Office, pour une mission en freelance.Vous interviendrez au sein de la DSI d'un groupe leader dans son domaine, opérant dans un environnement B2B exigeant. L'enjeu principal de cette mission s'articule autour d'un double périmètre stratégique : le déploiement d'une solution SaaS Back-Office dédiée à la gestion des stocks sur les différents sites, ainsi que la spécification et le pilotage d'une application interne garantissant la cohérence globale des stocks à travers tout le système d'information. Au quotidien, vos principales responsabilités incluront l'animation d'ateliers avec les métiers pour recueillir les besoins, l'analyse des écarts (impacts, adaptation des processus) et la coordination des intégrateurs et éditeurs. Vous serez également en charge de la rédaction des spécifications fonctionnelles détaillées, de la cartographie des flux de données avec le SI existant (WMS, Legacy), et de la supervision complète des phases de recette et de déploiement (avec un suivi \"hypercare\"). Enfin, vous assurerez le pilotage global du projet via la tenue d'un planning consolidé et l'animation des différentes instances de gouvernance. Cette mission s'inscrit sur une longue durée. Le mode de travail est hybride, avec des déplacements professionnels occasionnels à prévoir. Ce projet représente une excellente opportunité d'allier intégration SaaS et développement spécifique sur-mesure, tout en étant au cœur des flux logistiques et opérationnels d'un acteur majeur de son marché.",
+      "source": "free-work.com",
+      "score": 6.5,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "logistique"
+      ],
+      "company": "Zenith Rh",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Senior",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-senior-81",
+      "snippet": "Notre client dans le secteur Assurance recherche un/une Product Owner Senior H/F Description de la mission : Contexte Dans le cadre d’un programme stratégique de transformation à dimension internationale, un grand groupe du secteur de l’assurance recherche un Product Owner Senior pour rejoindre sa DSI. Le poste s’inscrit dans un environnement exigeant, à forte visibilité et soumis à une pression importante, avec de nombreux interlocuteurs métiers et IT et une forte exposition au management et aux instances de Direction. Le programme porte notamment sur le déploiement de solutions et d’outils dans plusieurs pays, avec un enjeu particulier autour de l’assurance voyage. Le périmètre précis sera défini selon les besoins et les priorités de l’organisation. Mission Le Product Owner Senior porte ses sujets de bout en bout, de la compréhension du besoin jusqu’à la mise en œuvre et au déploiement. Il s’agit d’un rôle à dominante fonctionnelle, nécessitant une solide culture technologique et une expérience confirmée au sein d’une DSI. Le titulaire représente son périmètre auprès d’interlocuteurs de haut niveau, prend des décisions et fait avancer des sujets stratégiques dans un contexte complexe et international. Principales responsabilités Porter la vision produit et fonctionnelle auprès des parties prenantes Recueillir, analyser et challenger les besoins métiers Définir et prioriser la roadmap et le backlog Traduire les enjeux business en exigences fonctionnelles claires et exploitables Piloter les sujets en autonomie et coordonner les équipes métiers, IT, architecture, data, cloud, cybersécurité et développement Arbitrer les priorités et prendre des décisions dans des contextes contraints Anticiper les risques, identifier les points de blocage et mettre en place les plans d’action nécessaires Assurer le suivi des délais, de la qualité, des dépendances et des engagements Préparer et présenter les sujets, alertes, arbitrages et recommandations au Top Management et aux interlocuteurs C-level Challenger des interlocuteurs de haut niveau et défendre une position de manière structurée et factuelle Adapter sa communication aux équipes opérationnelles, experts techniques, métiers, management et Direction Accompagner le déploiement des solutions dans plusieurs pays et environnements Garantir une communication fluide et transparente auprès des instances de gouvernance Gérer plusieurs sujets critiques et maintenir sa performance sous pression, avec fiabilité, rigueur, autonomie et sens des responsabilités Environnement technique Technologies et domaines : Data, Cloud, cybersécurité, architecture SI, API et intégration, développement logiciel Contexte : transformation digitale et déploiement international de solutions dans le secteur de l’assurance Profil recherché Expérience Profil très senior ayant une expérience significative comme Product Owner, Functional Product Owner ou Business Product Owner Expérience confirmée en DSI et dans des environnements complexes et structurés Expérience de programmes de transformation à forte visibilité Habitude des environnements internationaux et multiculturels Expérience régulière auprès de Directions métiers, CIO, CTO, CDO ou autres membres de Comex particulièrement importante Formation supérieure, idéalement en école d’ingénieurs Compétences techniques Forte dominante fonctionnelle, culture technologique solide et capacité à comprendre et challenger des sujets techniques Capacité à dialoguer avec des experts techniques sur la Data, le Cloud, la cybersécurité, l’architecture SI, les API, l’intégration et le développement logiciel Capacité à présenter des sujets complexes de manière claire, synthétique et orientée décision, et à préparer des supports et recommandations pour des instances de Direction Compétences personnelles Leadership, maturité, autonomie et prise d’initiative Sang-froid, résistance à la pression et capacité à gérer simultanément plusieurs sujets critiques Esprit structuré, fiabilité et exigence sur la qualité et les délais Capacité à prendre du recul, résoudre les blocages et faire avancer les sujets malgré les contraintes et désaccords Excellente communication, diplomatie et capacité à défendre ses positions et à challenger des interlocuteurs seniors Langues Anglais bilingue ou courant obligatoire, avec capacité à travailler et à présenter en anglais dans un environnement international Compétences / Qualités indispensables : Product Ownership et vision fonctionnelle, Gestion de roadmap et priorisation du backlog, Expérience en DSI et programmes de transformation complexes, Culture technologique et capacité à challenger des sujets IT, Exposition C-level et communication de direction, Leadership et résistance à la pression Compétences / Qualités qui seraient un + : Connaissance de l’assurance voyageInformations concernant le télétravail : 50 % de présence sur site",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "LeHibou",
+      "location": "Saint-Denis",
+      "duration": null
+    },
+    {
+      "title": "Product Owner E commerce",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/chef-de-projet-e-commerce/product-owner-e-commerce-63",
+      "snippet": "Fondé en 2017, Astrelya est un cabinet de conseil franco-suisse en forte croissance, spécialisé dans la transformation digitale, l'excellence opérationnelle et l'innovation technologique. Ses 300 experts accompagnent les clients à chaque étape de leur transformation, du cadrage stratégique jusqu'à la mise en œuvre opérationnelle. Le cabinet est particulièrement reconnu en Data & IA, Cloud, DevOps et méthodes agiles. La singularité d'Astrelya tient à son modèle : proximité, confiance et une culture profondément humaine, où chaque collaborateur est considéré comme un acteur clé de la valeur créée. Nous recherchons pour un leader international du E Commerce un Product Owner Digital / Loyalty & CRM (F/H) Vos missions Vous êtes le chef d'orchestre de vos initiatives, capable de passer d'une revue de backlog avec les développeurs à une présentation en comité exécutif. Pilotage et coordination Faire l'interface entre les PO/PM métier et les équipes tech, en apportant le contexte technique qui manque aux uns et le contexte métier qui manque aux autres. Piloter un portefeuille d'epics impliquant de nombreuses verticales métier (legal, marketing, etc.). Garantir la cohérence des parcours utilisateurs entre le site et l'application. Suivi opérationnel Travailler au quotidien avec les développeurs et les QA : suivi du delivery, relance sur les tickets Jira, levée des blocages. Animer les points d'avancement avec les marques et les équipes métier. Identifier et évaluer les bons outils et solutions pour répondre aux besoins. Gouvernance et reporting Produire les supports de reporting à destination du COMEX. Préparer et défendre les dossiers budgétaires en comité d'investissement.",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ASTRELYA",
+      "location": "Île-de-France",
+      "duration": null
+    },
+    {
+      "title": "Product Owner H/F",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-h-f-1274",
+      "snippet": "Lieu : Sud-Ouest de Paris TJM : 400 à 430 € / jour Rythme : Beaucoup de télétravail mais déplacements ponctuels sur site à prévoir Nous recherchons pour notre client, acteur reconnu du secteur des services, un Product Owner H/F afin de renforcer son équipe applicative. Intégré au sein du Service Projets Applicatifs, le Product Owner est responsable d’un ensemble d’applications métiers dont il assure le pilotage fonctionnel et l’évolution dans le temps. Rattaché au Responsable Projets Applicatifs, il intervient au carrefour des différents acteurs impliqués dans la vie des produits : équipes métiers, utilisateurs, Product Owners, UX Lead, support applicatif et développeurs. Véritable relais entre les enjeux métiers et les équipes techniques, il s’assure que les produits répondent aux besoins des utilisateurs et que les évolutions mises en œuvre restent cohérentes avec les objectifs fonctionnels définis. VOS MISSIONS : Définir et piloter la trajectoire des produits • Élaborer la vision fonctionnelle des applications de son périmètre ainsi que leur roadmap et leurs orientations prioritaires. • Évaluer et hiérarchiser les demandes d’évolution en tenant compte de leur apport pour le métier, des attentes des utilisateurs, des risques identifiés et des capacités de réalisation. • Exploiter les retours des utilisateurs, les données d’usage et les indicateurs de qualité afin d’identifier les axes d’amélioration des produits. Identifier les besoins et structurer le backlog • Recueillir les attentes des équipes métiers et des utilisateurs, les analyser et les questionner afin d’en déterminer les objectifs et la valeur recherchée. • Transformer les besoins identifiés en éléments fonctionnels exploitables : parcours utilisateurs, règles métier, User Stories et critères d’acceptation. • Alimenter, organiser et faire évoluer le backlog produit en collaboration avec les différentes parties prenantes et l’équipe de développement. • Veiller à ce que les sujets soient suffisamment clarifiés et priorisés pour permettre leur réalisation dans de bonnes conditions. Piloter la conception et la validation des évolutions • Collaborer avec l’UX Lead, les représentants métiers et les développeurs afin de définir des réponses fonctionnelles pertinentes et adaptées aux usages. • Préparer et préciser les demandes avant leur intégration dans le cycle de réalisation de l’équipe projet. • Coordonner les phases de recette fonctionnelle, effectuer les décisions et ajustements nécessaires et prononcer la validation des évolutions avant leur déploiement en production Participer à la qualité et à l’accompagnement des utilisateurs • Travailler avec le support applicatif sur le suivi des incidents, des demandes utilisateurs et des difficultés récurrentes rencontrées sur les applications. • Participer à la mise à jour et à l’enrichissement de la documentation fonctionnelle afin de favoriser la transmission et la pérennisation des connaissances. • Contribuer à l’accompagnement des utilisateurs lors des évolutions, notamment au travers de communications, de supports d’information ou d’actions de formation. VOUS : De formation supérieure en Informatique, Systèmes d’Information ou domaine équivalent, vous justifiez d’une expérience significative en tant que Product Owner ou dans une fonction similaire. Rigoureux, autonome et force de proposition, vous savez analyser les besoins, prioriser les sujets et piloter un backlog dans un environnement Agile. Vous êtes à l’aise pour travailler avec des interlocuteurs métiers et techniques et pour coordonner les différentes étapes, de la conception à la recette. Pédagogue et doté d’un bon relationnel, vous savez fédérer les équipes et accompagner les utilisateurs dans les évolutions des applications. Une sensibilité UX et une expérience avec Jira ou un outil équivalent seront appréciées. PROCESS : Après un premier échange en visio avec un membre de notre équipe, vous rencontrerez : • Le Responsable Projet et un membre de l’équipe projet Une décision rapide est prise à l’issue des entretiens. Envoyez-nous votre profil ! Si votre expérience correspond, un membre de l’équipe vous contactera sous 24h. Au plaisir d’échanger sur votre projet, S-quaar",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "400EUR",
+      "tjm_value": 400,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "S-quaar",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Chef de projet achats S2P/P2P - pilotage hypercare ESKER ( Vitry-sur-Seine )",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/chef-de-projet-achats-s2p-p2p-pilotage-hypercare-esker-vitry-sur-seine",
+      "snippet": "Contexte de la mission : Le projet ESKER (solution S2P Achats) est en production depuis juillet 2026 et entre en phase d'hypercare. Le poste vise à renforcer temporairement le pilotage fonctionnel et opérationnel, à temps plein, pour une durée indicative de 6 mois, à Vitry-sur-Seine. Le titulaire intègre une équipe pluridisciplinaire : Achats, DSI, Finance, Opérations, AMOA, éditeur et centre de services partagés Achats. Rôle : Le Chef de Projet représente la fonction Achats dans les instances de gouvernance projet. Il porte la stabilisation et l'optimisation de la solution ESKER, avec un mandat clair : arbitrer entre traitement direct et délégation, et transformer une phase de crise (hypercare) en fonctionnement support pérenne. Missions : Piloter la qualification, la priorisation et le suivi des incidents, demandes d'évolution et tickets fonctionnels Traiter directement les tickets Achats complexes nécessitant analyse approfondie et coordination transverse ; arbitrer la délégation des tickets simples/récurrents/volumiques vers le CSP Achats Contribuer aux arbitrages projet et à la gestion du backlog Conduire les analyses de causes racines, mesurer les impacts, proposer des plans d'action correctifs Coordonner DSI, éditeur, AMOA et équipes métiers Accompagner les phases de recette et de mise en production des évolutions Formaliser ou mettre à jour processus, règles de gestion, procédures et modes opératoires Préparer la bascule vers un fonctionnement support récurrent et industrialisé Piloter un plan d'action de fiabilisation et de mise à jour de la qualité des données Achats",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "Mon Consultant Indépendant",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Product Owner - SAAS - Paris",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-saas-paris",
+      "snippet": "Contexte du poste : Dans le cadre de l'évolution de notre plateforme SaaS de gestion de la relation client, nous recherchons un Product Owner pour rejoindre notre équipe Produit. Notre ambition est de construire une nouvelle génération de plateforme intégrant les dernières innovations en Intelligence Artificielle afin de proposer une expérience toujours plus performante à nos clients. Vous rejoindrez une équipe Produit à taille humaine composée d'un CTPO, garant de la vision produit, d'un Product Manager expert de notre métier et d'équipes de développement agiles. Vous aurez un rôle clé dans la conception, la priorisation et la livraison des évolutions fonctionnelles de notre plateforme. Les avantages : Jusqu'à 2 jours de télétravail par semaine. Tickets Restaurant. Prise en charge des transports. Excellente mutuelle. Un environnement agile favorisant l'autonomie et les initiatives. Une équipe Produit expérimentée et passionnée. Rémunération attractive selon votre expérience. Pourquoi nous rejoindre ? Rejoindre une entreprise française reconnue, spécialisée dans les solutions SaaS de gestion de la relation client. Participer à l'évolution d'une plateforme utilisée par plus de 500 marques et traitant plusieurs millions d'interactions clients chaque année. Contribuer au développement de nouvelles fonctionnalités intégrant les dernières innovations en Intelligence Artificielle . Intégrer une équipe Produit à taille humaine où chaque idée est écoutée et peut avoir un impact concret sur le produit. Travailler en étroite collaboration avec des équipes Produit et Développement passionnées, dans un environnement agile favorisant les échanges et les initiatives. Évoluer sur un poste offrant une réelle autonomie, avec un rôle clé dans les orientations fonctionnelles et stratégiques de la plateforme. Relever des défis techniques et fonctionnels variés au sein d'un environnement en constante évolution.",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product manager",
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "Talents Finance",
+      "location": "Paris",
+      "duration": null
+    }
+  ]
+}
