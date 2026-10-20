@@ -1,6 +1,6 @@
 # AssistanteSASU — Session Memory
 
-Dernière mise à jour : 2026-08-13
+Dernière mise à jour : 2026-09-29
 
 ## Description
 
@@ -120,6 +120,23 @@ powershell -ExecutionPolicy Bypass -File installer_deploiement_quotidien.ps1
 14. **Session log dans AGENTS.md.** Toute modification structurelle ou bug fix est enregistrée dans Live Session Log pour ne jamais perdre d'amélioration continue.
 
 ## Live Session Log
+
+### 2026-09-29 — Diagnostic du déploiement : 33 jours sans rapport (bloque jusqu'au 29/09)
+
+- **Symptôme** : aucun rapport reçu depuis le 26/08. `Rapport_Astra_Momentum_2026-08-26.docx` (commit `caaf06c`) est le dernier. 13 tentatives de déploiement entre le 28/08 et le 29/09, toutes mortes sur la ligne `=== Pull du repo GitHub ===`.
+- **CAUSE RACINE (corrigée)** : le repo `m4554y46/AssistanteSASU` est **PRIVÉ** et l'automatisation n'a **aucun credential** — pas de `credential.helper`, pas de token dans l'URL, pas de clé SSH. Git reçoit un **HTTP 401** puis tente une invite `Username:`. La tâche tourne en **S4U (non interactif)** → l'invite ne peut jamais être répondue → le processus ne meurt jamais. Les `git.exe` zombies_originaux dataient du 17/09 03:54, toujours vivants 12 jours plus tard.
+  - **Attention, correction d'un diagnostic erroné** : les messages `Could not resolve host: github.com` du 28/08 et du 04/09 sont réels (DNS pas encore monté au boot) mais **ne sont PAS la cause du blocage durable**. La trace `GIT_CURL_VERBOSE` prouve que le réseau est sain : `SSL connection using TLSv1.3`, `certificate verify ok`, connexion en 0,25 s, puis `HTTP/2 401`. Le blocage venait de l'invite de credentials, pas du réseau.
+- **Effet boule de neige** : `ExecutionTimeLimit = PT0S` (illimité) → le run ne se termine jamais ; `MultipleInstances = IgnoreNew` → tous les déclencheurs suivants (boot, logon, 18h) sont silencieusement ignorés. La machine s'est verrouillée toute seule. Aggravants : `DisallowStartIfOnBatteries = True` (rien ne démarre sur batterie) et `RunOnlyIfNetworkAvailable = False` (le script se lance volontairement hors réseau, ce qui garantit l'échec).
+- **CORRECTIONS APPLIQUÉES** :
+  1. `pull_and_deploy.ps1` réécrit : preflight `Test-Connectivity` (DNS github.com avant de lancer git), `git pull` exécuté dans un `Start-Job` avec **timeout dur 180 s** + `Stop-Job`, `GIT_TERMINAL_PROMPT=0` / `GCM_INTERACTIVE=never`, bornage à 3 tentatives, et **sortie propre `exit 0`** si le réseau est absent (au lieu de storm d'erreurs). Plus aucun `git.exe` orphelin possible.
+  2. Tâche `ASTRA_DEPLOIEMENT_LIVRABLES` : `ExecutionTimeLimit` PT0S → **PT10M**, `AllowStartIfOnBatteries`, `RunOnlyIfNetworkAvailable = True`, `RestartCount = 3` / `RestartInterval = 5 min`. Déclencheurs inchangés (boot + logon + 18h quotidien).
+  3. **10 processus `git.exe` zombies éliminés** (dont 5 datant du 17/09) via `taskkill /T /F` en session élevée. Le `powershell.exe` bloqué (PID 1800) arrêté.
+  4. Run de test : **se termine désormais proprement** au lieu d'angler. Confirmé dans `deploiement.log`.
+- **RÉSOLU — repo passé en public le 29/09** par Michael (Settings → Danger Zone → Change visibility). L'accès anonyme fonctionne, plus aucun credential nécessaire.
+- **RÉPONSE À LA QUESTION INITIALE — les rapports de septembre ont bien été produits.** GitHub Actions a tourné **sans aucun échec** les 4 mercredis de septembre : `09d590c` (02/09), `ac5ca8e` (09/09), `622c5db` (16/09), `08e50fc` (23/09). Le seul point cassé était le **téléchargement local**. Les 4 rapports + 26 fichiers de sortie d'agents ont été récupérés et déployés.
+- **Récupération effectuée** : 4 nouveaux dossiers Livrables créés (31/08-04/09, 07/09-11/09, 14/09-18/09, 21/09-25/09), **17 documents livrés**. Bureau `ASTRA MOMENTUM - Livrables` : 12 → 16 dossiers. Dates de dossiers alignées automatiquement par le post-traitement.
+- **BUG CORRIGÉ dans le nouveau script** : `Log()` utilisait `Write-Output`, ce qui polluait la valeur de retour de `Invoke-GitPull`. Le tableau de logs + le code de sortie étaient donc renvoyés ensemble, et un `git pull` **réussi** (exit 0) était interprété comme un échec. Corrigé en passant à `[Console]::WriteLine` (écrit directement sur stdout sans passer par le pipeline PowerShell) + parsing du code de sortie via une **sentinelle `__GITEXIT__`** émise par le job, ce qui rend la détection non ambiguë quel que soit le nombre de lignes de sortie de git.
+- **Point de vigilance (àassume)** : le repo est désormais **public**. Les rapports ASTRA MOMENTUM (comptes clients, missions, TJM) sont lisibles par quiconque. L'historique avait déjà été purgé du secret SMTP le 20/08, mais le contenu métier est exposé. Si la confidentialité devient prioritaire : basculer en privé et passer par un PAT `contents:read` dans un credential helper Windows, ou une clé SSH dédiée à l'automatisation.
 
 ### 2026-08-20 (suite) — Dates des dossiers Livrables alignées sur leur contenu + anti-doublon
 
