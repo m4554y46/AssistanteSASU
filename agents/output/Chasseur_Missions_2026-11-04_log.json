@@ -1,0 +1,193 @@
+{
+  "generated_at": "2026-11-04T19:11:02.687819+00:00",
+  "missions_count": 10,
+  "missions": [
+    {
+      "title": "Consultant IT Pharma – CRM & Affaires Médicales",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant/consultant-it-pharma-crm-affaires-medicales",
+      "snippet": "Couvre 5 postes liés entre eux sur l'engagement des professionnels de santé et des patients : deux Business Analysts (0013, 0014), un chef de projet intégrations (0009) et deux directions de programme (0007, 0011). Le poste en une phrase : vous transformez les besoins des équipes commerciales, médicales et patients d'un laboratoire international en solutions digitales (CRM, MDM, plateformes d'insights), de l'expression du besoin au déploiement dans les filiales. Tronc commun : missions • Faire l'interface entre les métiers (forces de vente, affaires médicales, affaires patients), l'IT, la data et les fournisseurs. • Recueillir et formaliser les besoins : ateliers, processus, exigences fonctionnelles, user stories. • Contribuer au choix de solutions : POC, scénarios Buy / Make / Hybrid, RFP, grilles d'évaluation. • Garantir la conformité : RGPD, données de santé, sécurité, codes de pratique pharmaceutiques. • Accompagner tests, recettes (UAT) et déploiements internationaux par vagues. Tronc commun : profil • Expérience en pharma ou sciences de la vie, idéalement sur les processus commerciaux, médicaux ou patients. • Connaissance des écosystèmes CRM (Veeva, Salesforce) et des données de référence HCP / HCO. • Habitude des environnements réglementés et des déploiements multi-pays. • Anglais courant, déplacements possibles. Ce qui fait la différence 0013 Business Analyst CRM Obligatoire : Veeva, roll-outs internationaux. Fortement souhaité : pharma. Option : Veeva OpenData, GetResponse, certifications BA ou Veeva 5 à 8 ans de BA CRM 0014 Business Analyst Medical Insight Obligatoire : SI des affaires médicales. Fortement souhaité : projets data ou IA en pharma réglementée. Option : Medical Insight Management, CRM médical, données non structurées BA senior (N4) 0009 Chef de projet Intégrations CRM Obligatoire : intégration CRM (API, middleware, iPaaS), pharma réglementée, PMI ou Prince2 N4 0007 Chef / Directeur de projet senior Medical Insight Obligatoire : expérience médicale ou pharma, pilotage multi-streams, POC puis RFP, PMI ou Prince2 10 ans et plus 0011 Directeur de programme IT Patient Engagement Obligatoire : programme international global / local, CRM, MDM, SaaS, RFP, PMI / PgMP. Fortement souhaité : pharma, Medical ou Patient Affairs 12 ans et plus",
+      "source": "free-work.com",
+      "score": 6.8,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "directeur de projet",
+        "chef de projet",
+        "consultant"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ISALYS Digital Lab",
+      "location": "Île-de-France",
+      "duration": null
+    },
+    {
+      "title": "Data Quality Consultant - Migration",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant/data-quality-consultant-migration",
+      "snippet": "Présentation du poste Nous recherchons un consultant / développeur expérimenté en migration et qualité des données pour planifier, exécuter et piloter les activités de migration des données, tout en garantissant un haut niveau de qualité des données au sein des environnements SAP. Le poste consiste notamment à concevoir des stratégies de migration, à nettoyer et valider les données issues des anciens systèmes (Legacy Systems) et à mettre en place des contrôles robustes de qualité des données. L'objectif est de garantir la fiabilité des données dans le cadre des migrations de SAP ECC vers SAP S/4HANA ainsi que des nouvelles implémentations SAP. Principales responsabilités1. Responsabilités liées à la migration et à la qualité des données Analyser les données des anciens systèmes et définir le périmètre de migration, les objets de données concernés ainsi que les règles de transformation. Effectuer l'extraction, le nettoyage, l'enrichissement, la validation et le rapprochement des données dans un environnement SAP Assurance. Réaliser le rapprochement des données entre les systèmes SAP Assurance existants (Legacy) et les systèmes SAP cibles. Définir et mettre en œuvre des règles, des indicateurs et des contrôles de qualité des données. Identifier et résoudre les incohérences, les doublons et les problèmes liés aux données de référence (Master Data). Participer à la mise en place de cadres de gouvernance des données (Data Governance) et de modèles de responsabilité concernant la gestion des données de référence. Collaborer avec les responsables métier des données afin d'améliorer les standards et les processus de gestion des données. Préparer et maintenir des tableaux de bord et des rapports de suivi de la qualité des données. 2. Responsabilités techniques et développement Développer des programmes ABAP pour la migration, la validation et le rapprochement des données. Créer des règles de transformation des données et rédiger les documents de correspondance entre les structures de données sources et cibles (Mapping Documents). Mettre en place des mécanismes de gestion des erreurs (Error Handling) et de journalisation (Logging) pour les programmes de migration. Qualifications et expérience requises1. Compétences en migration et qualité des données Solide expérience en migration de données et en gestion de la qualité des données. Bonne connaissance des objets de données SAP, notamment les données de référence (Master Data) et les données transactionnelles. Expérience confirmée dans au moins un des principaux modules SAP dédiés à l'assurance : SAP FS-PM (Policy Management – Gestion des contrats d'assurance). SAP FS-CM (Claims Management – Gestion des sinistres). Expérience en rapprochement des données (Data Reconciliation) et en assistance aux activités d'audit. 2. Compétences techniques Excellente maîtrise d'ABAP / ABAP OO pour la manipulation des données et les traitements de masse. Expérience avec les outils ETL et de migration, notamment : msg.AIM. LSMW. SAP Data Services. Maîtrise des techniques de chargement de données en grands volumes (High-Volume Data Loading). Expertise en correspondance des données (Data Mapping), logique de transformation et reporting de rapprochement. Grande rigueur et attention particulière à la qualité des données ainsi qu'aux contrôles de cohérence. Solides compétences en développement ABAP pour les migrations et la validation des données. 3. Expérience professionnelle Minimum de 3 ans d'expérience en migration de données et en gestion de la qualité des données. Minimum de 3 ans d'expérience sur un module SAP Core Insurance, tel que SAP FS-PM ou SAP FS-CM. Expérience dans des environnements SAP complexes ou de grande envergure. Excellentes capacités d'analyse et de résolution de problèmes. Excellentes compétences en communication écrite et orale ainsi qu'en présentation. Capacité à travailler de manière autonome et en collaboration avec une équipe. Grande rigueur et souci de l'exactitude des données. Capacité à travailler dans des délais serrés et à gérer la pression pendant les phases de bascule (Cutover). Langues Bon niveau d'anglais. La connaissance du français constitue un atout. Localisation - Nearshore / Offshore (prestation réalisée depuis un pays géographiquement proche ou plus éloigné, dans le cadre d'une organisation de services externalisés).",
+      "source": "free-work.com",
+      "score": 6.5,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "consultant",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "LEVUP",
+      "location": "Île-de-France",
+      "duration": null
+    },
+    {
+      "title": "Product Owner F/H",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-f-h-147",
+      "snippet": "L’agence DSI Group recherche actuellement un Product Owner/AMOA H/F, pour l'un de ses clients situés au Luxembourg. Vos missions : En tant que Product Owner/AMOA, vous serez l’interface entre les équipes métier et technique. Vous jouerez un rôle clé dans la réussite de nos projets informatiques en assurant les tâches suivantes. Analyser les besoins et rédiger les dossiers de conception Conduire les ateliers et entretiens de réflexion, d’analyse et de validation du champs d’étude/projet ; Recueillir et analyser les besoins fonctionnels et non fonctionnels du client ; Etudier les solutions et processus métier existants ; Participer à la rédaction du cahier des charges qui formalise les besoins fonctionnels et non fonctionnels du client ; Concevoir les nouvelles solutions logicielles et/ou applicatives et rédiger le dossier de conception ; Identifier la meilleure solution applicative pouvant répondre aux besoins et contraintes recensés ; Participer à l’évaluation des soumissions (dans le contexte de procédures de marchés publics). Gérer la communication ainsi que la gestion du changement Anticiper, coordonner et gérer la communication envers toutes les parties prenantes ; Travailler en étroite collaboration avec les équipes techniques et métier ; S’assurer que les exigences du client soient traduites en objectifs techniques ou informatiques. Participer à la planification, au suivi et à la coordination du projet sur une base quotidienne Assister le chef de projet informatique pour la gestion opérationnelle des projets et la coordination générale des différents acteurs du projet ; Assurer le suivi des solutions mises en place Définir les tests, assurer la documentation fonctionnelle et valider la documentation technique ; Participer à l’exécution du plan de test et accompagner le client dans sa recette ; Assurer la formation des utilisateurs ; Suivre le déploiement des nouveaux applicatifs auprès des clients et coordonner les équipes techniques ; Assurer la réalisation et la mise à jour de la documentation des solutions mises en place.",
+      "source": "free-work.com",
+      "score": 6.5,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "luxe"
+      ],
+      "company": "DSI group",
+      "location": "Luxembourg",
+      "duration": null
+    },
+    {
+      "title": "Chef de Projet SI",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/chef-de-projet-si-221",
+      "snippet": "Chef de projet SI Refonte portail Accueil Client (PHP / Symfony / Angular / Kubernetes) Contexte Pour un grand acteur du secteur de l’énergie, nous recherchons un Chef de projet SI freelance pour piloter la refonte de son portail d’accueil client. Le projet consiste à regrouper trois applications existantes de relation client en un portail unique. L’objectif est de traiter ensemble leur obsolescence technique (Red Hat, PHP, Symfony, Angular) et de préparer un nouvel hébergement sous Kubernetes. Aucune nouvelle fonctionnalité n’est prévue. L’enjeu est de préserver l’expérience des utilisateurs et la continuité de service, dans le cadre d’un programme plus large de transformation du SI Client (CRM, référentiel client, plateforme marketing). Les applications sont interfacées avec plusieurs SI internes (CRM, référentiel client, site web grand public, outils de gestion d’adresses…). Le développement est assuré par une équipe sur site. Vos missions Piloter le projet de bout en bout : périmètre, planning, charges, risques, dépendances, qualité et reporting Cadrer le projet : étude d’impacts de la migration Kubernetes, cartographie des applications et des interfaces, revue des parcours utilisateurs avec les métiers Piloter la conception générale et détaillée : spécifications fonctionnelles et techniques, lotissement, backlog, stratégie de tests Coordonner le build et l’intégration : équipe de développement PHP / Symfony / Angular, CI/CD, flux avec les SI partenaires Piloter les tests, la non-régression, la recette métier, le Go/No-Go, la mise en service et la stabilisation Assister la responsable du périmètre dans le pilotage du MCO des applications : suivi des incidents, plans d’action, arbitrages Animer les instances projet et tenir une documentation projet à jour, jusqu’à la passation en fin de mission Profil recherché Solide expérience en pilotage de projets SI de bout en bout, avec une vraie maîtrise du cycle de delivery Expérience en AMOA : cadrage, expression de besoin, coordination des métiers et recette Expérience en pilotage du MCO applicatif Bon background technique pour challenger l’architecture et le delivery : PHP, Symfony, Angular, développement de portails web Maîtrise de la CI/CD et de l’intégration SI (API, flux inter-applicatifs) Expérience sur les tests, la recette et la mise en service Connaissance de la relation client et des parcours d’accueil Des notions de Kubernetes sont un plus Pratique d’un outil d’IA générative (Claude ou équivalent), à justifier par une formation, une certification ou une expérience opérationnelle Excellentes capacités d’analyse, de synthèse, d’animation et de négociation Rigueur, autonomie et reporting soigné Très bonne aisance écrite et orale en français Compétences clés Pilotage de projet SI de bout en bout : expert Recette et mise en production : confirmé PHP/Symfony /Angular : confirmé, background technique Pilotage du MCO applicatif : confirmé CI/CD : confirmé Intégration SI/API : confirmé Kubernetes : notions (souhaité) Infos pratiques Mission freelance longue durée, 12 mois renouvelable Démarrage : ASAP Localisation : Saint-denis, Ile de france",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Saint-Denis",
+      "duration": null
+    },
+    {
+      "title": "Product Owner ServiceNow",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-servicenow-6",
+      "snippet": "Notre client dans le secteur Autre recherche un/une Product Owner ServiceNow H/F Description de la mission : Contexte Au sein d’une direction des systèmes d’information, l’équipe ITSM prépare la migration vers une plateforme ITSM transverse. Les plateformes concernées reposent sur ServiceNow (version Xanadu). Dans un contexte Agile, le ou la Product Owner rejoindra une équipe composée d’un Product Manager, d’un Product Owner et de trois développeurs intervenant sur les modules Demandes, Incidents, Changements et Problèmes, ainsi que sur les interfaces et le paramétrage technico-fonctionnel des plateformes. Mission La prestation porte sur le Product Ownership ServiceNow / CMDB et l’accompagnement de la mise en œuvre de la CMDB, en veillant à l’alignement avec les besoins, les standards et le modèle CSDM 5.0 de ServiceNow. Principales responsabilités Travailler en synergie avec le Product Manager et l’équipe de Business Analysts et développeurs selon la méthodologie Agile. Prendre en charge les Features créées par le Product Manager, rédiger les User Stories associées et suivre leur avancement avec le Product Owner. Organiser des ateliers de recueil des besoins et proposer des solutions de construction de la CMDB alignées sur les standards et le modèle CSDM 5.0. Produire des reportings ITSM pour le Configuration Manager, notamment sur la santé de la CMDB en production, et construire des tableaux de bord adaptés aux besoins des parties prenantes. Organiser les phases de recette avec les clients des développements et communiquer sur les réalisations après leur mise en production, notamment au moyen de Release Notes. Créer et organiser la documentation de fonctionnement des plateformes ServiceNow, ainsi que des guides utilisateurs et vidéos d’autoformation. Participer aux cérémonies Agile de l’équipe et de la direction. Contribuer à la coordination d’une équipe Scrum pluridisciplinaire et faciliter le transfert de compétences lors de la réversibilité. Environnement technique ITSM et gestion de configuration : ServiceNow (Xanadu), CMDB, CSDM 5.0 Modules ITSM : Demandes, Incidents, Changements, Problèmes Méthodes et outils : Agile, Scrum, SAFe, Jira, Confluence, Klaxoon Bureautique : Microsoft 365 Référentiels et pratiques : ITIL V3, DevOps, RGPD Livrables attendus Gestion du backlog et découpage des User Stories Analyse d’impact et plan de maîtrise des risques Comptes-rendus, plannings et plans d’action, notamment pour le déploiement et la supervision Documentation technico-fonctionnelle Guides utilisateurs et vidéos d’autoformation En phase de réversibilité : plan de réversibilité, checklist de validation, reporting, bilan et procès-verbal de recette Compétences / Qualités indispensables : ServiceNow et CMDB, CSDM 5.0 et gestion des configurations, Product Ownership en environnement Agile/Scrum, ITSM et processus incidents, changements, problèmes et demandes, SAFe et certification ITIL V3, Jira, Confluence et Microsoft 365 Compétences / Qualités qui seraient un + : Notions d’observabilité Informations concernant le télétravail : Oui — 2 jours/semaine",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product manager",
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "LeHibou",
+      "location": "Issy-les-Moulineaux",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Digital Workspace",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-digital-workspace",
+      "snippet": "Titre : Product Owner Digital Workspace – Toulouse (H/F) – Habilitation Localisation : Toulouse, 100 % sur site, sans télétravail Démarrage : ASAP Prérequis obligatoires : éligibilité ZRR et habilitation (Secret ou Confidentiel), actuelle ou passée. Le contexte Pour un grand industriel de la défense et du spatial basé à Toulouse, nous recherchons un Product Owner Digital Workspace. Il pilotera des produits du poste de travail et des services utilisateurs, dans une organisation agile à l’échelle (SAFe). Vos missions Porter la roadmap et le backlog de briques Digital Workspace : master Windows, Active Directory, messagerie, impression Rédiger et prioriser le backlog, et découper le besoin en EPIC, features et user stories Arbitrer les priorités et piloter la gestion de l’obsolescence Participer aux PI Planning et aux rituels SAFe Assurer le lien entre les équipes techniques, le support et les utilisateurs Suivre les éléments du parc dans la CMDB (ServiceNow)",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "LEVUP",
+      "location": "Toulouse",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Zscaler (F/H)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-zscaler-f-h",
+      "snippet": "Rattaché(e) au CISO, vous prenez la responsabilité de bout en bout du produit Zscaler, socle de la stratégie Zero Trust du groupe. Vous garantissez le fonctionnement quotidien des services ZIA et ZPA et pilotez leur évolution pour les utilisateurs répartis dans plusieurs pays. Vous encadrez une équipe de quatre ingénieurs et administrateurs et coordonnez les interventions de support, la gestion des incidents et des changements, ainsi que le suivi des indicateurs de service. Vous définissez et animez la feuille de route, gérez le backlog et priorisez les évolutions avec les parties prenantes. Vous pilotez notamment les intégrations avec l’écosystème de sécurité et les extensions du service, tout en assurant la relation avec l’éditeur et les intégrateurs. Référent(e) auprès des entités et des équipes informatiques locales, vous favorisez l’adoption de la solution. La mission longue, en statut indépendant, est basée à Courbevoie selon une organisation hybride de deux à trois jours sur site par semaine.",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Courbevoie",
+      "duration": null
+    },
+    {
+      "title": "Product Owner",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-1383",
+      "snippet": "Il est responsable du Product Backlog (carnet du produit). Il s'assure que la direction métier prise est la bonne, les priorités respectées suivant un critère de valeur métier, et que la qualité des livrables de chaque cycle agile est en adéquation avec les attentes du métier. Il est capable de prendre des décisions sur le périmètre du besoin métier, en cohérence avec le rythme de développement choisi par l'équipe. RÉFÉRENT DE LA VISION MÉTIER, DU MVP (MINIMUM VIABLE PRODUCT, OU PRODUIT MINIMAL VIABLE) ET DU CONTENU MÉTIER DU PROJET, AU SEIN DES ÉQUIPES AGILES : • Élabore la vision du produit • Décrit avec le maximum de détails les utilisateurs et/ou clients du produit • Identifie les attentes des utilisateurs et les bénéfices que le produit leur apportera • Identifie les fonctionnalités attendues et sélectionne celles qui apportent le plus de valeurs ou de bénéfices aux utilisateurs pour définir et planifier les releases/versions du produit • Partage cette vision avec les équipes de développement agile • Mène une réflexion stratégique préparatoire des versions à venir PRIORISATION PAR LA VALEUR DU CONTENU MÉTIER : • Priorise toutes les « user stories » au sein du Product Backlog • Maintient le Product Backlog et cherche en permanence à maximiser la valeur métier pour les utilisateurs FACILITATION DE LA COMPRÉHENSION DE L'ÉQUIPE AGILE VIS-À-VIS DU BESOIN MÉTIER : • Décrit chaque fonctionnalité retenue sous forme d'une « user story » suffisamment petite pour être implémentée en une seule itération, sans oublier d'y associer les critères d'acceptation indispensables à sa bonne compréhension par les équipes • Comprend les « Technical Stories » proposées par les équipes de développement (besoins non fonctionnels mais indispensables) et les « Defects Stories » • Répond aux demandes de clarification émises par les équipes de développement sur les « Stories » en cours de développement durant l'itération • Contribue aux réunions agiles avec les équipes de développement et le Scrum Master • Pédagogue et diplomate, facilite la communication et la collaboration entre l'ensemble des parties prenantes et sait faire preuve de persuasion lorsqu'il porte la parole métier RECETTE DES ÉLÉMENTS MÉTIERS PRODUITS PAR L'ÉQUIPE AGILE : • Accepte ou refuse les « Stories » implémentées par les équipes de développement • Réalise ou organise le déroulement des tests utilisateurs/Métier de la version (avec son équipe de recettes si projet complexe) • Si la taille du Backlog le nécessite, il anime une équipe de Business Analysts, Rédacteurs et Testeurs métier • Récolte les feedbacks des utilisateurs • Évalue le fonctionnement des versions précédentes mises en production et en cours d'utilisation • Assure la non-régression des nouvelles versions proposées • Manage des équipes de rédaction et de recettes des user stories pour les projets Agiles d'envergure REPORTING ; • Communique sur l'avancement de la réalisation du produit auprès du management et des utilisateurs",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "scrum master"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "STHREE SAS",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Applicatif H/F",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-applicatif-h-f-1",
+      "snippet": "Lieu : Nantes sud (44) Salaire : 50 K€ annuel brut Rythme : 1 journée de télétravail par semaine Nous recherchons pour notre client, un Product Owner (H/F) dans le cadre d'une création de poste en CDI. VOS MISSIONS : Rattaché directement à la Direction des Systèmes d’Information, vous intégrez une DSI à taille humaine et intervenez comme interlocuteur privilégié des métiers, en les accompagnant dans l’identification, la formalisation et la construction de leurs besoins applicatifs. Vos missions sont les suivantes : Stratégie et pilotage de la roadmap • Concevoir et actualiser la feuille de route applicative en lien avec la direction • Analyser et affiner chaque nouvelle expression de besoin métier avant son intégration dans le backlog (problématique, utilisateurs cibles, ROI escompté, solutions alternatives). • Animer les instances de gouvernance projet avec les différentes parties prenantes • Assurer le suivi global des projets du périmètre. Maîtrise du delivery et animation agile • Rédiger les user stories, définir les critères d'acceptation, prioriser le backlog et rythmer les rituels agiles (cycles itératifs de deux semaines). • Coordonner les partenaires externes, intégrateurs et éditeurs de logiciels (phases de build, recette et validation d'aptitude). • Organiser les phases de tests, valider les mises en production et orchestrer le change management auprès des utilisateurs finaux. Rationalisation et performance applicative • Collaborer avec l'équipe technique pour identifier les doublons fonctionnels et piloter la rationalisation du parc logicielle. • Coordonner la transition progressive des anciens systèmes vers la nouvelle architecture cible. • Suivre les indicateurs clés : time-to-market, taux d'adoption hebdomadaire des outils et niveau de satisfaction des utilisateurs. ENVIRONNEMENT TECHNIQUE : • Méthodologie projet : Scrum / Kanban • Outil de gestion de projet : Jira • Autres : culture API, SaaS, CRM, architecture en services PROCESS : Après un premier échange en visio avec un membre de notre équipe, vous rencontrerez : • Le Responsable des Systèmes d’information en visio • Puis un entretien final sur site avec la direction Une décision rapide est prise à l’issue des entretiens. Envoyez-nous votre profil ! Si votre expérience correspond, un membre de l’équipe vous contactera sous 24h. Au plaisir d’échanger sur votre projet, S-quaar",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "S-quaar",
+      "location": "Nantes",
+      "duration": null
+    },
+    {
+      "title": "Scrum master senior – Agile SAFe & accompagnement des equipes",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/scrum-master/scrum-master-senior-agile-safe-accompagnement-des-equipes",
+      "snippet": "Dans le cadre du renforcement de ses équipes agiles, notre client recherche un Scrum Master Senior chargé d'accompagner les équipes dans la structuration, l'organisation et la réalisation de leurs activités. La mission s'inscrit dans un environnement Agile à l'échelle, idéalement SAFe, avec une sensibilité aux enjeux de production et aux pratiques DevSecOps. Vos missions principales : Accompagnement des équipes Accompagner les équipes agiles dans l'application des principes et pratiques Scrum. Faciliter l'organisation et le déroulement des activités des équipes. Favoriser la collaboration, l'autonomie et l'amélioration continue. Animation des cérémonies agiles Animer le Daily Scrum, le Sprint Planning, la Sprint Review et les rétrospectives. Produire les supports et comptes rendus des ateliers agiles. Gestion des obstacles et amélioration continue Identifier et contribuer à lever les obstacles rencontrés par les équipes. Assurer le suivi des obstacles et des actions d'amélioration. Élaborer des plans d'amélioration continue. Agilité à l'échelle Accompagner les équipes dans l'application des pratiques Agile à l'échelle, notamment SAFe. Veiller au respect des bonnes pratiques Scrum et à la bonne coordination des activités. Livrables attendus : Organisation et animation des cérémonies agiles. Suivi des obstacles et des actions d'amélioration. Indicateurs de suivi des activités et de la progression des équipes. Plans d'amélioration continue. Supports et comptes rendus des ateliers agiles.",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "scrum master"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "Mon Consultant Indépendant",
+      "location": "Paris",
+      "duration": "6 mois"
+    }
+  ]
+}
