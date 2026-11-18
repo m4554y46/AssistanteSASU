@@ -1,0 +1,189 @@
+{
+  "generated_at": "2026-11-18T19:48:42.060130+00:00",
+  "missions_count": 10,
+  "missions": [
+    {
+      "title": "Product Owner H/F",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-h-f-1295",
+      "snippet": "Je suis Sheeranaze MEHENTAL, Consultante en recrutement au sein de FED IT, cabinet de recrutement spécialisé sur les métiers des systèmes d'information et de la transformation digitale : infrastructure, chefferie de projet, data, cybersécurité, développement et top management. Je recrute pour mon client basé à Nantes, un ou une Product Owner en freelance pour une mission de 6 mois. En collaboration avec les équipes métiers et techniques, vous contribuerez à faire évoluer le produit en traduisant les besoins fonctionnels en solutions concrètes et à forte valeur ajoutée. Le profil recherché : Vous disposez d'une expérience confirmée en Product Ownership ou en gestion de projet métier. Vous maîtrisez les processus comptables, financiers et budgétaires. Vous savez recueillir, analyser et formaliser les besoins métiers. Vous avez déjà travaillé sur des produits ou projets liés à la finance, au contrôle de gestion ou au prévisionnel. Vous êtes à l'aise dans les échanges avec des interlocuteurs métiers et techniques.",
+      "source": "free-work.com",
+      "score": 6.8,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "consultant",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "FED SAS",
+      "location": "Nantes",
+      "duration": null
+    },
+    {
+      "title": "Product. Owner / Product Manager",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-product-manager-9",
+      "snippet": "Nous recherchons un Chef de projet / Directeur de projet disposant d’au moins 5 ans d’expérience en pilotage de projets IT , ayant déjà mené des projets d’intelligence artificielle destinés aux développeurs : environnements de développement, assistants de code ( Coding Assistants ) et agents de développement ( Coding Agents ). Vos missions : Piloter les projets, du cadrage au déploiement auprès des équipes de développement. Recueillir les besoins et définir les cas d’usage avec les équipes techniques. Coordonner les parties prenantes et suivre le planning, le budget, les risques et les livrables. Accompagner l’adoption des outils et mesurer leurs bénéfices sur la productivité et la qualité du code. Profil recherché : 5 ans minimum d’expérience en gestion ou direction de projets IT. Une expérience concrète de projets IA au service des développeurs. Une bonne compréhension des environnements de développement et de l’intégration de ces outils dans les pratiques des équipes. Une capacité à dialoguer avec les développeurs, les architectes et les décideurs. Autonomie, rigueur et capacité à fédérer les équipes.",
+      "source": "free-work.com",
+      "score": 6.8,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "directeur de projet",
+        "chef de projet",
+        "product manager"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "Evolved Digital",
+      "location": "Montreuil",
+      "duration": null
+    },
+    {
+      "title": "Product Owner F/H",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-f-h-147",
+      "snippet": "L’agence DSI Group recherche actuellement un Product Owner/AMOA H/F, pour l'un de ses clients situés au Luxembourg. Vos missions : En tant que Product Owner/AMOA, vous serez l’interface entre les équipes métier et technique. Vous jouerez un rôle clé dans la réussite de nos projets informatiques en assurant les tâches suivantes. Analyser les besoins et rédiger les dossiers de conception Conduire les ateliers et entretiens de réflexion, d’analyse et de validation du champs d’étude/projet ; Recueillir et analyser les besoins fonctionnels et non fonctionnels du client ; Etudier les solutions et processus métier existants ; Participer à la rédaction du cahier des charges qui formalise les besoins fonctionnels et non fonctionnels du client ; Concevoir les nouvelles solutions logicielles et/ou applicatives et rédiger le dossier de conception ; Identifier la meilleure solution applicative pouvant répondre aux besoins et contraintes recensés ; Participer à l’évaluation des soumissions (dans le contexte de procédures de marchés publics). Gérer la communication ainsi que la gestion du changement Anticiper, coordonner et gérer la communication envers toutes les parties prenantes ; Travailler en étroite collaboration avec les équipes techniques et métier ; S’assurer que les exigences du client soient traduites en objectifs techniques ou informatiques. Participer à la planification, au suivi et à la coordination du projet sur une base quotidienne Assister le chef de projet informatique pour la gestion opérationnelle des projets et la coordination générale des différents acteurs du projet ; Assurer le suivi des solutions mises en place Définir les tests, assurer la documentation fonctionnelle et valider la documentation technique ; Participer à l’exécution du plan de test et accompagner le client dans sa recette ; Assurer la formation des utilisateurs ; Suivre le déploiement des nouveaux applicatifs auprès des clients et coordonner les équipes techniques ; Assurer la réalisation et la mise à jour de la documentation des solutions mises en place.",
+      "source": "free-work.com",
+      "score": 6.5,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "luxe"
+      ],
+      "company": "DSI group",
+      "location": "Luxembourg",
+      "duration": null
+    },
+    {
+      "title": "Chef de Projet SI",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/chef-de-projet-si-221",
+      "snippet": "Chef de projet SI Refonte portail Accueil Client (PHP / Symfony / Angular / Kubernetes) Contexte Pour un grand acteur du secteur de l’énergie, nous recherchons un Chef de projet SI freelance pour piloter la refonte de son portail d’accueil client. Le projet consiste à regrouper trois applications existantes de relation client en un portail unique. L’objectif est de traiter ensemble leur obsolescence technique (Red Hat, PHP, Symfony, Angular) et de préparer un nouvel hébergement sous Kubernetes. Aucune nouvelle fonctionnalité n’est prévue. L’enjeu est de préserver l’expérience des utilisateurs et la continuité de service, dans le cadre d’un programme plus large de transformation du SI Client (CRM, référentiel client, plateforme marketing). Les applications sont interfacées avec plusieurs SI internes (CRM, référentiel client, site web grand public, outils de gestion d’adresses…). Le développement est assuré par une équipe sur site. Vos missions Piloter le projet de bout en bout : périmètre, planning, charges, risques, dépendances, qualité et reporting Cadrer le projet : étude d’impacts de la migration Kubernetes, cartographie des applications et des interfaces, revue des parcours utilisateurs avec les métiers Piloter la conception générale et détaillée : spécifications fonctionnelles et techniques, lotissement, backlog, stratégie de tests Coordonner le build et l’intégration : équipe de développement PHP / Symfony / Angular, CI/CD, flux avec les SI partenaires Piloter les tests, la non-régression, la recette métier, le Go/No-Go, la mise en service et la stabilisation Assister la responsable du périmètre dans le pilotage du MCO des applications : suivi des incidents, plans d’action, arbitrages Animer les instances projet et tenir une documentation projet à jour, jusqu’à la passation en fin de mission Profil recherché Solide expérience en pilotage de projets SI de bout en bout, avec une vraie maîtrise du cycle de delivery Expérience en AMOA : cadrage, expression de besoin, coordination des métiers et recette Expérience en pilotage du MCO applicatif Bon background technique pour challenger l’architecture et le delivery : PHP, Symfony, Angular, développement de portails web Maîtrise de la CI/CD et de l’intégration SI (API, flux inter-applicatifs) Expérience sur les tests, la recette et la mise en service Connaissance de la relation client et des parcours d’accueil Des notions de Kubernetes sont un plus Pratique d’un outil d’IA générative (Claude ou équivalent), à justifier par une formation, une certification ou une expérience opérationnelle Excellentes capacités d’analyse, de synthèse, d’animation et de négociation Rigueur, autonomie et reporting soigné Très bonne aisance écrite et orale en français Compétences clés Pilotage de projet SI de bout en bout : expert Recette et mise en production : confirmé PHP/Symfony /Angular : confirmé, background technique Pilotage du MCO applicatif : confirmé CI/CD : confirmé Intégration SI/API : confirmé Kubernetes : notions (souhaité) Infos pratiques Mission freelance longue durée, 12 mois renouvelable Démarrage : ASAP Localisation : Saint-denis, Ile de france",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Saint-Denis",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Odoo / Finance",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant/product-owner-odoo-finance",
+      "snippet": "Dans le cadre de l’évolution et de l’optimisation d’un environnement Odoo , nous recherchons un Product Owner (PO) ayant une forte connaissance fonctionnelle des processus Finance et Comptabilité . Le PO sera l’interface entre les équipes Finance, les utilisateurs métier et les équipes techniques/développement Odoo. Missions principales Recueillir, analyser et challenger les besoins des équipes Finance. Traduire les besoins métier en User Stories , spécifications fonctionnelles et critères d’acceptation. Construire, prioriser et maintenir le Product Backlog . Définir les priorités fonctionnelles en fonction des enjeux métier. Piloter les évolutions des modules Finance dans Odoo . Participer aux cérémonies Agile / Scrum : refinement, sprint planning, review et rétrospective. Collaborer quotidiennement avec les développeurs et consultants Odoo. Suivre les développements et s’assurer de leur conformité avec les besoins métier. Participer aux phases de recette fonctionnelle et UAT . Accompagner les utilisateurs Finance lors des évolutions et mises en production. Identifier les axes d’amélioration des processus financiers dans Odoo.",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "consultant"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "FUZYO FRANCE",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Zscaler (F/H)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-zscaler-f-h",
+      "snippet": "Rattaché(e) au CISO, vous prenez la responsabilité de bout en bout du produit Zscaler, socle de la stratégie Zero Trust du groupe. Vous garantissez le fonctionnement quotidien des services ZIA et ZPA et pilotez leur évolution pour les utilisateurs répartis dans plusieurs pays. Vous encadrez une équipe de quatre ingénieurs et administrateurs et coordonnez les interventions de support, la gestion des incidents et des changements, ainsi que le suivi des indicateurs de service. Vous définissez et animez la feuille de route, gérez le backlog et priorisez les évolutions avec les parties prenantes. Vous pilotez notamment les intégrations avec l’écosystème de sécurité et les extensions du service, tout en assurant la relation avec l’éditeur et les intégrateurs. Référent(e) auprès des entités et des équipes informatiques locales, vous favorisez l’adoption de la solution. La mission longue, en statut indépendant, est basée à Courbevoie selon une organisation hybride de deux à trois jours sur site par semaine.",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Courbevoie",
+      "duration": null
+    },
+    {
+      "title": "Product Owner Sophia Antipolis/o",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-sophia-antipolis-2",
+      "snippet": "Product Owner Sophia Antipolis Contexte de la mission Product Owner expérimenté pour assurer la gestion et le pilotage du service de sécurité Vault. Ce service permet aux clients internes de sécuriser leurs secrets, notamment les mots de passe et autres données sensibles, dans une banque virtuelle organisée en coffres-forts. Le produit évolue dans une architecture complexe et connaît une phase de migration vers de nouvelles infrastructures, avec des enjeux importants de résilience, de qualité de delivery et de communication auprès des utilisateurs. Vos principales missions Pilotage du produit et du backlog •Recueillir, analyser et formaliser les besoins des clients internes. •Prioriser et maintenir le backlog du service en collaboration avec l’équipe. •Rédiger des User Stories complètes, avec spécifications fonctionnelles et critères d’acceptation. •Co-construire et valider les User Stories intégrées aux sprints. Validation et qualité •Participer aux campagnes de tests et à la recette fonctionnelle. •Valider les User Stories en s’assurant du respect des critères d’acceptation. •Garantir la mise à jour de Jira et de la documentation associée. •Accompagner la présentation et la validation des réalisations lors des Reviews. Communication et coordination •Animer un dialogue continu avec les équipes techniques, les métiers, la MOA, les utilisateurs finaux et les partenaires. •Organiser et animer les Sprint Planning et les Reviews. •Communiquer sur les évolutions, les réalisations et les incidents du produit. •Produire les comptes rendus et maintenir la documentation dans Confluence. Profil recherché •Au moins 5 ans d’expérience dans un rôle de Product Owner, idéalement sur un produit ou service technique. •Très bonne maîtrise de Scrum et expérience d’une organisation Agile impliquant une équipe importante. •Capacité confirmée à hiérarchiser les priorités dans un environnement à fort volume d’activité. •Excellente communication, avec la capacité d’adapter le discours à des interlocuteurs techniques et fonctionnels. •Orientation client, sens du service, autonomie, rigueur et capacité de synthèse. •Bonne culture des concepts de sécurité informatique, indispensable pour comprendre les enjeux du service. Environnement de travail • Jira et module XRAY •Confluence •GitLab •Méthodologie Scrum •Services de cybersécurité et gestion des secrets Livrables attendus •Backlog Jira à jour et User Stories complètes. •Spécifications fonctionnelles et critères d’acceptation. •Validation des User Stories et suivi des campagnes de tests. •Comptes rendus de Reviews dans Confluence. •Reporting régulier des travaux réalisés et des livrables produits",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "WorldWide People",
+      "location": "Sophia Antipolis",
+      "duration": null
+    },
+    {
+      "title": "Consultant MOA métier cartographie (F/H)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant-moa-amoa/consultant-moa-metier-cartographie-f-h",
+      "snippet": "Rattaché à l’équipe cartographie de la direction technique, le consultant en maîtrise d’ouvrage métier contribuera à faire évoluer les processus et les outils utilisés par les équipes de cartographes en région. Sa priorité sera d’accompagner le développement d’un outil d’ordonnancement permettant d’organiser les tâches, de respecter les délais et de suivre la qualité des travaux. À partir des spécifications fonctionnelles déjà établies, il assurera le suivi des développements réalisés par la direction des systèmes d’information, organisera les recettes métier et contribuera aux arbitrages nécessaires. Il fera le lien entre les équipes informatiques, les interlocuteurs métier nationaux et les utilisateurs régionaux, en veillant à traduire les besoins opérationnels en solutions adaptées. La mission pourra également porter sur l’analyse des besoins, l’évolution des outils de cartographie et la mise à jour de la documentation métier. Le consultant animera des ateliers de conception et de réception, assurera la traçabilité des travaux dans la base de connaissances et apportera un appui aux utilisateurs. Il prendra aussi en compte les effets des évolutions des outils sur les activités et marchés associés.",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "consultant"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Saint-Denis",
+      "duration": null
+    },
+    {
+      "title": "TOULOUSE - Chef de projet IT – Résilience numérique & outillage IA",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/toulouse-chef-de-projet-it-resilience-numerique-outillage-ia",
+      "snippet": "Chef de projet IT – Résilience numérique & outillage IA (H/F) – Toulouse ou Bordeaux (Gradignan) Nous cherchons pour un établissement bancaire un chef de projet pour piloter l’industrialisation de l’outillage d’un cadre d’évaluation de la résilience numérique. Ce cadre, complémentaire à DORA, mesure les dépendances numériques critiques de chaque application critique : chaque actif est identifié puis évalué sur 32 questions réparties en 8 thématiques (IT, achats, juridique, cyber…). Le but est d’alléger la charge des contributeurs en automatisant la notation et la récupération de l’information dans les référentiels. Vos missions Vous analysez l’outil de reporting déjà utilisé dans le groupe : est-ce qu’il répond au besoin, et peut-il être installé sur le SI de la banque ? Vous en tirez une instruction de déploiement. Vous menez aussi une étude comparative sur l’apport d’un module IA (Mistral ou Copilot) pour identifier les actifs de chaque application et construire tout ou partie de leur notation. Enfin, vous définissez la roadmap de déploiement 2027. Pendant toute la mission, vous pilotez l’industrialisation du process avant son déploiement. Cela comprend la coordination transverse, l’analyse des besoins et des processus, le reporting, le suivi du plan d’actions et l’analyse des risques. Profil recherché 3 à 7 ans d’expérience en gestion de projet IT (pilotage, coordination) Connaissance de l’IRN (Indice de Résilience Numérique) IA appliquée aux projets IT Analyse des besoins, cartographie et amélioration des processus Maîtrise des méthodes projet (cycle en V, agile, hybride) Très bonnes capacités rédactionnelles et de synthèse, aisance sur PowerPoint, Excel et Word Rigueur, autonomie, esprit de service Modalités Démarrage le 16 novembre 2026. Engagement initial de 40 jours, avec une tranche optionnelle qui peut porter la mission jusqu’à 630 jours au total. Sur site à Toulouse, avec 2 jours de télétravail par semaine possibles si le service donne son accord",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Toulouse",
+      "duration": null
+    },
+    {
+      "title": "CHEF DE PROJET SPIRITUEUX (H/F)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/chef-de-projet-spiritueux-h-f",
+      "snippet": "Sous la responsabilité directe du DSI, votre objectif sera de piloter et délivrer des projets applicatifs stratégiques en lien avec les enjeux métiers du secteur des spiritueux (production, supply chain, distribution, réglementation), en garantissant performance, qualité et adoption des solutions. Vos missions : Pilotage des projets: Cadrer, planifier et exécuter des projets applicatifs (ERP, outils métiers, data…) Assurer la tenue des délais, des coûts et de la qualité Animer les comités projets et suivre les indicateurs de performance Relation métiers & expertise sectorielle Comprendre les spécificités du secteur des spiritueux (traçabilité, accises, distribution, marques…) Traduire les besoins métiers en solutions IT pertinentes Être un interlocuteur de confiance pour les équipes métiers Gestion des parties prenantes Coordonner les équipes internes (IT, métiers) et externes (éditeurs, intégrateurs) Gérer les prestataires et partenaires technologiques Delivery & amélioration continue Garantir la qualité des livrables et la robustesse des solutions Piloter les phases de recette, déploiement et conduite du changement Identifier des axes d’optimisation et d’innovation",
+      "source": "free-work.com",
+      "score": 5.0,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet"
+      ],
+      "decision": "A QUALIFIER",
+      "industry_match": [],
+      "company": "INFOBAM",
+      "location": "Paris",
+      "duration": null
+    }
+  ]
+}
