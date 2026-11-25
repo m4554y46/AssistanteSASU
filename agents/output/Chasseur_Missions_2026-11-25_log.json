@@ -1,0 +1,192 @@
+{
+  "generated_at": "2026-11-25T20:54:56.507908+00:00",
+  "missions_count": 10,
+  "missions": [
+    {
+      "title": "Product Lead / Product Owner Senior",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-lead-product-owner-senior",
+      "snippet": "Dans le cadre d’un programme stratégique de transformation des outils collaboratifs, notre client engage la migration de ses plateformes Atlassian Jira et Confluence vers une solution open source. Cette initiative vise à moderniser l’environnement collaboratif, maîtriser les coûts associés aux solutions existantes et garantir une transition sécurisée pour les utilisateurs et les équipes techniques. Afin de piloter cette transformation, notre client recherche un Product Lead / Product Owner capable d'assurer le cadrage, la gouvernance et le pilotage opérationnel de l'ensemble du programme de migration. Le rôle couvre l'interface entre les métiers, les équipes techniques et le management afin de garantir visibilité, maîtrise des risques et atteinte des objectifs du projet. Description Le consultant interviendra en tant que Product Lead / Product Owner et sera responsable de la définition, du pilotage et de la coordination de l'ensemble des activités liées à la migration des solutions collaboratives. Ses principales responsabilités seront les suivantes : - Cadrage et définition du besoin - Recueillir, analyser et consolider les besoins des différentes parties prenantes. - Challenger les demandes et identifier les besoins réellement indispensables à la migration. - Définir le périmètre fonctionnel et technique en collaboration avec l'Architecte Solution. - Identifier les dépendances, contraintes et prérequis. - Formaliser les besoins sous forme d'Epics, Features et User Stories. - Définir les critères d'acceptation et les critères de succès du programme. - Pilotage de la migration - Définir et maintenir la roadmap de migration. - Piloter les priorités et le backlog produit. - Assurer le suivi des jalons et des principaux indicateurs d'avancement. - Gérer les risques, dépendances et situations de blocage. - Préparer et conduire les arbitrages nécessaires. - Organiser les instances de gouvernance et de décision. Leadership et coordination : Encadrer fonctionnellement une équipe composée d'un Scrum Master, d'un Architecte Solution, d'ingénieurs DevOps et d'experts Atlassian Donner une vision claire et fédératrice aux différents intervenants. Assurer la coordination entre les acteurs métiers et techniques. Anticiper les difficultés et mettre en œuvre les plans d'actions associés. Piloter la dynamique collective jusqu'à l'atteinte des objectifs de migration. Reporting et communication Produire un reporting régulier à destination du management. Communiquer sur les réalisations, les jalons, les risques et les arbitrages à prendre. Transformer des sujets techniques complexes en messages synthétiques et orientés décision. Fournir une visibilité claire sur l'avancement et les prochaines étapes du programme. Livrables : Le Product Lead devra produire et maintenir les livrables suivants : Gouvernance et Pilotage Vision produit et objectifs de migration. Roadmap de migration. Planning des différentes vagues de migration. Tableau de bord d'avancement. Reporting exécutif et synthétique. Suivi des décisions et arbitrages. Gestion du Backlog Product Backlog structuré et priorisé. Epics, Features et User Stories. Critères d'acceptation. Priorisation continue des besoins. Gestion des Risques et Dépendances Cartographie des dépendances. Registre des risques et plans de mitigation. Critères Go / No Go des différentes vagues de migration. Suivi de la readiness des migrations. Clôture et Retours d'Expérience Bilan des vagues de migration. Actions correctives et plans d'amélioration. Documentation de fin de projet et transfert vers les équipes d'exploitation.",
+      "source": "free-work.com",
+      "score": 7.3,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "product lead",
+        "consultant",
+        "transformation",
+        "scrum master"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "OCTOGONE",
+      "location": "Vélizy-Villacoublay",
+      "duration": null
+    },
+    {
+      "title": "Product Owner / Product Manager IFS Senior",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-product-manager-ifs-senior",
+      "snippet": "Contexte de la mission Dans le cadre d'un programme stratégique de transformation SI chez un grand acteur de l'énergie, nous recherchons un Product Owner IFS Senior pour reprendre le pilotage fonctionnel de l'ERP IFS. La mission s'inscrit dans un projet de convergence de deux environnements IFS vers un ERP unique, prévue en juillet 2027, avec un élargissement des responsabilités de pilotage et de coordination technique. Missions principales Piloter l'ERP IFS et assurer la gestion, la priorisation et le suivi de sa roadmap. Recueillir, cadrer et challenger les besoins métiers, puis les traduire en évolutions IT. Participer activement à la convergence des deux environnements IFS. Piloter les sujets de Data Migration, enjeu majeur du programme. Coordonner les équipes techniques IFS et assurer l'interface entre les métiers et l'IT. Superviser les problématiques d'intégration et d'interfaces, notamment entre Salesforce CRM et IFS. Collaborer avec la TMA sur les problématiques applicatives. Suivre les risques, dépendances et échéances du programme. Garantir l'avancement des sujets avec une forte autonomie et une véritable prise de responsabilités. Important : Le profil recherché n'est pas un développeur IFS ni un expert purement technique. Il s'agit avant tout d'un profil fonctionnel senior, capable de prendre le pilotage global de l'ERP et de challenger les équipes techniques.",
+      "source": "free-work.com",
+      "score": 6.8,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product manager",
+        "product owner",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ALLEGIS GROUP",
+      "location": "Paris",
+      "duration": null
+    },
+    {
+      "title": "Chef de Projet SI",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/chef-de-projet-si-221",
+      "snippet": "Chef de projet SI Refonte portail Accueil Client (PHP / Symfony / Angular / Kubernetes) Contexte Pour un grand acteur du secteur de l’énergie, nous recherchons un Chef de projet SI freelance pour piloter la refonte de son portail d’accueil client. Le projet consiste à regrouper trois applications existantes de relation client en un portail unique. L’objectif est de traiter ensemble leur obsolescence technique (Red Hat, PHP, Symfony, Angular) et de préparer un nouvel hébergement sous Kubernetes. Aucune nouvelle fonctionnalité n’est prévue. L’enjeu est de préserver l’expérience des utilisateurs et la continuité de service, dans le cadre d’un programme plus large de transformation du SI Client (CRM, référentiel client, plateforme marketing). Les applications sont interfacées avec plusieurs SI internes (CRM, référentiel client, site web grand public, outils de gestion d’adresses…). Le développement est assuré par une équipe sur site. Vos missions Piloter le projet de bout en bout : périmètre, planning, charges, risques, dépendances, qualité et reporting Cadrer le projet : étude d’impacts de la migration Kubernetes, cartographie des applications et des interfaces, revue des parcours utilisateurs avec les métiers Piloter la conception générale et détaillée : spécifications fonctionnelles et techniques, lotissement, backlog, stratégie de tests Coordonner le build et l’intégration : équipe de développement PHP / Symfony / Angular, CI/CD, flux avec les SI partenaires Piloter les tests, la non-régression, la recette métier, le Go/No-Go, la mise en service et la stabilisation Assister la responsable du périmètre dans le pilotage du MCO des applications : suivi des incidents, plans d’action, arbitrages Animer les instances projet et tenir une documentation projet à jour, jusqu’à la passation en fin de mission Profil recherché Solide expérience en pilotage de projets SI de bout en bout, avec une vraie maîtrise du cycle de delivery Expérience en AMOA : cadrage, expression de besoin, coordination des métiers et recette Expérience en pilotage du MCO applicatif Bon background technique pour challenger l’architecture et le delivery : PHP, Symfony, Angular, développement de portails web Maîtrise de la CI/CD et de l’intégration SI (API, flux inter-applicatifs) Expérience sur les tests, la recette et la mise en service Connaissance de la relation client et des parcours d’accueil Des notions de Kubernetes sont un plus Pratique d’un outil d’IA générative (Claude ou équivalent), à justifier par une formation, une certification ou une expérience opérationnelle Excellentes capacités d’analyse, de synthèse, d’animation et de négociation Rigueur, autonomie et reporting soigné Très bonne aisance écrite et orale en français Compétences clés Pilotage de projet SI de bout en bout : expert Recette et mise en production : confirmé PHP/Symfony /Angular : confirmé, background technique Pilotage du MCO applicatif : confirmé CI/CD : confirmé Intégration SI/API : confirmé Kubernetes : notions (souhaité) Infos pratiques Mission freelance longue durée, 12 mois renouvelable Démarrage : ASAP Localisation : Saint-denis, Ile de france",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ODHCOM - FREELANCEREPUBLIK",
+      "location": "Saint-Denis",
+      "duration": null
+    },
+    {
+      "title": "Consultant User Experience - Adoption IA Microsoft",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant-microsoft-sharepoint-365/consultant-user-experience-adoption-ia-microsoft-5",
+      "snippet": "Votre rôle : accompagner les organisations dans ces transformations en plaçant l'humain au coeur des projets. Comprendre les métiers, lever les freins et faire émerger de nouveaux réflexes afin que la technologie devienne un véritable levier. De l'adoption de Microsoft 365 aux usages avancés de Copilot M365 Découvrez vos futurs défis : o Comprendre les besoins métiers, les usages et les enjeux de transformation de nos clients. o Accompagner les organisations dans l'adoption des solutions Microsoft 365, Copilot M365 et des nouveaux usages liés à l'intelligence artificielle. o Réaliser des entretiens, ateliers de découverte et sessions de co-construction avec les directions, managers et utilisateurs finaux. o Identifier les impacts organisationnels et humains liés à l'évolution des outils et des modes de travail. o Concevoir et déployer des stratégies d'accompagnement au changement favorisant l'engagement et l'appropriation des solutions. o Animer des ateliers, workshops, séminaires et communautés d'utilisateurs. o Concevoir et animer des formations, webinaires et actions de coaching adaptées aux différents profils d'utilisateurs. o Accompagner les utilisateurs dans l'intégration de Microsoft Copilot M365 et de l'IA générative dans leurs pratiques quotidiennes. o Développer et animer un réseau de champions afin de favoriser le partage des connaissances et l'adoption des bonnes pratiques. o Collaborer étroitement avec les chefs de projet et les équipes techniques pour garantir le succès des déploiements. o Suivre et analyser les indicateurs d'adoption, d'engagement et de satisfaction des utilisateurs. o Valoriser les innovations Microsoft et promouvoir les usages à forte valeur ajoutée auprès des clients. Environnement technique : o Conduite du changement et adoption digitale o User Experience (UX) et accompagnement des utilisateurs o Microsoft 365 (Teams, SharePoint, OneDrive, Viva) o Microsoft Copilot M365 et IA générative o Power Platform (Power Apps, Power Automate, Power BI) o Customer Success et stratégie d'adoption o Animation de communautés et gestion de réseaux de champions o Formation, coaching et facilitation d'ateliers o Transformation digitale o Coordination de projet o Design Thinking et intelligence co",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "consultant",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "Blue Soft",
+      "location": "France",
+      "duration": null
+    },
+    {
+      "title": "Product Owner",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-1385",
+      "snippet": "La mission consiste à : - Elaborer la vision Produit - Animer la Road Map au travers des KPIs d’usage des produits, maîtriser la valeur générée - Identifier un MVP - Accompagner les Métiers afin de définir et de formaliser leurs besoins - Rédiger les US, construire la backlog, suivre son évolution - Préparer et exécuter la recette transverse en étroite relation avec les Métiers et le Scrum Master Compétences demandées : - 5 ans d’expérience en tant que Product Owner dans des contextes internationaux - Expertise Agile (certification souhaitée) - Animation d’équipe - Gestion de la Backlog - Anglais indispensable - Connaissances et bagage techniques appréciés",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "scrum master"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "ICSIS",
+      "location": "Lille",
+      "duration": null
+    },
+    {
+      "title": "Proxy Product Owner",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/proxy-product-owner-176",
+      "snippet": "Dans le cadre du renforcement d’une équipe projet, nous recherchons un Proxy Product Owner (PPO) afin d’accompagner les équipes métiers dans la construction, l’alimentation et la priorisation du backlog . En lien étroit avec le Product Owner, les équipes métiers, les développeurs et les équipes de production, le consultant interviendra comme un facilitateur de la chaîne de delivery . Son rôle sera d'apporter un soutien opérationnel au Product Owner, de fluidifier les échanges entre les différents interlocuteurs et d'assurer le suivi des évolutions, de leur expression jusqu'à leur mise en production. Vous serez amené à : • accompagner les équipes métiers dans la construction, la structuration et l’alimentation du backlog ; • assister les métiers dans la priorisation des besoins et leur proposer des pistes d’arbitrage ; • faire le lien entre les équipes métiers et les développeurs afin de clarifier les besoins et de faciliter leur prise en charge ; • solliciter les équipes techniques pour obtenir des estimations de charge et des macro-chiffrages ; • assurer le suivi de l’ensemble de la chaîne de delivery , de l’expression du besoin jusqu’à la mise en production ; • garantir une bonne visibilité sur l’ avancement des travaux , les éventuels points de blocage et les prochaines étapes ; • coordonner les échanges avec les équipes de développement et de production ; • suivre les mises en production et contribuer à la prise en charge des erreurs et anomalies éventuelles ; • faciliter la communication entre les différents intervenants et apporter un soutien opérationnel au Product Owner. Environnement : Proxy Product Owner (PPO) Backlog management Priorisation des besoins Équipes métiers et équipes de développement Estimations de charge et macro-chiffrage Chaîne de delivery Suivi de l’avancement des projets Mise en production Équipes de production Gestion des erreurs et anomalies",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "consultant"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "CAT-AMANIA",
+      "location": "Niort",
+      "duration": null
+    },
+    {
+      "title": "Product Owner / Chef de Projet IT",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/assistant-chef-de-projet/product-owner-chef-de-projet-it-1",
+      "snippet": "Dans le cadre du pilotage et de l'évolution d'un produit informatique stratégique, nous recherchons un Product Owner / Chef de Projet IT disposant d'une expérience confirmée en gestion de produit et en pilotage de projets informatiques. Vous interviendrez sur un produit à forts enjeux de disponibilité et de qualité de service, exploité 24h/24 et 7j/7. Vous serez l'interlocuteur privilégié entre les clients, les équipes métiers et les équipes techniques, avec pour objectif de garantir la cohérence du produit, sa qualité fonctionnelle et son adéquation avec les besoins opérationnels. Vos principales missions seront les suivantes : Définir et communiquer la vision du produit ainsi que sa roadmap, en tenant compte des attentes des utilisateurs et des besoins clients ; Recueillir, analyser et formaliser les besoins métiers et clients sous forme de spécifications fonctionnelles et de User Stories ; Gérer, structurer et prioriser le Product Backlog en fonction des objectifs, des priorités et de la valeur apportée ; Rédiger les User Stories fonctionnelles et techniques ainsi que les spécifications selon les méthodes Agile et SDMS ; Assurer le suivi des développements et valider les livrables réalisés par les équipes ; Garantir la qualité fonctionnelle du produit et veiller à la bonne compréhension des besoins par les équipes de développement ; Assurer l'interface entre les équipes métiers, les équipes techniques et les clients ; Coordonner les différentes parties prenantes et veiller au respect des engagements ; Organiser et animer les réunions, les ateliers de travail et les clubs utilisateurs ; Accompagner les équipes dans la mise en œuvre des méthodologies Agiles ; Assurer le suivi budgétaire et contribuer au pilotage global du produit ; Recueillir les retours utilisateurs et clients afin d'identifier les axes d'amélioration et faire évoluer le produit. Environnement technique : Gestion de produit et Product Backlog Méthodologies Agile et SDMS Outils de gestion de projet : Jira, Confluence Spécifications fonctionnelles et techniques User Stories et critères d'acceptation Architecture SI et architectures fonctionnelles Recette fonctionnelle et validation des livrables RGPD et réglementation liée aux développements Environnement 24/7 et maintien en conditions opérationnelles Secteur de l'assurance",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "chef de projet",
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "CAT-AMANIA",
+      "location": "Niort",
+      "duration": null
+    },
+    {
+      "title": "Senior Product Owner H/F",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/senior-product-owner-h-f-3",
+      "snippet": "Basée à Lille, Lyon, Nantes, Grenoble, Marseille, Paris et Bruxelles, Insitoo Freelances est une société du groupe Insitoo, spécialisée dans le placement et le sourcing des Freelances IT et Métier. Depuis 2007, Insitoo Freelances a su s’imposer comme une référence en matière de freelancing par son expertise dans l’IT et ses valeurs de transparence et de proximité. Actuellement, afin de répondre aux besoins de nos clients, nous recherchons un Senior Product Owner H/F à Marseille, France. Contexte du département et du projet : Au sein du département Transformation, nous recherchons un Product Owner Senior doté d’un solide sens stratégique et de bonnes capacités d’organisation, capable de piloter le développement d’un produit de la définition de sa vision jusqu’à sa mise en production. Le profil recherché saura conjuguer vision produit à long terme et pilotage opérationnel , en veillant à l’alignement entre les objectifs métiers, les priorités produit et les capacités techniques. Il devra arbitrer entre des priorités concurrentes, anticiper les dépendances entre équipes et coordonner plusieurs parties prenantes et équipes de développement afin d’assurer des livraisons régulières et de qualité, ainsi que l’amélioration continue du produit. Les missions attendues par le Senior Product Owner H/F : Définir la stratégie et la vision produit Définir, affiner et communiquer une vision produit à long terme et une feuille de route stratégique claires pour le programme Traduire la stratégie métier en objectifs produit concrets, en fonctionnalités et en user stories. Superviser plusieurs backlogs produit et assurer une priorisation cohérente en tenant compte de la capacité de développement partagée des équipes tierces. Gérer les priorités concurrentes et faciliter les arbitrages entre produits en fonction de la valeur métier, des dépendances techniques et des retours des équipes projet. Piloter le produit de bout en bout Superviser l’ensemble du cycle de vie du produit, du recueil initial des besoins et de la conception jusqu’aux tests, à la livraison et au déploiement. Coordonner la livraison de bout en bout entre les équipes Data Science , chargées de développer les algorithmes, et les équipes tierces , responsables des applications, de l’intégration et des interfaces utilisateur. Anticiper et gérer les dépendances entre équipes pour aligner les calendriers de développement et de mise en production. Piloter et coordonner les tests de bout en bout de toutes les fonctionnalités. Veiller à ce que des procédures rigoureuses d’assurance qualité ( QA ) et de recette utilisateur ( UAT ) soient définies et appliquées avant chaque mise en production. Définir des critères d’acceptation clairs et collaborer étroitement avec les équipes métier et de développement pour garantir la qualité des livraisons. Suivre les indicateurs de performance et d’usage du produit pour mesurer les résultats et orienter les développements suivants. Former les équipes et développer leurs compétences Concevoir et animer des formations et des ateliers, et produire la documentation nécessaire à la montée en compétences des équipes sur le produit Accompagner les Proxy Product Owners et les guider sur les aspects fonctionnels afin d’harmoniser les pratiques de gestion produit, de gestion des backlogs et de livraison en mode Agile entre les modules. Coordonner les parties prenantes Être le point de contact principal pour l'équipe et aligner les efforts et les priorités des équipes projet, Data et IT. Animer les démonstrations produit, les ateliers et les revues d’avancement pour maintenir l’implication des parties prenantes et leur alignement sur les priorités. Consolider l’avancement des livraisons, les risques, les dépendances et les jalons des quatre modules , et faciliter les arbitrages lorsque nécessaire. Développer les bonnes pratiques et l’amélioration continue Identifier les possibilités d’amélioration des processus de livraison, des outils et des modes de collaboration. Faciliter le partage de connaissances et documenter les retours d’expérience pour améliorer l’efficacité et renforcer l’excellence opérationnelle.",
+      "source": "free-work.com",
+      "score": 5.9,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner",
+        "transformation"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [],
+      "company": "Insitoo Freelances",
+      "location": "Marseille",
+      "duration": null
+    },
+    {
+      "title": "Consultant·e IA Microsoft Copilot-Power Plateform",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/consultant-microsoft-sharepoint-365/consultant-e-ia-microsoft-copilot-power-plateform-5",
+      "snippet": "Cadrer et conseiller : - Accompagner nos client·es dans la définition et la priorisation de leurs cas d'usage IA, en lien avec leurs enjeux métiers et leur feuille de route Microsoft. - Animer des ateliers métiers et IT pour comprendre les besoins, challenger les idées et proposer des approches pragmatiques, orientées valeur. - Contribuer au cadrage fonctionnel des solutions IA Microsoft, en lien étroit avec les équipes avant-vente et techniques. - Conseiller les directions métiers et DSI sur les opportunités offertes par Microsoft Copilot, Copilot Studio et l'IA agentique. - Identifier les pré-requis (gouvernance, données, sécurité, conduite du changement) à la mise en oeuvre d'agents IA en production. Concevoir et développer des agents IA : - Concevoir, développer et faire évoluer des agents avec Copilot Studio : topics, actions/tools, orchestration via Power Automate, gestion du contexte conversationnel. - Connecter les agents aux services et données Microsoft 365 : SharePoint, Teams, Dataverse, ainsi qu'aux systèmes métiers via connecteurs et API. - Intervenir sur des phases de POC, de tests et d'itérations jusqu'à obtenir des agents fiables, performants et exploitables en production. - Mettre en place les mécanismes de fiabilité : grounding, tests, garde-fous, supervision des conversations et amélioration continue. - Participer à des ateliers pratiques, démonstrations, formations ou hackathons pour accompagner l'appropriation des agents par les utilisateur·ices. Aller vers l'industrialisation : - Appliquer et contribuer à faire évoluer les bonnes pratiques de déploiement des agents (ALM, environnements, gouvernance, sécurité). - Participer à la structuration des environnements Power Platform et à la qualité globale des livraisons. - Prendre part aux phases de tests, de recette et de stabilisation des solutions livrées. - Documenter les solutions livrées pour en faciliter l'usage, la maintenance et les évolutions futures. - Sensibiliser les équipes client·es aux enjeux de gouvernance, de conformité et de responsible AI. Contribuer à l'expertise IA collective : - Assurer une veille active sur Copilot Studio, l'IA agentique et l'écosystème Microsoft (Microsoft 365 Copilot, Azure AI Foundry, Power Platform).",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "consultant"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "services"
+      ],
+      "company": "Blue Soft",
+      "location": "France",
+      "duration": null
+    },
+    {
+      "title": "Product Owner (H/F)",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/product-owner/product-owner-h-f-1302",
+      "snippet": "Prêt à piloter un produit au coeur d'un contexte international exigeant ? Chez WINSIDE TECHNOLOGY, vous prenez en charge un produit en lien direct avec des équipes données et API, dans un univers retail où les arbitrages sont rapides. Vous travaillez avec des équipes métier, techniques et parfois internationales. Vous cadrez les besoins, vous priorisez les sujets et vous suivez les développements jusqu'à leur mise en ligne. Le poste demande une vraie capacité à comprendre des échanges techniques, à faire circuler l'information et à garder une vision claire des usages attendus. Le poste s'adresse à un Product Owner confirmé, capable d'avancer avec autonomie sur des sujets complexes. Vous intervenez dans un environnement où les dépendances sont nombreuses, les échanges fréquents et les décisions à tenir dans un cadre partagé. Vos responsabilités s'articulent autour des missions suivantes : - Recueillir les besoins métiers et cadrer les attentes fonctionnelles. - Prioriser le backlog selon la valeur et les contraintes projet. - Rédiger les user stories et préciser les critères d'acceptation. - Suivre les développements avec les équipes données et API. - Arbitrer les sujets avec les parties prenantes internes et externes. - Valider les livraisons et vérifier leur conformité aux besoins. - Piloter les échanges dans un contexte international et retail.",
+      "source": "free-work.com",
+      "score": 5.6,
+      "tjm": "non communiqué",
+      "tjm_value": 0,
+      "fit_skills": [
+        "product owner"
+      ],
+      "decision": "POSTULER",
+      "industry_match": [
+        "retail"
+      ],
+      "company": "WINSIDE Technology",
+      "location": "Lille",
+      "duration": null
+    }
+  ]
+}
